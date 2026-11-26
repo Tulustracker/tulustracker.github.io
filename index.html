@@ -180,6 +180,50 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .card.cancel .seg i.on{background:var(--muted)}
 .card.cancel .unit{text-decoration:line-through;text-decoration-thickness:1px}
 .cancelbox{background:var(--off);border-left:4px solid var(--muted);border-radius:8px;padding:9px 12px;margin:8px 0 10px;font-size:.92rem}
+.stats.four{grid-template-columns:repeat(2,1fr)}
+@media(min-width:540px){.stats.four{grid-template-columns:repeat(4,1fr)}}
+.statbtn{font:inherit;color:inherit;text-align:left;cursor:pointer}
+.statbtn[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.xnote{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px;color:var(--muted);font-size:.88rem}
+:root{--hi:#1c8a6e;--lo:#d68f0f;--heroBg:#173b33;--heroInk:#ffffff;--heroGold:#f8c010}
+@media(prefers-color-scheme:dark){:root{--hi:#37b597;--lo:#c9860b;--heroBg:#102c25}}
+.box h3{font-size:1rem;margin:2px 0 10px}
+.ihero{background:var(--heroBg);color:var(--heroInk);border-radius:16px;padding:20px 18px;margin-bottom:12px;text-align:center}
+.ihero .eyebrow{display:block;font-size:.8rem;font-weight:700;letter-spacing:.08em}
+.ihero .big{display:block;font-size:2.7rem;line-height:1.05;color:var(--heroGold);margin:6px 0 8px;letter-spacing:.01em}
+.ihero p{margin:0 auto 14px;max-width:34ch;font-size:.92rem;opacity:.92}
+.ihero .eff{display:inline-block;background:var(--heroGold);color:#1b1200;font-weight:700;font-size:.85rem;border-radius:10px;padding:7px 14px}
+.calc input{font-size:1.2rem}
+.eres{margin-top:10px}
+.eamt{background:var(--off);border-radius:12px;padding:12px 14px}
+.eamt span{display:block;font-size:.85rem;color:var(--muted)}
+.eamt b{display:block;font-size:1.9rem;line-height:1.15;font-variant-numeric:tabular-nums}
+.etag{font-size:.85rem;border-left:4px solid var(--hi);padding:4px 10px;margin:8px 0 0}
+.etag.lo{border-left-color:var(--lo)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted);margin:-2px 0 8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .k{width:12px;height:12px;border-radius:3px;display:inline-block}
+.k.hi{background:var(--hi)}.k.lo{background:var(--lo)}
+.ebars li{grid-template-columns:96px 1fr 44px;padding:3px 4px}
+.ebars .bt,.ebars .bt i{height:12px}
+.ebars li.hi .bt i{background:var(--hi)}
+.ebars li.lo .bt i{background:var(--lo)}
+.ebars li.me{background:var(--off);box-shadow:inset 3px 0 0 var(--ink)}
+.ebars li.me .bl,.ebars li.me .bv{font-weight:700}
+.ebars .bv{text-align:right}
+.why{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.why li{display:flex;gap:12px;align-items:flex-start}
+.why .num{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:1.05rem;background:var(--lo);color:#1b1200}
+.why li:nth-child(even) .num{background:var(--hi);color:#fff}
+.why b{display:block;font-weight:600;line-height:1.3;padding-top:2px}
+.why em{display:block;font-style:normal;color:var(--muted);font-size:.85rem}
+.pay{display:grid;gap:10px}
+@media(min-width:620px){.pay{grid-template-columns:repeat(3,1fr)}}
+.pcard{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.pcard h4{margin:0;padding:9px 12px;font-size:.92rem;text-align:center}
+.pcard.gold h4{background:var(--heroGold);color:#1b1200}
+.pcard.pine h4{background:var(--heroBg);color:#fff}
+.pcard ul{margin:0;padding:10px 12px 12px 28px;font-size:.88rem;display:grid;gap:6px}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"vu5fO/L7NmZfkuOqXZ1WjQ==","it":400000,"b":["NPa+cw0XqSM8j+j2.udPbXAy4W5No9beuvnmA1SwVorx+MkHUZtttNNAfc72vggORkdfBCIZzZhC4baBnOxSitbYIdw1rE6kQf8cFN439EDz+CjszutQE+/fg9T/leBB2GspFIeb6BrXvgMxhvsRBwSOcYlgyoY9774Yo4bi95doiAV7j36p7jkseXjfkj7V+S6BjMPHfVjkS/JLhTcPf2wOxPLsYgT/QJ1NVZn2ChNJ5xrZ01E2av4V1A7dJUka7nZck202ITFi9BG/x2AFIPUm6k6DUJSl8piRyTP/T1DUbCLCSJQtqaXWBTaCRaCjAVfcWnDpKmxn5j0hvRYloyw0YArjWsvfGWQG33hI9fvSG+BgWWCMmR93h4/3yLOLIjF/fdZCloTyoW+HfH7KWL4/RHOOZI/Knz8ycZZXSNSM8Z6P03n7zErLPaa6cJHqK644VrD1xXPD8mXsNQRJp+hnMGmECIJFyTi3c/qPDb7kMhW+qiK7hEH38sbSVFmB+RrkdqP9/lvwQBruseUsY94DJ/CgVAqCNrVQEsB7hhjb7HMmcEi9JK8ItQjQR0Jd0hiuAweAOxCa1O4vXild0GqAVNPRSiH4bOrzw5ybjzMAlLzN95cNDGfhlfWuxe1qHFliHS455uQyeGfI63OFA1P9wHi69s7sGbFqSubQm3ik3Aokai/XiqBSmRPWW4vMPCyEtIu+sG0CAmXYSrKPHa9RasEgBQ4VecEhGU+0ORTyRNCShP7PrynMVQDLxsXyTc7ktvzK6yGbqnSUpRKc+d8I23qCeSP7Nuxry2zdkTBeTA0M5yfMlfE1DtvrqyLojmfp+CYU9MEzZpOEhlk5LnXWYjXfKrt0aitrxt9YGqr8f5cfyzfns9XcBOXT8Ln6jV3Opw+fmwWb3VvCK1sOW3xSHG7Twt/v65w=="]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -360,6 +404,34 @@ function jobChart(sc){
   const max=Math.max(...rows.map(r=>r[1])),tot=sc.length;
   return `<section class="box chart" aria-label="Carta pekerjaan klien"><div class="chead"><b>Pekerjaan klien</b><span>Jumlah permohonan: <b>${tot}</b></span></div><ul class="bars">${rows.map(([k,v])=>{const pct=Math.round(v/tot*100);return `<li tabindex="0" title="${esc(k)}: ${v} permohonan (${pct}%)"${k==='Belum diisi'?' class="blank"':''}><span class="bl">${esc(k)}</span><span class="bt"><i style="width:${Math.max(2,v/max*100).toFixed(1)}%"></i></span><span class="bv">${v} <em>(${pct}%)</em></span></li>`}).join('')}</ul></section>`;
 }
+/* ---------- Info pembiayaan perumahan sektor awam (daripada bahan yang diberi admin) ---------- */
+const ELIG=[[2500,280000],[3000,350000],[3500,430000],[4000,480000],[4500,550000],[5000,610000],[5500,670000],[6000,730000],[6500,780000],[7000,800000],[7500,830000],[8000,850000],[8500,880000],[9000,900000],[9500,930000],[10000,950000],[Infinity,1000000]];
+const rm=n=>'RM'+Math.round(n).toLocaleString('en-US');
+const eligLabel=i=>i===0?'Sehingga 2,500':ELIG[i][0]===Infinity?'Lebih 10,000':ELIG[i][0].toLocaleString('en-US');
+const eligRange=i=>i===0?'sehingga RM2,500':ELIG[i][0]===Infinity?'lebih RM10,000':rm(ELIG[i-1][0]+1)+' hingga '+rm(ELIG[i][0]);
+const WHY=[['Margin pembiayaan','sehingga 100%'],['Kadar faedah 4.00% tetap setahun','untuk kelayakan sehingga RM750,000'],['Tiada semakan CCRIS & CTOS','hanya komitmen dalam slip gaji diambil kira'],['Tempoh sehingga 35 tahun','atau sehingga umur 90 tahun, mana yang terdahulu'],['Tiada bayaran progresif','untuk projek dalam pembinaan'],['Bayaran bulanan tetap',''],['Duti setem (perjanjian pinjaman) & penilaian','PERCUMA']];
+const PAY=[['Jenis 1, 4 dan 5','gold',['Pada <b>bulan berikutnya</b> jika bayaran pertama pembiayaan dikeluarkan pada atau sebelum 15hb bulan berkenaan; atau','Pada <b>2 (dua) bulan berikutnya</b> jika bayaran pertama dikeluarkan selepas 15hb bulan berkenaan.']],
+ ['Jenis 2, 3 (rumah bertanah), 6 dan 7','pine',['<b>Bulan berikutnya</b> selepas bayaran kemajuan 95% dikeluarkan; atau','Pada <b>bulan ke-25</b> daripada tarikh kelulusan;','<b>Mana-mana yang terdahulu.</b>']],
+ ['Jenis 3 (high-rise)','gold',['Pada <b>bulan berikutnya</b> jika bayaran kemajuan 95% dikeluarkan pada atau sebelum 15hb; atau','Pada <b>2 (dua) bulan berikutnya</b> jika dikeluarkan selepas 15hb; atau','Pada <b>bulan ke-37</b> daripada tarikh kelulusan;','<b>Mana-mana yang terdahulu.</b>']]];
+function vInfo(){
+  const max=1000000;
+  const bars=ELIG.map((r,i)=>`<li data-i="${i}" class="${r[1]>750000?'hi':'lo'}" title="Pendapatan bersih ${eligRange(i)}: had ${rm(r[1])}"><span class="bl">${eligLabel(i)}</span><span class="bt"><i style="width:${(r[1]/max*100).toFixed(1)}%"></i></span><span class="bv">${(r[1]/1000).toLocaleString('en-US')}k</span></li>`).reverse().join('');
+  return `<h2 class="h">Info pembiayaan perumahan sektor awam</h2>
+<section class="ihero"><span class="eyebrow">Had kelayakan maksimum</span><b class="big">RM1 juta</b><p>bagi pendapatan bersih lebih RM10,000. Tertakluk kepada kelayakan pemohon dan syarat pembiayaan yang berkuat kuasa.</p><span class="eff">Berkuat kuasa 4 Okt 2026</span></section>
+<section class="box calc"><h3>Semak kelayakan maksimum</h3><label class="fl" for="inc">Pendapatan bersih sebulan (RM)</label><input id="inc" type="number" inputmode="numeric" min="0" placeholder="Contoh: 4200" autocomplete="off"><div id="eres" class="eres" aria-live="polite"><p class="name">Masukkan pendapatan bersih untuk lihat anggaran had pembiayaan.</p></div></section>
+<section class="box chart elig" aria-label="Jadual kelayakan maksimum pembiayaan"><div class="chead"><b>Jadual kelayakan maksimum</b><span>ikut pendapatan bersih (RM)</span></div><div class="legend"><span><i class="k hi"></i>Had melebihi RM750,000</span><span><i class="k lo"></i>Had sehingga RM750,000</span></div><ul class="bars ebars" id="ebars">${bars}</ul></section>
+<section class="box"><h3>7 sebab memilih pembiayaan perumahan sektor awam</h3><ol class="why">${WHY.map((w,i)=>`<li><span class="num">${i+1}</span><span><b>${w[0]}</b>${w[1]?`<em>${w[1]}</em>`:''}</span></li>`).join('')}</ol></section>
+<section class="box"><h3>Bila bayaran balik bermula</h3><div class="pay">${PAY.map(([t,c,pts])=>`<article class="pcard ${c}"><h4>${t}</h4><ul>${pts.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join('')}</div></section>
+<p class="note">Sumber: Soalan Lazim (FAQ) rasmi pembiayaan perumahan sektor awam, 25 September 2026. Panduan ringkas sahaja; kelayakan dan kadar sebenar tertakluk kepada syarat yang berkuat kuasa.</p>`;
+}
+function updateElig(){
+  const v=parseFloat($('inc').value),box=$('eres');
+  document.querySelectorAll('#ebars li').forEach(li=>li.classList.remove('me'));
+  if(!(v>0)){box.innerHTML='<p class="name">Masukkan pendapatan bersih untuk lihat anggaran had pembiayaan.</p>';return}
+  const i=ELIG.findIndex(r=>v<=r[0]),amt=ELIG[i][1];
+  const li=document.querySelector(`#ebars li[data-i="${i}"]`);if(li)li.classList.add('me');
+  box.innerHTML=`<div class="eamt"><span>Anggaran had pembiayaan maksimum</span><b>${rm(amt)}</b></div><p class="name">Untuk pendapatan bersih ${eligRange(i)} sebulan.</p><p class="etag ${amt>750000?'hi':'lo'}">${amt>750000?'Had melebihi RM750,000. Kadar 4.00% tetap terpakai untuk kelayakan sehingga RM750,000; rujuk syarat terkini untuk bahagian melebihi had itu.':'Layak kadar faedah 4.00% tetap setahun.'}</p>`;
+}
 function pubBanner(){
   if(me.role!=='admin'||!S.devs.length)return '';
   if(!S.dirty)return S.pubAt?`<p class="note">Pemaju/agency nampak data terkini (dikemas kini ${esc(fmtT(S.pubAt))}).</p>`:'';
@@ -369,11 +441,12 @@ function vKlien(){
   const adm=me.role==='admin',all=scope(),sc=all.filter(live),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last(),nX=all.length-n;
   const cnt=i=>sc.filter(c=>c.s===i).length;
   const dv=!adm&&S.devs[0];
-  let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
+  let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats four"><div class="stat"><b>${n}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div><button class="stat statbtn" data-act="fcancel" aria-pressed="${fStage===-3}" title="Tekan untuk lihat permohonan dibatalkan"><b>${nX}</b><span>Dibatalkan</span></button></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
   h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
   const nStuck=sc.filter(isStuck).length;
-  if(nStuck||nX||fStage<-1)h+=`<div class="stuckbar">${nStuck||fStage===-2?`<button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button>`:''}${nX||fStage===-3?`<button class="chip" data-act="fcancel" aria-pressed="${fStage===-3}">Dibatalkan (${nX})</button>`:''}</div>`;
+  if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button></div>`;
+  if(fStage===-3)h+=`<div class="xnote"><span>Menunjukkan ${nX} permohonan dibatalkan.</span><button class="chip" data-act="fcancel">Kembali ke senarai aktif</button></div>`;
   h+=jobChart(sc);
   h+=`<input id="q" type="search" placeholder="Cari unit, nama atau pekerjaan" value="${esc(q)}" aria-label="Cari unit atau nama">`;
   if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
@@ -406,8 +479,10 @@ function render(){
   if(!me)return;
   padKey=null;VIEW='app';
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===me.dev);
-  const body=!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
-  const nav=adm?`<nav class="tabs" aria-label="Menu">${[['klien','Klien'],['pemaju','Pemaju/Agency'],['alat','Alat']].map(([k,l])=>`<button data-act="tab" data-v="${k}"${tab===k?' aria-current="page"':''}>${l}</button>`).join('')}</nav>`:'';
+  if(!adm&&tab!=='info')tab='klien';
+  const body=tab==='info'?vInfo():!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
+  const items=adm?[['klien','Klien'],['pemaju','Pemaju/Agency'],['info','Info'],['alat','Alat']]:[['klien','Klien'],['info','Info pembiayaan']];
+  const nav=`<nav class="tabs" aria-label="Menu">${items.map(([k,l])=>`<button data-act="tab" data-v="${k}"${tab===k?' aria-current="page"':''}>${l}</button>`).join('')}</nav>`;
   $('app').innerHTML=`<header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div><button class="ghost" data-act="out">Keluar</button></header><main>${body}</main>${nav}`;
 }
 
@@ -637,7 +712,7 @@ function act(a,b){
   switch(a){
     case 'out':ss.del('tt-admin');flush();start();break;
     case 'setup':if(OWNER&&LOADED&&!S.admin)setup();break;
-    case 'tab':tab=d.v;render();break;
+    case 'tab':tab=d.v;render();window.scrollTo(0,0);break;
     case 'fdev':fDev=d.v;fStage=-1;render();break;
     case 'fstage':fStage=fStage===+d.v?-1:+d.v;render();break;
     case 'fstuck':fStage=fStage===-2?-1:-2;render();break;
@@ -686,6 +761,7 @@ document.addEventListener('keydown',e=>{
 });
 document.addEventListener('input',e=>{
   if(e.target.id==='q'){q=e.target.value;$('list').innerHTML=listHtml()}
+  else if(e.target.id==='inc')updateElig();
   else if(e.target.id==='note'){const c=S.clients.find(x=>x.id===openId);if(c){c.note=e.target.value;save()}}
   else if(e.target.id==='sn'&&isAdmin()){const c=S.clients.find(x=>x.id===openId);if(c){c.sn=e.target.value.slice(0,300);touch();if($('list'))$('list').innerHTML=listHtml()}}
 });
