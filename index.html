@@ -161,6 +161,21 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .bars li.blank .bl{color:var(--muted)}
 .bv{font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 .bv em{font-style:normal;color:var(--muted)}
+:root{--flagbg:#fdeccb;--flagink:#6e4300}
+@media(prefers-color-scheme:dark){:root{--flagbg:#3d2c09;--flagink:#f6cf7c}}
+.flag{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--flagbg);color:var(--flagink);white-space:nowrap}
+.flag>span{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:var(--flagink);color:var(--flagbg);font-size:.7rem;font-weight:800}
+.card .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.stuckbar{margin:0 0 10px}
+.chip.flagchip{background:var(--flagbg);border-color:var(--flagbg);color:var(--flagink);font-weight:600}
+.chip.flagchip[aria-pressed=true]{background:var(--flagink);border-color:var(--flagink);color:var(--flagbg)}
+.chip.flagchip>span{font-weight:800}
+.sn{font-size:.85rem;margin:2px 0 6px;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.since{color:var(--muted);font-size:.88rem;margin:0 0 6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.snbox{background:var(--off);border-radius:10px;padding:10px 12px;margin:8px 0 6px}
+.snbox b{font-size:.85rem}
+.snbox p{margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.row.wrap{flex-wrap:wrap}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"+ZcdVupHQJlfixF2kTWBhA==","it":150000,"b":["WiQiMGKFUgFgiuPc.FFKBRlIwN8qk+5xB+l/rh1Vtoq1VxB0bTxzMDX2NefuEGkM2KTfBK0c5d9ILZKviWEVXNG9he2VpNaRANdFNQ6pKWboEgZEDAwgXWLtKpKLBHRxl5UmMxRYgQh8276oVO+KR3IXAyLIETuX3SgHcJFNNeKWTskjDhJTLfy4Ch5+EWZ6wM4hva3P/TiYMIpFrtCfTm0hgkEk+XCUdYfWeF5kiyCYQh62gx9V0iVJsU/jJRFWAx3cecuf60EF36g3G0bODKVJWVWlyM9y8KZOVYFcIZMUGwG+p1Ri5f8nc+m07Z9D5RuGVPm/Vmab8nITRystLlzW56zn2dRU/61lQ8y/H5FsYjhLzlK6L3t8p83MD6RA1amLvuCNnp9mfXNvs/KxuDOPFD9r45PjF9qVHoFEebC8OzDq/3B9lS3XRZVhbR/qH8Bjs0R7/5YdKjVD5xC5/X54krePir5r54feKIm6RRa0+Rmwoak2mzyX3j7ZcCiSDEOebyZxrXv0JilJeOOhlmj7RHF2DkwyLLvh9WZlbANUBKE6CDBducUgfr8cyLoMd4+eZRsBo"]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -173,7 +188,15 @@ const ITER=400000;
 /* PIN yang terlalu mudah diteka: digit sama, berturutan, atau popular. */
 const WEAK=['1212','1004','2000','6969','1122','1313','4321','2001','1010','2580','0852','1992','1990','1980'];
 function weakPin(p){p=String(p);if(/^(\d)\1{3}$/.test(p))return true;const d=[...p].map(Number);let up=true,dn=true;for(let i=1;i<4;i++){if(d[i]!==(d[i-1]+1)%10)up=false;if(d[i]!==(d[i-1]+9)%10)dn=false}return up||dn||WEAK.includes(p)}
-let S={admin:'',stages:DEF.slice(),devs:[],clients:[],dirty:false,pubAt:0,link:''};
+let S={admin:'',stages:DEF.slice(),devs:[],clients:[],dirty:false,pubAt:0,link:'',stuckDays:14};
+const DAY=86400000;
+const clampDays=v=>Math.min(Math.max(1,Math.floor(+v)||14),365);
+const STUCK=()=>clampDays(S.stuckDays);
+/* Bila klien masuk tahap semasa: entri log terakhir untuk tahap itu, atau tarikh kemas kini. */
+function stageSince(c){const s=Math.min(c.s,last());const e=[...(c.log||[])].reverse().find(x=>x.s===s);return e&&e.t?e.t:(c.d||Date.now())}
+const daysAt=c=>Math.max(0,Math.floor((Date.now()-stageSince(c))/DAY));
+const isStuck=c=>c.s<last()&&daysAt(c)>=STUCK();
+const created=c=>(c.log&&c.log[0]&&c.log[0].t)||c.d||0;
 const okLink=v=>/^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/[^\s<>"'`]*)?$/i.test(String(v||''))&&String(v).length<=300;
 let me=null,tab='klien',fDev='',fStage=-1,q='',openId=null,padKey=null,fails=0,lockUntil=0,busy=false,VIEW=null;
 let OWNER=false,DOC=null,ART=null,LOADED=false,OWNER_ERR='',RO=false;
@@ -208,8 +231,8 @@ function normalize(d){
   if(!d||!Array.isArray(d.stages)||!Array.isArray(d.devs)||!Array.isArray(d.clients))return null;
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return null;
   const devs=d.devs.filter(v=>v&&/^\d{4}$/.test(String(v.pin))).map(v=>({id:sid(v.id),name:String(v.name),pin:String(v.pin)}));
-  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
-  return {admin:/^\d+$/.test(String(d.admin))?String(d.admin):'',stages,devs,clients,dirty:!!d.dirty,pubAt:+d.pubAt||0,link:okLink(d.link)?String(d.link):''};
+  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
+  return {admin:/^\d+$/.test(String(d.admin))?String(d.admin):'',stages,devs,clients,dirty:!!d.dirty,pubAt:+d.pubAt||0,link:okLink(d.link)?String(d.link):'',stuckDays:clampDays(d.stuckDays)};
 }
 
 /* ---------- simpan ke db (satu tulisan pada satu masa) ---------- */
@@ -275,7 +298,7 @@ async function tryPemaju(p){
 }
 function enterPemaju(d,p){
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return false;
-  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0};
+  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0,stuckDays:clampDays(d.stuck)};
   me={role:'dev',dev:'x'};fails=0;tab='klien';render();return true;
 }
 function ownerExtra(){
@@ -313,11 +336,11 @@ function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fD
 function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
 function listHtml(){
   const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
-  const rows=scope().filter(c=>(fStage<0||c.s===fStage)&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  const rows=scope().filter(c=>(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
   if(!rows.length)return `<div class="empty">${S.clients.length?'Tiada padanan.':adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):'Belum ada klien untuk projek ini.'}</div>`;
   return rows.map(c=>{
     const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
-    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div><div class="meta">Kemas kini ${fmt(c.d)}</div></div>`;
+    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>Catatan:</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> Tersangkut ${daysAt(c)} hari</span>`:''}<span>Kemas kini ${fmt(c.d)}</span></div></div>`;
   }).join('');
 }
 const jobList=(id='jobs')=>`<datalist id="${id}">${JOBS.map(j=>`<option value="${esc(j)}">`).join('')}</datalist>`;
@@ -344,6 +367,8 @@ function vKlien(){
   let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
   h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
+  const nStuck=sc.filter(isStuck).length;
+  if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button></div>`;
   h+=jobChart(sc);
   h+=`<input id="q" type="search" placeholder="Cari unit, nama atau pekerjaan" value="${esc(q)}" aria-label="Cari unit atau nama">`;
   if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
@@ -357,12 +382,14 @@ function vDevs(){
   if(!S.devs.length)return h+`<div class="empty">Belum ada pemaju/agency.</div>`;
   return h+S.devs.map(d=>{
     const cl=S.clients.filter(c=>c.dev===d.id),dn=cl.filter(c=>c.s>=last()).length;
-    return `<section class="card"><div class="top"><span class="unit">${esc(d.name)}</span><span class="pill">PIN ${esc(d.pin)}</span></div><p class="name">${cl.length} klien, ${dn} selesai</p>${weakPin(d.pin)?'<p class="warn">PIN ini mudah diteka. Tukar PIN di bawah, kemudian tekan “Kemas kini untuk pemaju”.</p>':''}<div class="row"><button class="btn" data-act="invite" data-id="${esc(d.id)}">Salin jemputan</button><button class="btn alt" data-act="msg" data-id="${esc(d.id)}">Salin mesej status</button></div><div class="row"><input id="np-${esc(d.id)}" placeholder="PIN baharu" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN baharu"><button class="btn alt" data-act="chpin" data-id="${esc(d.id)}">Tukar PIN</button></div><button class="danger" data-act="deld" data-id="${esc(d.id)}" data-confirm>Padam pemaju/agency dan semua kliennya</button></section>`;
+    return `<section class="card"><div class="top"><span class="unit">${esc(d.name)}</span><span class="pill">PIN ${esc(d.pin)}</span></div><p class="name">${cl.length} klien, ${dn} selesai</p>${weakPin(d.pin)?'<p class="warn">PIN ini mudah diteka. Tukar PIN di bawah, kemudian tekan “Kemas kini untuk pemaju”.</p>':''}<div class="row wrap"><button class="btn" data-act="invite" data-id="${esc(d.id)}">Salin jemputan</button><button class="btn alt" data-act="msg" data-id="${esc(d.id)}">Salin mesej status</button><button class="btn alt" data-act="reportdev" data-id="${esc(d.id)}">Laporan bulan ini</button></div><div class="row"><input id="np-${esc(d.id)}" placeholder="PIN baharu" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN baharu"><button class="btn alt" data-act="chpin" data-id="${esc(d.id)}">Tukar PIN</button></div><button class="danger" data-act="deld" data-id="${esc(d.id)}" data-confirm>Padam pemaju/agency dan semua kliennya</button></section>`;
   }).join('');
 }
 function vTools(){
   return `<h2 class="h">Alat</h2>
 <details class="box"${S.link?'':' open'}><summary>Link untuk pemaju</summary><p class="name">Tampal link pendek anda (contoh https://tinyurl.com/tulustracker). Butang “Salin jemputan” akan guna link ini. Biarkan kosong untuk guna link asal.</p><div class="f"><input id="lk" type="url" inputmode="url" placeholder="https://tinyurl.com/tulustracker" value="${esc(S.link)}" autocomplete="off"><div class="row" style="margin-top:0"><button class="btn" data-act="savelink">Simpan link</button><button class="btn alt" data-act="copyorig">Salin link asal</button></div></div></details>
+<details class="box" open><summary>Laporan bulanan</summary><p class="name">Pilih bulan dan pemaju/agency. Laporan boleh disalin dan dihantar dalam WhatsApp.</p><div class="f"><input id="rm" type="month" value="${thisMonth()}" max="${thisMonth()}" aria-label="Bulan"><select id="rd" aria-label="Pemaju/Agency"><option value="">Semua pemaju/agency</option>${S.devs.map(d=>`<option value="${esc(d.id)}">${esc(d.name)}</option>`).join('')}</select><button class="btn" data-act="report">Jana laporan</button></div></details>
+<details class="box"><summary>Amaran klien tersangkut</summary><p class="name">Klien yang berada di tahap sama lebih lama daripada had ini akan ditanda “Tersangkut”. Pemaju/agency juga nampak tanda ini.</p><div class="row"><input id="sd" type="number" inputmode="numeric" min="1" max="365" value="${STUCK()}" aria-label="Had hari"><span class="name" style="white-space:nowrap">hari</span><button class="btn" data-act="savestuck">Simpan</button></div></details>
 <details class="box"><summary>Tetapan tahap</summary><p class="name">Satu tahap setiap baris, ikut turutan. Ubah ikut proses sebenar.</p><div class="f"><textarea id="st" rows="7">${esc(S.stages.join('\n'))}</textarea><button class="btn" data-act="savest">Simpan tahap</button></div></details>
 <details class="box"><summary>Tukar PIN admin</summary><div class="row"><input id="ap" placeholder="PIN baharu 4 angka" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN admin baharu"><button class="btn" data-act="adminpin">Simpan</button></div></details>
 <div class="tools"><button class="btn alt" data-act="sum">Salin ringkasan</button><button class="btn alt" data-act="bakt">Salin backup (teks)</button><label class="btn alt">Pulihkan dari fail<input id="res" type="file" accept=".json,application/json" hidden></label></div>
@@ -385,7 +412,7 @@ function renderSheet(){
   if(!c){el.hidden=true;el.innerHTML='';return}
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===c.dev),L=last(),s=Math.min(c.s,L);
   el.hidden=false;
-  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><p class="since" id="since">${sinceText(c)}</p>${!adm&&c.sn?`<div class="snbox"><b>Catatan daripada admin</b><p>${esc(c.sn)}</p></div>`:''}<ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="sn">Catatan untuk pemaju/agency (dikongsi)</label><textarea id="sn" rows="2" maxlength="300" placeholder="Contoh: Menunggu slip gaji terkini">${esc(c.sn||'')}</textarea><label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
 }
 function paintSheet(){
   const c=S.clients.find(x=>x.id===openId);if(!c||$('sheet').hidden)return;
@@ -393,6 +420,12 @@ function paintSheet(){
   $('sheet').querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<s?'past':i===s?'now':'';li.querySelector('em').textContent=dateFor(c,i)});
   $('sheet').querySelector('.steps').classList.toggle('fin',s>=L);
   $('pctn').textContent=Math.round(s/L*100)+'%';$('pctl').textContent=S.stages[s];
+  $('since').innerHTML=sinceText(c);
+}
+function sinceText(c){
+  if(c.s>=last())return 'Proses selesai pada '+esc(fmt(stageSince(c)))+'.';
+  const n=daysAt(c);
+  return `Di tahap ini sejak ${esc(fmt(stageSince(c)))} (${n} hari).`+(isStuck(c)?` <span class="flag"><span aria-hidden="true">!</span> Tersangkut</span>`:'');
 }
 function openSheet(id){openId=id;renderSheet();document.body.style.overflow='hidden';const b=$('sheet').querySelector('.ghost');if(b)b.focus()}
 function closeSheet(){openId=null;const el=$('sheet');el.hidden=true;el.innerHTML='';document.body.style.overflow=''}
@@ -423,7 +456,7 @@ function statusMsg(id){
   const cl=S.clients.filter(c=>c.dev===id),L=last();
   const lines=['*TULUS TRACKER*','Status proses perumahan: '+d.name,'Dikemas kini '+fmt(Date.now()),''];
   if(!cl.length)lines.push('Belum ada klien.');
-  cl.forEach(c=>{const s=Math.min(c.s,L);lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': '+S.stages[s]+' ['+(s+1)+'/'+(L+1)+']')});
+  cl.forEach(c=>{const s=Math.min(c.s,L);lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': '+S.stages[s]+' ['+(s+1)+'/'+(L+1)+']'+(isStuck(c)?' (tersangkut '+daysAt(c)+' hari)':''));if(c.sn)lines.push('   Catatan: '+c.sn)});
   lines.push('','Jumlah: '+cl.length+' klien, '+cl.filter(c=>c.s>=L).length+' selesai.');
   showText('Mesej untuk '+d.name,lines.join('\n'),'Salin mesej ini dan tampal dalam WhatsApp pemaju/agency. Tiada PIN diperlukan.');
 }
@@ -444,8 +477,8 @@ async function publishNow(btn){
     const at=Date.now(),salt=crypto.getRandomValues(new Uint8Array(16)),blobs=[];
     for(const d of S.devs){
       const key=await kdf(d.pin,salt,ITER);
-      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,j:c.j||'',s:c.s,log:c.log||[],d:c.d}));
-      blobs.push(await seal({dev:d.name,stages:S.stages,clients:cl,at},key));
+      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,j:c.j||'',sn:c.sn||'',s:c.s,log:c.log||[],d:c.d}));
+      blobs.push(await seal({dev:d.name,stages:S.stages,clients:cl,at,stuck:STUCK()},key));
     }
     for(let i=blobs.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[blobs[i],blobs[j]]=[blobs[j],blobs[i]]}
     const pub=JSON.stringify({v:2,salt:b64(salt),it:ITER,b:blobs}).replace(/</g,'\\u003c');
@@ -518,11 +551,11 @@ function saveStages(){
   S.stages=t;S.clients.forEach(c=>{c.s=Math.min(c.s,t.length-1)});fStage=-1;touch();render();toast('Tahap disimpan.');
 }
 function wipe(){if(!isAdmin())return;S.clients=[];S.devs=[];fDev='';fStage=-1;touch();render();toast('Semua pemaju/agency dan klien dipadam.')}
-function backupText(){if(isAdmin())showText('Backup (teks)',JSON.stringify({admin:S.admin,stages:S.stages,devs:S.devs,clients:S.clients}),'Salin dan simpan di tempat selamat, contohnya Notes. Teks ini mengandungi semua data dan PIN pemaju/agency, jadi jangan hantar kepada orang lain.')}
+function backupText(){if(isAdmin())showText('Backup (teks)',JSON.stringify({admin:S.admin,stages:S.stages,devs:S.devs,clients:S.clients,stuckDays:STUCK()}),'Salin dan simpan di tempat selamat, contohnya Notes. Teks ini mengandungi semua data dan PIN pemaju/agency, jadi jangan hantar kepada orang lain.')}
 function importData(raw){
   if(!isAdmin())return;
   try{const n=normalize(JSON.parse(raw));if(!n)throw 0;
-    S={admin:n.admin||S.admin,stages:n.stages,devs:n.devs,clients:n.clients,dirty:true,pubAt:S.pubAt,link:S.link};
+    S={admin:n.admin||S.admin,stages:n.stages,devs:n.devs,clients:n.clients,dirty:true,pubAt:S.pubAt,link:S.link,stuckDays:raw.indexOf('"stuckDays"')>=0?n.stuckDays:S.stuckDays};
     fDev='';fStage=-1;save();render();toast('Backup dipulihkan. Tekan “Kemas kini untuk pemaju” bila sedia.');
   }catch(x){toast('Backup tidak sah. Pastikan semua teks disalin.')}
 }
@@ -532,6 +565,42 @@ function saveLink(){
   if(v&&!/^https?:\/\//i.test(v))v='https://'+v;
   if(v&&!okLink(v)){toast('Link tidak sah. Mesti bermula dengan https://');return}
   S.link=v;save();render();toast(v?'Link disimpan. “Salin jemputan” kini guna link ini.':'Link pendek dibuang. Link asal digunakan.');
+}
+function saveStuck(){
+  if(!isAdmin())return;
+  const v=Math.floor(+$('sd').value);
+  if(!(v>=1&&v<=365)){toast('Masukkan bilangan hari antara 1 dan 365.');return}
+  S.stuckDays=v;touch();render();toast('Had tersangkut ditetapkan '+v+' hari.');
+}
+const thisMonth=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};
+/* Laporan bulanan dalam teks biasa, sedia untuk WhatsApp. */
+function report(devId,ym){
+  if(!isAdmin())return;
+  if(!S.devs.length){toast('Belum ada pemaju/agency.');return}
+  if(!/^\d{4}-\d{2}$/.test(ym))ym=thisMonth();
+  const [Y,M]=ym.split('-').map(Number),from=new Date(Y,M-1,1).getTime(),to=new Date(Y,M,1).getTime();
+  const name=new Date(Y,M-1,1).toLocaleDateString('ms-MY',{month:'long',year:'numeric'});
+  const L=last(),inM=t=>t>=from&&t<to,devs=devId?S.devs.filter(d=>d.id===devId):S.devs;
+  const lines=['*TULUS TRACKER*','Laporan bulanan: '+name,'Dijana '+fmt(Date.now())];
+  devs.forEach(d=>{
+    const cl=S.clients.filter(c=>c.dev===d.id);
+    const baru=cl.filter(c=>inM(created(c)));
+    const selesai=cl.filter(c=>(c.log||[]).some(e=>e.s===L&&inM(e.t)));
+    const gerak=cl.filter(c=>(c.log||[]).some(e=>e.s>0&&inM(e.t))).length;
+    const aktif=cl.filter(c=>c.s<L);
+    const stuck=aktif.filter(isStuck);
+    lines.push('','*'+d.name+'*',
+      '• Permohonan baharu: '+baru.length,
+      '• Bergerak ke tahap seterusnya: '+gerak,
+      '• Selesai: '+selesai.length,
+      '• Masih dalam proses (hari ini): '+aktif.length,
+      '• Tersangkut lebih '+STUCK()+' hari (hari ini): '+stuck.length+(stuck.length?' ('+stuck.map(c=>c.u).join(', ')+')':''),
+      '• Jumlah keseluruhan: '+cl.length);
+    if(baru.length){const m=new Map();baru.forEach(c=>m.set(jobOf(c),(m.get(jobOf(c))||0)+1));lines.push('• Pekerjaan permohonan baharu: '+[...m].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+' '+v).join(', '))}
+    const byStage=S.stages.map((t,i)=>[t,cl.filter(c=>c.s===i).length]).filter(r=>r[1]);
+    if(byStage.length)lines.push('• Tahap semasa: '+byStage.map(([t,v])=>t+' '+v).join(', '));
+  });
+  showText('Laporan '+name,lines.join('\n'),devId?'Salin dan hantar kepada pemaju/agency ini dalam WhatsApp.':'Laporan semua pemaju/agency, untuk rujukan anda. Pilih satu pemaju/agency untuk laporan yang boleh dihantar kepada mereka.');
 }
 function restoreText(){const v=$('rt').value.trim();if(!v){toast('Tampal teks backup dahulu.');return}importData(v)}
 function restore(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>importData(r.result);r.readAsText(f)}
@@ -549,8 +618,12 @@ function act(a,b){
     case 'tab':tab=d.v;render();break;
     case 'fdev':fDev=d.v;fStage=-1;render();break;
     case 'fstage':fStage=fStage===+d.v?-1:+d.v;render();break;
+    case 'fstuck':fStage=fStage===-2?-1:-2;render();break;
+    case 'savestuck':saveStuck();break;
+    case 'report':report(($('rd')||{}).value||'',($('rm')||{}).value||'');break;
+    case 'reportdev':report(d.id,'');break;
     case 'open':openSheet(d.id);break;
-    case 'close':closeSheet();break;
+    case 'close':closeSheet();if(me&&VIEW==='app'&&tab==='klien'&&$('list'))$('list').innerHTML=listHtml();break;
     case 'stage':setStage(+d.i);break;
     case 'addc':addClient();break;
     case 'delc':delClient();break;
@@ -588,6 +661,7 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('input',e=>{
   if(e.target.id==='q'){q=e.target.value;$('list').innerHTML=listHtml()}
   else if(e.target.id==='note'){const c=S.clients.find(x=>x.id===openId);if(c){c.note=e.target.value;save()}}
+  else if(e.target.id==='sn'&&isAdmin()){const c=S.clients.find(x=>x.id===openId);if(c){c.sn=e.target.value.slice(0,300);touch();if($('list'))$('list').innerHTML=listHtml()}}
 });
 document.addEventListener('change',e=>{
   if(e.target.id==='res')restore(e.target);
