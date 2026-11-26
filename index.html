@@ -1,0 +1,552 @@
+<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>TULUS TRACKER</title><meta name="description" content="Penjejak proses perumahan sektor awam"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"><style id="css">
+:root{--bg:#e9efed;--card:#fff;--ink:#10291f;--muted:#587068;--line:#cddad5;--pine:#14584a;--on:#fff;--amber:#cf8d12;--gold:#f8c010;--done:#1c9a68;--off:#d3ded9;--danger:#b3372f;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1714;--card:#13241f;--ink:#e4efeb;--muted:#8da79f;--line:#223630;--pine:#37b597;--on:#06241c;--amber:#f0b440;--done:#4cc994;--off:#25382f;--danger:#f0776d;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+
+/* logo */
+.lt{fill:var(--pine)}
+.lc{fill:var(--gold)}
+.brand{display:flex;flex-direction:column;align-items:center}
+.brand svg{display:block;width:210px;height:auto;overflow:visible}
+.brand .rule{width:210px;height:2px;background:var(--gold);margin:8px 0 8px}
+.brand .tag{font-size:.8rem;letter-spacing:.55em;padding-left:.55em;color:var(--muted)}
+.brandbar{display:flex;align-items:flex-end;gap:10px}
+.brandbar svg{display:block;height:36px;width:auto;overflow:visible}
+.brandbar .tag{font-size:.68rem;letter-spacing:.3em;color:var(--muted);padding-bottom:1px}
+
+/* header */
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .who{margin-left:auto;color:var(--muted);font-size:.9rem;max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+main{max-width:720px;margin:0 auto;padding:14px 16px 96px}
+
+/* PIN gate */
+.gate{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center}
+.gsub{color:var(--muted);margin:14px 0 26px}
+.gate h1{font-size:1.1rem;font-weight:600;margin:0 0 16px}
+.dots{display:flex;gap:14px;margin-bottom:6px}
+.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--pine);transition:background .12s}
+.dots i.on{background:var(--pine)}
+.dots.shake{animation:shake .35s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.err{min-height:1.5em;max-width:300px;color:var(--danger);margin:4px 0 14px;font-size:.9rem}
+.keys{display:grid;grid-template-columns:repeat(3,72px);gap:14px;justify-content:center}
+.keys button{height:72px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.5rem;cursor:pointer;transition:transform .08s,background .08s}
+.keys button:active{transform:scale(.92);background:var(--off)}
+.extra{margin-top:14px}
+.linkbtn{background:none;border:0;color:var(--pine);text-decoration:underline;padding:10px;cursor:pointer;font-size:.9rem}
+.choose{display:grid;gap:10px;width:min(290px,100%)}
+.big{padding:14px 18px;font-size:1.05rem;text-align:center}
+.help{max-width:330px;color:var(--muted);margin:0 0 18px;text-align:left}
+
+/* summary + pipeline */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-size:1.7rem;line-height:1.1}
+.stat span{font-size:.82rem;color:var(--muted)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 13px;font-size:.88rem;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--pine);border-color:var(--pine);color:var(--on)}
+.path{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(84px,1fr);overflow-x:auto;padding:4px 0 10px;margin-bottom:6px}
+.stone{position:relative;background:none;border:0;padding:0 4px;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.stone::before{content:"";position:absolute;top:21px;right:50%;width:100%;height:3px;background:var(--off)}
+.stone:first-child::before{display:none}
+.orb{position:relative;z-index:1;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--card);border:2px solid var(--off);transition:transform .15s,background .15s}
+.stone.has .orb{background:var(--amber);border-color:var(--amber);color:#1b1200}
+.stone.has.end .orb{background:var(--done);border-color:var(--done);color:#06201a}
+.stone[aria-pressed=true] .orb{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--pine);transform:scale(1.08)}
+.lbl{font-size:.75rem;line-height:1.2;color:var(--muted);text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stone[aria-pressed=true] .lbl{color:var(--ink);font-weight:700}
+
+/* forms + buttons */
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+#q{margin-bottom:10px}
+.f{display:grid;gap:8px;margin-top:10px}
+.row{display:flex;gap:8px;margin-top:10px;align-items:center}
+.btn{background:var(--pine);color:var(--on);border:0;border-radius:10px;padding:11px 14px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-block}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.ghost{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 11px;font-size:.85rem;cursor:pointer}
+.danger{background:none;border:1px solid var(--danger);color:var(--danger);border-radius:10px;padding:10px 14px;cursor:pointer;margin-top:12px}
+.danger.armed{background:var(--danger);color:var(--bg)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:10px}
+.box summary{cursor:pointer;font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.h{font-size:1.15rem;margin:4px 0 10px}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.card.tap{cursor:pointer;transition:border-color .15s,transform .1s}
+.card.tap:hover{border-color:var(--pine)}
+.card.tap:active{transform:scale(.99)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.unit{font-weight:700;font-size:1.05rem}
+.name{color:var(--muted);font-size:.92rem;margin:2px 0 0}
+.pill{font-size:.78rem;padding:2px 9px;border-radius:999px;background:var(--off);white-space:nowrap}
+.card.done .pill{background:var(--done);color:#06201a}
+.seg{display:flex;gap:3px;margin:10px 0 6px}
+.seg i{flex:1;height:7px;border-radius:2px;background:var(--off)}
+.seg i.on{background:var(--amber)}
+.card.done .seg i.on{background:var(--done)}
+.meta{color:var(--muted);font-size:.78rem}
+.empty{text-align:center;color:var(--muted);padding:28px 8px}
+.note{color:var(--muted);font-size:.82rem;margin:10px 0}
+.note b{color:var(--ink)}
+
+/* bottom tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabs button{flex:1;padding:13px 4px;background:none;border:0;border-top:3px solid transparent;color:var(--muted);cursor:pointer}
+.tabs button[aria-current=page]{color:var(--pine);border-top-color:var(--pine);font-weight:700}
+
+/* client sheet */
+.sheet[hidden]{display:none}
+.sheet{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.scrim{position:absolute;inset:0;background:rgba(5,15,12,.55);animation:fade .2s}
+.panel{position:relative;width:100%;max-width:560px;max-height:90vh;overflow:auto;background:var(--card);border-radius:18px 18px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom));animation:up .24s ease-out}
+.grab{width:42px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+.ptop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ptop h2{margin:0;font-size:1.3rem}
+.pct{display:flex;align-items:baseline;gap:10px;margin:14px 0 6px}
+.pct b{font-size:2.1rem;line-height:1}
+.pct span{color:var(--muted)}
+.steps{list-style:none;margin:8px 0 16px;padding:0}
+.steps li{position:relative}
+.steps li button,.steps li>div{all:unset;box-sizing:border-box;display:flex;gap:14px;align-items:flex-start;width:100%;padding:8px 0}
+.steps li button{cursor:pointer}
+.steps li button:focus-visible{outline:2px solid var(--pine);outline-offset:2px;border-radius:8px}
+.steps li::before{content:"";position:absolute;left:10px;top:32px;bottom:-8px;width:3px;background:var(--off);transition:background .3s}
+.steps li:last-child::before{display:none}
+.steps li.past::before{background:var(--amber)}
+.node{flex:none;width:24px;height:24px;border-radius:50%;border:3px solid var(--off);background:var(--card);position:relative;z-index:1;transition:background .25s,border-color .25s,box-shadow .25s}
+.steps li.past .node,.steps li.now .node{background:var(--amber);border-color:var(--amber)}
+.steps li.now .node{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--amber)}
+.steps.fin li::before{background:var(--done)}
+.steps.fin .node{background:var(--done);border-color:var(--done)}
+.steps.fin li.now .node{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--done)}
+.st b{display:block;font-weight:600}
+.st em{font-style:normal;color:var(--muted);font-size:.8rem}
+.steps li:not(.past):not(.now) .st b{color:var(--muted);font-weight:500}
+.fl{display:block;font-size:.85rem;color:var(--muted);margin:6px 0}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@keyframes fade{from{opacity:0}}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,10px);max-width:88vw;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:30}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.pub{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--card);border:2px solid var(--amber);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.pub span{flex:1 1 160px;font-weight:600}
+.btn:disabled{opacity:.6}
+</style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"Bsviy+8K+BNjxvQkwB5waQ==","it":150000,"b":["Rtk+qKP1xC2yXXEm.JLGq6WkVwPTXO8zPRtTEX1iPqBYfYpD5r5bGh2jw+yhgWkVPSlKUJ2PB0qM5aLmPmiBq6r5IQFWPXytrjvUlah8GcYfV6JL9vsy++GBej76K5a91oYRasZIXJsBNACZY+oO1rv8u70lO1qL6aHR0zjA7cY1oV7T4u/a1hy9hyOPSEVlQUaMpoOUYVZCelnxKUjdm9/pZig/250JCkp6w9BbQRB01g0Mi7UwPnhaZ4MfbNQSjGR1qcN73AEZI1nQMrzjDtEvgeZEmfZSdioZKojQf7rLHisR9mZzWjujc+PhoJK4h+mwHCaKGI6Utrurmv9kpflz5DYQCDOxpf/m+yxQCquDXdTH5KnugjiIayeTOCS5U5uPQ6E8BC6RlwE4DWkceBdIFuZdCBeHjpKRk2negxjbyZewB3uVIRIRsPdLo8xstCmx7AmQnD0U+liHwnM3fVmw9XzSb"]}</script><script id="main">/* TULUS TRACKER, versi link.
+   Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
+   Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
+   Laman tidak menghantar data ke mana-mana selain storan Claude milik admin. */
+const LINK="https://claude.ai/artifact/7hAbUNMNsERCmx7Bso92vu";
+const DEF=['Permohonan dihantar','Dokumen lengkap','Dalam semakan','Kelulusan pinjaman','Perjanjian pinjaman','Selesai'];
+const ITER=150000;
+let S={admin:'',stages:DEF.slice(),devs:[],clients:[],dirty:false,pubAt:0,link:''};
+const okLink=v=>/^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/[^\s<>"'`]*)?$/i.test(String(v||''))&&String(v).length<=300;
+let me=null,tab='klien',fDev='',fStage=-1,q='',openId=null,padKey=null,fails=0,lockUntil=0,busy=false,VIEW=null;
+let OWNER=false,DOC=null,ART=null,LOADED=false,OWNER_ERR='',RO=false;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const last=()=>S.stages.length-1;
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const fmt=t=>new Date(t).toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'});
+const fmtT=t=>new Date(t).toLocaleString('ms-MY',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+const MARK='<svg viewBox="34 94 217 88" role="img" aria-label="TULUS"><path class="lt" fill-rule="evenodd" d="M97.8 149.7 97.3 150.4 97.1 152.6 97.1 175.1 97.2 176.8 97.1 178.1 97.3 178.6 97.8 179.1 98.6 179.2 102.0 179.1 103.9 179.2 107.8 179.1 111.5 179.2 112.9 179.0 113.4 178.5 113.5 177.6 113.4 176.8 112.9 176.3 109.9 176.0 102.2 176.1 101.5 175.9 100.9 175.2 100.7 174.2 100.7 172.2 100.6 170.5 100.7 168.9 100.8 154.2 100.9 152.5 100.7 150.9 100.5 150.0 100.0 149.6 98.6 149.5ZM119.7 149.5 119.3 150.0 119.1 150.9 119.1 168.9 119.9 172.4 120.9 175.1 122.0 176.6 123.8 178.1 125.2 178.9 127.4 179.4 129.1 179.7 130.4 179.7 133.9 179.1 135.5 178.5 137.2 177.3 138.8 175.5 139.9 173.6 140.6 171.5 141.1 166.9 141.0 165.4 141.0 154.4 141.1 151.2 140.9 150.0 140.6 149.6 140.2 149.5 138.8 149.4 137.9 149.7 137.4 150.5 137.4 167.8 137.0 170.1 136.3 172.6 135.4 174.1 133.8 175.7 132.9 176.1 131.6 176.6 129.9 176.7 128.8 176.6 127.5 176.2 126.0 175.4 124.6 173.9 123.6 171.8 122.8 168.4 122.7 150.5 122.4 149.8 121.9 149.5 120.4 149.4ZM66.4 149.5 65.8 150.1 65.6 151.0 65.6 167.2 66.2 171.6 66.7 173.4 67.4 174.9 68.4 176.5 69.3 177.4 71.0 178.5 73.0 179.2 74.8 179.6 76.6 179.7 80.1 179.1 82.0 178.4 83.9 177.1 85.4 175.4 86.5 173.4 87.3 170.5 87.5 168.2 87.5 150.9 87.3 149.9 87.0 149.6 86.5 149.4 85.0 149.4 84.3 149.8 84.0 150.6 83.9 169.0 83.7 170.2 82.8 172.8 81.8 174.4 80.4 175.6 79.4 176.1 77.8 176.6 76.2 176.7 75.2 176.6 74.0 176.2 72.3 175.2 71.6 174.5 70.9 173.5 69.9 171.5 69.5 169.5 69.4 150.6 69.1 149.9 68.6 149.5 67.2 149.4ZM38.4 149.6 37.8 150.0 37.5 150.9 37.8 151.7 38.4 152.2 39.2 152.4 45.4 152.4 46.1 152.7 46.6 153.4 46.7 154.6 46.7 172.0 46.6 174.1 46.8 178.0 47.1 178.7 47.6 179.1 48.8 179.2 49.6 179.1 50.2 178.6 50.4 177.8 50.4 153.5 50.8 152.8 51.6 152.4 57.8 152.4 58.7 152.2 59.2 151.9 59.4 151.5 59.5 150.8 59.4 150.1 58.9 149.6 57.9 149.4 40.4 149.4ZM164.9 149.9 162.9 149.3 159.9 148.9 157.5 149.0 156.0 149.3 153.8 150.2 152.9 150.7 151.6 152.0 150.5 153.5 149.9 155.6 149.8 157.2 150.2 159.6 150.9 161.0 152.4 162.6 153.9 163.6 155.8 164.6 160.2 166.6 161.1 167.2 162.0 168.0 162.5 168.9 163.1 170.2 163.2 171.2 162.9 173.0 162.3 174.2 161.0 175.5 159.5 176.2 157.8 176.6 156.0 176.6 153.4 176.1 151.0 175.3 150.2 175.4 149.6 176.1 149.3 177.2 149.7 177.9 150.5 178.5 152.6 179.2 156.1 179.6 157.8 179.6 160.5 179.2 161.9 178.7 163.8 177.6 165.3 176.2 166.1 175.0 166.9 172.4 167.0 170.6 166.9 169.6 166.5 168.0 165.5 166.2 164.1 164.8 161.9 163.4 157.8 161.6 155.1 160.1 154.5 159.4 153.9 158.4 153.5 156.5 153.7 155.1 154.3 154.1 155.4 153.0 156.9 152.2 157.9 152.0 160.8 152.0 162.1 152.2 163.9 152.7 164.6 152.6 165.2 152.0 165.6 151.0 165.5 150.4Z"/><g transform="translate(10 0)"><rect class="lt" x="175.1" y="129" width="3.85" height="50"/><path class="lc" fill-rule="evenodd" d="M111.6 132.0 111.9 132.4 112.6 132.4 115.1 131.5 117.9 130.9 120.1 130.9 122.5 131.2 123.8 131.5 125.4 132.1 127.8 132.9 128.9 133.5 131.8 135.5 132.4 135.8 133.1 135.9 133.9 135.8 134.6 135.5 136.4 134.1 139.2 132.4 141.6 131.6 144.2 130.9 145.4 130.8 149.1 130.9 151.2 131.4 154.2 132.5 158.1 134.4 159.6 135.4 160.9 135.7 161.6 135.7 162.2 135.4 164.8 133.5 166.8 132.5 169.8 131.4 172.5 130.8 174.1 130.7 177.4 130.8 182.5 132.5 184.2 133.4 187.0 135.3 187.9 135.7 188.5 135.8 189.5 135.5 192.5 133.6 196.2 131.7 197.5 131.3 201.6 130.6 205.4 131.1 207.0 131.6 210.1 132.9 212.8 134.2 214.8 135.5 216.0 135.8 217.0 135.6 222.2 132.4 225.2 131.5 228.5 130.8 230.0 130.8 233.4 131.5 238.6 133.1 239.1 133.0 239.2 132.5 238.9 131.1 237.2 128.5 235.8 127.1 234.0 124.6 231.8 122.3 230.9 121.1 227.3 117.6 221.6 113.0 218.9 111.0 214.4 108.3 208.0 104.8 206.1 104.2 203.5 102.9 200.5 101.7 196.5 100.4 190.9 98.9 186.1 97.9 182.0 97.4 176.2 97.0 171.1 97.1 166.0 97.7 157.8 99.4 154.9 100.5 152.8 101.1 147.5 103.5 145.9 104.1 138.8 107.8 133.0 111.7 127.9 115.6 124.0 118.8 116.6 125.9 112.2 130.9 111.8 131.5ZM166.5 107.3 166.7 107.5 166.8 107.9 166.6 108.9 165.9 110.8 165.2 113.4 164.5 115.1 162.6 121.6 162.3 122.2 161.9 122.4 161.6 122.2 161.4 121.7 161.4 120.1 161.7 117.8 162.6 114.6 163.9 111.0 165.0 108.5 165.8 107.6 166.1 107.3ZM180.2 106.6 180.7 106.7 182.4 108.8 182.9 109.6 183.9 112.0 185.1 116.0 185.5 119.6 186.1 121.4 186.0 121.9 185.8 122.2 185.4 122.0 185.0 120.1 183.9 118.4 182.6 114.1 180.0 107.4 180.0 106.9ZM189.3 105.7 189.5 105.6 190.0 105.7 191.8 106.6 197.6 111.1 201.2 115.0 203.0 117.6 204.5 119.1 205.8 121.4 205.8 122.0 205.5 122.1 205.0 121.9 203.1 120.5 199.1 116.4 197.1 114.0 195.8 113.0 194.2 111.3 191.9 109.3 189.4 106.6 189.2 106.1ZM157.9 105.7 158.0 106.0 157.7 106.5 156.3 108.2 148.9 115.4 146.2 118.4 144.4 120.1 143.1 121.7 140.9 123.8 140.4 124.0 140.1 124.0 139.9 123.5 140.2 122.8 142.0 119.6 143.4 118.1 144.7 116.3 145.8 115.1 148.0 112.5 149.7 111.0 151.1 109.6 153.1 108.4 154.8 106.8 157.0 105.7 157.5 105.6Z"/></g></svg>';
+const BRAND_BIG=`<div class="brand">${MARK}<div class="rule"></div><div class="tag">TRACKER</div></div>`;
+const BRAND_BAR=`<div class="brandbar">${MARK}<span class="tag">TRACKER</span></div>`;
+const ss={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3600)}
+
+/* ---------- penyulitan (WebCrypto) ---------- */
+const te=new TextEncoder(),td=new TextDecoder();
+const b64=u=>{let s='';u.forEach(x=>s+=String.fromCharCode(x));return btoa(s)};
+const ub64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function kdf(pin,salt,it){const base=await crypto.subtle.importKey('raw',te.encode('tulus|'+pin),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:it,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function seal(obj,key){const iv=crypto.getRandomValues(new Uint8Array(12));const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,te.encode(JSON.stringify(obj)));return b64(iv)+'.'+b64(new Uint8Array(ct))}
+async function unseal(t,key){try{const p=String(t).split('.');const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ub64(p[0])},key,ub64(p[1]));return JSON.parse(td.decode(pt))}catch(e){return null}}
+function h53(str,seed=0){let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0)}
+const hp=p=>String(h53('tulus|'+p));
+function readPub(){try{const d=JSON.parse($('pub').textContent||'{}');return d&&Array.isArray(d.b)&&d.salt?d:null}catch(e){return null}}
+const PUB=readPub();
+
+/* ---------- bersihkan data daripada luar ---------- */
+const sid=x=>String(x).replace(/[^A-Za-z0-9_-]/g,'')||uid();
+const cleanLog=l=>Array.isArray(l)?l.filter(e=>e).map(e=>({s:Math.floor(+e.s)||0,t:+e.t||0})):[];
+function normalize(d){
+  if(!d||!Array.isArray(d.stages)||!Array.isArray(d.devs)||!Array.isArray(d.clients))return null;
+  const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return null;
+  const devs=d.devs.filter(v=>v&&/^\d{4}$/.test(String(v.pin))).map(v=>({id:sid(v.id),name:String(v.name),pin:String(v.pin)}));
+  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
+  return {admin:/^\d+$/.test(String(d.admin))?String(d.admin):'',stages,devs,clients,dirty:!!d.dirty,pubAt:+d.pubAt||0,link:okLink(d.link)?String(d.link):''};
+}
+
+/* ---------- simpan ke db (satu tulisan pada satu masa) ---------- */
+let wq=Promise.resolve(),wTimer=null;
+function save(){if(!DOC)return;clearTimeout(wTimer);wTimer=setTimeout(flush,700)}
+function flush(){
+  clearTimeout(wTimer);if(!DOC)return wq;
+  const body=JSON.parse(JSON.stringify(S));
+  wq=wq.then(()=>DOC.set(body)).catch(e=>{toast(e&&e.code==='quota_exceeded'?'Storan penuh. Padam klien lama.':'Tidak dapat simpan. Semak sambungan internet.')});
+  return wq;
+}
+const touch=()=>{S.dirty=true;save()};
+
+/* ---------- kenal pasti admin (pemilik) ---------- */
+const withTimeout=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(()=>r('__timeout'),ms))]);
+const ownerReady=(async()=>{
+  try{
+    if(!window.claude||!window.claude.use)return;
+    const u=await window.claude.use('user');if(!u)return;
+    OWNER=!!(await u.isOwner());if(!OWNER)return;
+    const db=await window.claude.use('db');ART=await window.claude.use('artifact');
+    const id=await u.id();
+    if(!db||!id){OWNER_ERR='Log masuk ke Claude untuk mengurus data.';return}
+    DOC=db.doc('data/users/'+id+'/state');
+    let snap=await withTimeout(DOC.get().catch(()=>null),10000);
+    if(snap===null)snap=await withTimeout(DOC.get().catch(()=>null),8000);
+    if(snap==='__timeout'||snap===null){OWNER_ERR='Tidak dapat hubungi storan. Semak internet dan buka semula.';DOC=null;return}
+    if(snap.exists){const n=normalize(snap.data());if(n)S=n}
+    LOADED=true;
+  }catch(e){OWNER_ERR='Tidak dapat memuatkan data admin.'}
+})();
+
+/* ---------- skrin PIN ---------- */
+function gate(title,sub,done,extra){
+  let v='';
+  closeSheet();VIEW='gate';
+  $('app').innerHTML=`<section class="gate">${BRAND_BIG}<p class="gsub">${sub}</p><h1>${title}</h1><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="err" id="err" role="alert"></p><div class="keys">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button data-k="${k}" aria-label="${k==='⌫'?'Padam digit':k}">${k}</button>`).join('')}</div><div class="extra" id="extra">${extra||''}</div></section>`;
+  const dots=()=>[...$('dots').children].forEach((d,i)=>d.classList.toggle('on',i<v.length));
+  const press=k=>{
+    if(busy)return;
+    if(Date.now()<lockUntil){$('err').textContent='Terlalu banyak cubaan. Cuba lagi sebentar lagi.';return}
+    if(k==='⌫'){v=v.slice(0,-1);dots();return}
+    if(!/^\d$/.test(k)||v.length>=4)return;
+    v+=k;dots();$('err').textContent='';
+    if(v.length===4){
+      const pin=v;busy=true;$('err').textContent='Menyemak…';
+      setTimeout(async()=>{
+        let r;try{r=await done(pin)}catch(e){r='Ralat. Cuba lagi.'}
+        busy=false;
+        if(r&&$('dots')){v='';dots();const d=$('dots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');$('err').textContent=r}
+      },60);
+    }
+  };
+  padKey=press;
+  document.querySelector('.keys').onclick=e=>{const b=e.target.closest('button');if(b)press(b.dataset.k)};
+}
+function bad(){fails++;if(fails>=5){fails=0;lockUntil=Date.now()+30000;return 'PIN salah. Cuba lagi selepas 30 saat.'}return 'PIN salah.'}
+async function tryPemaju(p){
+  if(!PUB||!PUB.b.length)return null;
+  const key=await kdf(p,ub64(PUB.salt),+PUB.it||ITER);
+  for(const t of PUB.b){const d=await unseal(t,key);if(d&&Array.isArray(d.stages)&&Array.isArray(d.clients))return d}
+  return null;
+}
+function enterPemaju(d,p){
+  const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return false;
+  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0};
+  me={role:'dev',dev:'x'};fails=0;tab='klien';render();return true;
+}
+function ownerExtra(){
+  if(!OWNER)return '';
+  if(OWNER_ERR)return `<p class="note">${esc(OWNER_ERR)}</p>`;
+  if(!LOADED)return '<p class="note">Memuatkan data admin…</p>';
+  return S.admin?'<p class="note">Admin: masukkan PIN admin anda.</p>':'<button class="btn big" data-act="setup">Tetapkan PIN admin</button>';
+}
+const setup=()=>gate('Tetapkan PIN admin','PIN ini untuk anda sahaja. Pemaju/agency guna PIN masing-masing.',p=>{
+  gate('Sahkan PIN admin','Masukkan PIN yang sama sekali lagi.',p2=>{
+    if(p2!==p){setup();$('err').textContent='PIN tidak sama. Mulakan semula.';return}
+    if(S.devs.some(d=>d.pin===p)){setup();$('err').textContent='PIN ini sudah digunakan oleh pemaju/agency.';return}
+    S.admin=hp(p);flush();me={role:'admin'};tab='klien';render();
+  },'<button class="linkbtn" data-act="out">Batal</button>');
+},'<button class="linkbtn" data-act="out">Batal</button>');
+function start(){
+  me=null;openId=null;fDev='';fStage=-1;q='';tab='klien';
+  gate('Masukkan PIN','Penjejak proses perumahan sektor awam',async p=>{
+    if(OWNER&&LOADED&&S.admin&&S.admin===hp(p)){me={role:'admin'};fails=0;render();return}
+    const d=await tryPemaju(p);
+    if(d&&enterPemaju(d,p))return;
+    return bad();
+  },ownerExtra());
+  ownerReady.then(()=>{
+    if(VIEW!=='gate'||!$('extra'))return;
+    $('extra').innerHTML=ownerExtra();
+    const until=+ss.get('tt-admin')||0;
+    if(OWNER&&LOADED&&S.admin&&until>Date.now()){me={role:'admin'};render();if(ss.get('tt-pub')){ss.del('tt-pub');toast('Link dikemas kini. Pemaju/agency kini nampak data terbaharu.')}}
+  });
+}
+
+/* ---------- paparan ---------- */
+function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fDev):c.dev===me.dev)}
+function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
+function listHtml(){
+  const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
+  const rows=scope().filter(c=>(fStage<0||c.s===fStage)&&(!ql||(c.u+' '+c.n).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  if(!rows.length)return `<div class="empty">${S.clients.length?'Tiada padanan.':adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):'Belum ada klien untuk projek ini.'}</div>`;
+  return rows.map(c=>{
+    const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
+    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div><div class="meta">Kemas kini ${fmt(c.d)}</div></div>`;
+  }).join('');
+}
+function pubBanner(){
+  if(me.role!=='admin'||!S.devs.length)return '';
+  if(!S.dirty)return S.pubAt?`<p class="note">Pemaju/agency nampak data terkini (dikemas kini ${esc(fmtT(S.pubAt))}).</p>`:'';
+  return `<div class="pub"><span>Pemaju/agency belum nampak perubahan terkini.</span><button class="btn" data-act="publish">Kemas kini untuk pemaju</button></div>`;
+}
+function vKlien(){
+  const adm=me.role==='admin',sc=scope(),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last();
+  const cnt=i=>sc.filter(c=>c.s===i).length;
+  let h=pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Klien</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
+  if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
+  h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
+  h+=`<input id="q" type="search" placeholder="Cari unit atau nama" value="${esc(q)}" aria-label="Cari unit atau nama">`;
+  if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><button class="btn" data-act="addc">Simpan klien</button></div></details>`;
+  h+=`<div id="list">${listHtml()}</div>`;
+  if(!adm)h+=`<p class="note">Dikemas kini oleh admin pada ${esc(fmtT(S.pubAt))}.</p>`;
+  return h;
+}
+function vDevs(){
+  let h=pubBanner()+`<h2 class="h">Pemaju/Agency</h2><p class="note"><b>Cara kongsi:</b> tekan “Salin jemputan” dan hantar dalam WhatsApp pemaju/agency. Hantar PIN mereka dalam mesej berasingan. Jemputan dihantar sekali sahaja. Bila anda ubah data, tekan “Kemas kini untuk pemaju” dan link yang sama terus menunjukkan data baharu.</p>`;
+  h+=`<details class="box"${S.devs.length?'':' open'}><summary>Tambah pemaju/agency</summary><div class="f"><input id="dn" placeholder="Nama pemaju/agency atau projek" autocomplete="off"><input id="dp" placeholder="PIN 4 angka" inputmode="numeric" maxlength="4" autocomplete="off"><button class="btn" data-act="adddev">Simpan pemaju/agency</button></div></details>`;
+  if(!S.devs.length)return h+`<div class="empty">Belum ada pemaju/agency.</div>`;
+  return h+S.devs.map(d=>{
+    const cl=S.clients.filter(c=>c.dev===d.id),dn=cl.filter(c=>c.s>=last()).length;
+    return `<section class="card"><div class="top"><span class="unit">${esc(d.name)}</span><span class="pill">PIN ${esc(d.pin)}</span></div><p class="name">${cl.length} klien, ${dn} selesai</p><div class="row"><button class="btn" data-act="invite" data-id="${esc(d.id)}">Salin jemputan</button><button class="btn alt" data-act="msg" data-id="${esc(d.id)}">Salin mesej status</button></div><div class="row"><input id="np-${esc(d.id)}" placeholder="PIN baharu" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN baharu"><button class="btn alt" data-act="chpin" data-id="${esc(d.id)}">Tukar PIN</button></div><button class="danger" data-act="deld" data-id="${esc(d.id)}" data-confirm>Padam pemaju/agency dan semua kliennya</button></section>`;
+  }).join('');
+}
+function vTools(){
+  return `<h2 class="h">Alat</h2>
+<details class="box"${S.link?'':' open'}><summary>Link untuk pemaju</summary><p class="name">Tampal link pendek anda (contoh https://tinyurl.com/tulustracker). Butang “Salin jemputan” akan guna link ini. Biarkan kosong untuk guna link asal.</p><div class="f"><input id="lk" type="url" inputmode="url" placeholder="https://tinyurl.com/tulustracker" value="${esc(S.link)}" autocomplete="off"><div class="row" style="margin-top:0"><button class="btn" data-act="savelink">Simpan link</button><button class="btn alt" data-act="copyorig">Salin link asal</button></div></div></details>
+<details class="box"><summary>Tetapan tahap</summary><p class="name">Satu tahap setiap baris, ikut turutan. Ubah ikut proses sebenar.</p><div class="f"><textarea id="st" rows="7">${esc(S.stages.join('\n'))}</textarea><button class="btn" data-act="savest">Simpan tahap</button></div></details>
+<details class="box"><summary>Tukar PIN admin</summary><div class="row"><input id="ap" placeholder="PIN baharu 4 angka" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN admin baharu"><button class="btn" data-act="adminpin">Simpan</button></div></details>
+<div class="tools"><button class="btn alt" data-act="sum">Salin ringkasan</button><button class="btn alt" data-act="bakt">Salin backup (teks)</button><label class="btn alt">Pulihkan dari fail<input id="res" type="file" accept=".json,application/json" hidden></label></div>
+<details class="box"><summary>Pulihkan dari teks</summary><p class="name">Tampal teks backup, kemudian tekan Pulihkan. Ini menggantikan data sekarang.</p><div class="f"><textarea id="rt" rows="4" placeholder="Tampal teks backup di sini"></textarea><button class="btn" data-act="rest">Pulihkan</button></div></details>
+<div class="box"><b>Padam semua data</b><p class="name">Memadam semua pemaju/agency dan klien. PIN admin dan tetapan tahap kekal.</p><button class="danger" data-act="wipe" data-confirm>Padam semua pemaju/agency dan klien</button></div>
+<p class="note">Data anda disimpan secara peribadi dalam akaun Claude anda dan hanya anda boleh membacanya. Pemaju/agency hanya nampak projek mereka, selepas anda tekan “Kemas kini untuk pemaju”. PIN 4 angka ialah kunci ringan, jadi guna no. unit dan nama pendek. Jangan masukkan No. IC.</p>`;
+}
+function render(){
+  if(!me)return;
+  padKey=null;VIEW='app';
+  const adm=me.role==='admin',dv=S.devs.find(d=>d.id===me.dev);
+  const body=!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
+  const nav=adm?`<nav class="tabs" aria-label="Menu">${[['klien','Klien'],['pemaju','Pemaju/Agency'],['alat','Alat']].map(([k,l])=>`<button data-act="tab" data-v="${k}"${tab===k?' aria-current="page"':''}>${l}</button>`).join('')}</nav>`:'';
+  $('app').innerHTML=`<header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div><button class="ghost" data-act="out">Keluar</button></header><main>${body}</main>${nav}`;
+}
+
+/* ---------- butiran klien ---------- */
+function renderSheet(){
+  const el=$('sheet'),c=S.clients.find(x=>x.id===openId);
+  if(!c){el.hidden=true;el.innerHTML='';return}
+  const adm=me.role==='admin',dv=S.devs.find(d=>d.id===c.dev),L=last(),s=Math.min(c.s,L);
+  el.hidden=false;
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
+}
+function paintSheet(){
+  const c=S.clients.find(x=>x.id===openId);if(!c||$('sheet').hidden)return;
+  const L=last(),s=Math.min(c.s,L);
+  $('sheet').querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<s?'past':i===s?'now':'';li.querySelector('em').textContent=dateFor(c,i)});
+  $('sheet').querySelector('.steps').classList.toggle('fin',s>=L);
+  $('pctn').textContent=Math.round(s/L*100)+'%';$('pctl').textContent=S.stages[s];
+}
+function openSheet(id){openId=id;renderSheet();document.body.style.overflow='hidden';const b=$('sheet').querySelector('.ghost');if(b)b.focus()}
+function closeSheet(){openId=null;const el=$('sheet');el.hidden=true;el.innerHTML='';document.body.style.overflow=''}
+
+/* ---------- teks untuk disalin ---------- */
+function showText(title,text,hint){
+  const el=$('sheet');el.hidden=false;document.body.style.overflow='hidden';
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="grab"></div><div class="ptop"><h2>${esc(title)}</h2><button class="ghost" data-act="close">Tutup</button></div><p class="name">${esc(hint)}</p><textarea id="tx" rows="9" readonly></textarea><div class="row"><button class="btn" data-act="copytx">Salin</button></div><p class="note" id="txn"></p></div>`;
+  $('tx').value=text;
+}
+function copyTx(){
+  const t=$('tx');t.focus();t.select();t.setSelectionRange(0,t.value.length);
+  const ok=()=>{$('txn').textContent='Disalin. Buka WhatsApp dan tampal (tekan lama, pilih Tampal).'};
+  const no=()=>{$('txn').textContent='Tidak dapat salin automatik. Teks sudah dipilih: tekan lama pada teks, kemudian pilih Salin.'};
+  let done=false;try{done=document.execCommand('copy')}catch(e){}
+  if(done){ok();return}
+  if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(ok,no);else no();
+}
+const isAdmin=()=>me&&me.role==='admin';
+function invite(id){
+  if(!isAdmin())return;const d=S.devs.find(x=>x.id===id);if(!d)return;
+  const link=S.link||(LINK.indexOf('__')===0?'(link belum tersedia)':LINK);
+  showText('Jemputan untuk '+d.name,['Salam. Ini link TULUS TRACKER untuk semak status proses perumahan klien '+d.name+':','',link,'','Tekan link, kemudian masukkan PIN 4 angka yang saya hantar berasingan. Link ini dikemas kini setiap kali ada perubahan, jadi simpan untuk semakan akan datang.'].join('\n'),'Salin dan hantar dalam WhatsApp. Hantar PIN ('+d.pin+') dalam mesej berasingan.');
+}
+function statusMsg(id){
+  if(!isAdmin())return;
+  const d=S.devs.find(x=>x.id===id);if(!d)return;
+  const cl=S.clients.filter(c=>c.dev===id),L=last();
+  const lines=['*TULUS TRACKER*','Status proses perumahan: '+d.name,'Dikemas kini '+fmt(Date.now()),''];
+  if(!cl.length)lines.push('Belum ada klien.');
+  cl.forEach(c=>{const s=Math.min(c.s,L);lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': '+S.stages[s]+' ['+(s+1)+'/'+(L+1)+']')});
+  lines.push('','Jumlah: '+cl.length+' klien, '+cl.filter(c=>c.s>=L).length+' selesai.');
+  showText('Mesej untuk '+d.name,lines.join('\n'),'Salin mesej ini dan tampal dalam WhatsApp pemaju/agency. Tiada PIN diperlukan.');
+}
+
+/* ---------- terbitkan data pemaju ---------- */
+function pageSource(pubText){
+  const reset=[...document.head.querySelectorAll('style')].map(s=>s.textContent).join('');
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+reset+'</style></head><body>'
+    +'<title>TULUS TRACKER</title><style id="css">'+$('css').textContent+'</style>'
+    +'<div id="app"></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div>'
+    +'<script id="pub" type="application/json">'+pubText+'<\/script><script id="main">'+$('main').textContent+'<\/script></body></html>';
+}
+async function publishNow(btn){
+  if(!isAdmin())return;
+  if(!ART){toast('Kemas kini hanya boleh dibuat dalam app Claude, sebagai pemilik.');return}
+  if(btn){btn.disabled=true;btn.textContent='Mengemas kini…'}
+  try{
+    const at=Date.now(),salt=crypto.getRandomValues(new Uint8Array(16)),blobs=[];
+    for(const d of S.devs){
+      const key=await kdf(d.pin,salt,ITER);
+      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,s:c.s,log:c.log||[],d:c.d}));
+      blobs.push(await seal({dev:d.name,stages:S.stages,clients:cl,at},key));
+    }
+    for(let i=blobs.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[blobs[i],blobs[j]]=[blobs[j],blobs[i]]}
+    const pub=JSON.stringify({v:2,salt:b64(salt),it:ITER,b:blobs}).replace(/</g,'\\u003c');
+    S.dirty=false;S.pubAt=at;await flush();
+    ss.set('tt-admin',String(Date.now()+10*60*1000));ss.set('tt-pub','1');
+    await ART.publish(pageSource(pub));
+  }catch(e){
+    const c=e&&e.code;
+    if(c==='conflict')return;
+    S.dirty=true;flush();ss.del('tt-pub');
+    if(btn){btn.disabled=false;btn.textContent='Kemas kini untuk pemaju'}
+    toast(c==='not_writer'||c==='not_granted'||c==='capability_disabled'||c==='not_declared'?'Hanya pemilik boleh kemas kini, dalam app Claude.':c==='rate_limited'?'Terlalu kerap. Cuba lagi selepas seminit.':c==='too_large'?'Data terlalu besar. Padam klien yang sudah selesai.':'Kemas kini gagal. Cuba lagi.');
+  }
+}
+
+/* ---------- tindakan admin ---------- */
+function setStage(i){
+  if(!isAdmin())return;
+  const c=S.clients.find(x=>x.id===openId);if(!c||i===c.s)return;
+  c.s=i;c.d=Date.now();(c.log=c.log||[]).push({s:i,t:c.d});touch();paintSheet();render();
+}
+function addClient(){
+  if(!isAdmin())return;
+  if(!S.devs.length){toast('Tambah pemaju/agency dahulu di tab Pemaju/Agency.');return}
+  const dv=$('cd').value,u=$('cu').value.trim(),n=$('cn').value.trim();
+  if(!u){$('cu').focus();toast('Isi no. unit.');return}
+  const t=Date.now();S.clients.unshift({id:uid(),dev:dv,u,n:n||'-',s:0,log:[{s:0,t}],note:'',d:t});
+  if(fDev)fDev=dv;touch();render();toast('Klien ditambah.');
+}
+function delClient(){
+  if(!isAdmin())return;
+  const c=S.clients.find(x=>x.id===openId);if(!c)return;
+  S.clients=S.clients.filter(x=>x!==c);touch();closeSheet();render();toast('Klien dipadam.');
+}
+function pinOK(p,exceptId){
+  if(!/^\d{4}$/.test(p)){toast('PIN mesti 4 angka.');return false}
+  if(hp(p)===S.admin||S.devs.some(d=>d.pin===p&&d.id!==exceptId)){toast('PIN ini sudah digunakan. Pilih PIN lain.');return false}
+  return true;
+}
+function addDev(){
+  if(!isAdmin())return;
+  const n=$('dn').value.trim(),p=$('dp').value.trim();
+  if(!n){$('dn').focus();toast('Isi nama pemaju/agency.');return}
+  if(!pinOK(p))return;
+  S.devs.push({id:uid(),name:n,pin:p});touch();render();toast('Pemaju/agency ditambah.');
+}
+function chPin(id){
+  if(!isAdmin())return;
+  const p=$('np-'+id).value.trim();if(!pinOK(p,id))return;
+  S.devs.find(d=>d.id===id).pin=p;touch();render();toast('PIN ditukar. Tekan “Kemas kini untuk pemaju”, kemudian beritahu PIN baharu.');
+}
+function delDev(id){
+  if(!isAdmin())return;
+  S.devs=S.devs.filter(d=>d.id!==id);S.clients=S.clients.filter(c=>c.dev!==id);if(fDev===id)fDev='';
+  touch();render();toast('Pemaju/agency dan klien dipadam.');
+}
+function chAdmin(){
+  if(!isAdmin())return;
+  const p=$('ap').value.trim();
+  if(!/^\d{4}$/.test(p)){toast('PIN mesti 4 angka.');return}
+  if(S.devs.some(d=>d.pin===p)){toast('PIN ini sudah digunakan oleh pemaju/agency.');return}
+  S.admin=hp(p);save();render();toast('PIN admin ditukar.');
+}
+function saveStages(){
+  if(!isAdmin())return;
+  const t=$('st').value.split('\n').map(x=>x.trim()).filter(Boolean);
+  if(t.length<2){toast('Letak sekurang-kurangnya 2 tahap.');return}
+  S.stages=t;S.clients.forEach(c=>{c.s=Math.min(c.s,t.length-1)});fStage=-1;touch();render();toast('Tahap disimpan.');
+}
+function wipe(){if(!isAdmin())return;S.clients=[];S.devs=[];fDev='';fStage=-1;touch();render();toast('Semua pemaju/agency dan klien dipadam.')}
+function backupText(){if(isAdmin())showText('Backup (teks)',JSON.stringify({admin:S.admin,stages:S.stages,devs:S.devs,clients:S.clients}),'Salin dan simpan di tempat selamat, contohnya Notes. Teks ini mengandungi semua data dan PIN pemaju/agency, jadi jangan hantar kepada orang lain.')}
+function importData(raw){
+  if(!isAdmin())return;
+  try{const n=normalize(JSON.parse(raw));if(!n)throw 0;
+    S={admin:n.admin||S.admin,stages:n.stages,devs:n.devs,clients:n.clients,dirty:true,pubAt:S.pubAt,link:S.link};
+    fDev='';fStage=-1;save();render();toast('Backup dipulihkan. Tekan “Kemas kini untuk pemaju” bila sedia.');
+  }catch(x){toast('Backup tidak sah. Pastikan semua teks disalin.')}
+}
+function saveLink(){
+  if(!isAdmin())return;
+  let v=$('lk').value.trim();
+  if(v&&!/^https?:\/\//i.test(v))v='https://'+v;
+  if(v&&!okLink(v)){toast('Link tidak sah. Mesti bermula dengan https://');return}
+  S.link=v;save();render();toast(v?'Link disimpan. “Salin jemputan” kini guna link ini.':'Link pendek dibuang. Link asal digunakan.');
+}
+function restoreText(){const v=$('rt').value.trim();if(!v){toast('Tampal teks backup dahulu.');return}importData(v)}
+function restore(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>importData(r.result);r.readAsText(f)}
+function summary(){
+  if(!isAdmin())return;
+  const lines=['TULUS TRACKER ('+fmt(Date.now())+')'];
+  S.devs.forEach(d=>{const cl=S.clients.filter(c=>c.dev===d.id);lines.push('',d.name+': '+cl.length+' klien');S.stages.forEach((t,i)=>{const n=cl.filter(c=>c.s===i).length;if(n)lines.push('- '+t+': '+n)})});
+  showText('Ringkasan',lines.join('\n'),'Ringkasan semua pemaju/agency, untuk rujukan anda.');
+}
+function act(a,b){
+  const d=b.dataset;
+  switch(a){
+    case 'out':ss.del('tt-admin');flush();start();break;
+    case 'setup':if(OWNER&&LOADED&&!S.admin)setup();break;
+    case 'tab':tab=d.v;render();break;
+    case 'fdev':fDev=d.v;fStage=-1;render();break;
+    case 'fstage':fStage=fStage===+d.v?-1:+d.v;render();break;
+    case 'open':openSheet(d.id);break;
+    case 'close':closeSheet();break;
+    case 'stage':setStage(+d.i);break;
+    case 'addc':addClient();break;
+    case 'delc':delClient();break;
+    case 'adddev':addDev();break;
+    case 'chpin':chPin(d.id);break;
+    case 'deld':delDev(d.id);break;
+    case 'invite':invite(d.id);break;
+    case 'msg':statusMsg(d.id);break;
+    case 'publish':publishNow(b);break;
+    case 'savest':saveStages();break;
+    case 'adminpin':chAdmin();break;
+    case 'sum':summary();break;
+    case 'bakt':backupText();break;
+    case 'rest':restoreText();break;
+    case 'copytx':copyTx();break;
+    case 'savelink':saveLink();break;
+    case 'copyorig':if(isAdmin())showText('Link asal',LINK,'Tampal link ini dalam TinyURL atau pemendek link lain untuk buat link pendek.');break;
+    case 'wipe':wipe();break;
+  }
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  if(b.hasAttribute('data-confirm')&&!b.dataset.armed){
+    b.dataset.armed='1';b._t=b.textContent;b.textContent='Tekan sekali lagi untuk padam';b.classList.add('armed');
+    setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent=b._t;b.classList.remove('armed')}},4000);
+    return;
+  }
+  act(b.dataset.act,b);
+});
+document.addEventListener('keydown',e=>{
+  if(padKey){if(/^\d$/.test(e.key))padKey(e.key);else if(e.key==='Backspace')padKey('⌫');return}
+  if(e.key==='Escape'&&!$('sheet').hidden)closeSheet();
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[data-act="open"]')){e.preventDefault();act('open',e.target)}
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='q'){q=e.target.value;$('list').innerHTML=listHtml()}
+  else if(e.target.id==='note'){const c=S.clients.find(x=>x.id===openId);if(c){c.note=e.target.value;save()}}
+});
+document.addEventListener('change',e=>{if(e.target.id==='res')restore(e.target)});
+window.addEventListener('pagehide',()=>{if(isAdmin())flush()});
+start();
+</script></body></html>
