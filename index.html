@@ -176,7 +176,11 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .snbox b{font-size:.85rem}
 .snbox p{margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
 .row.wrap{flex-wrap:wrap}
-</style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"+ZcdVupHQJlfixF2kTWBhA==","it":150000,"b":["WiQiMGKFUgFgiuPc.FFKBRlIwN8qk+5xB+l/rh1Vtoq1VxB0bTxzMDX2NefuEGkM2KTfBK0c5d9ILZKviWEVXNG9he2VpNaRANdFNQ6pKWboEgZEDAwgXWLtKpKLBHRxl5UmMxRYgQh8276oVO+KR3IXAyLIETuX3SgHcJFNNeKWTskjDhJTLfy4Ch5+EWZ6wM4hva3P/TiYMIpFrtCfTm0hgkEk+XCUdYfWeF5kiyCYQh62gx9V0iVJsU/jJRFWAx3cecuf60EF36g3G0bODKVJWVWlyM9y8KZOVYFcIZMUGwG+p1Ri5f8nc+m07Z9D5RuGVPm/Vmab8nITRystLlzW56zn2dRU/61lQ8y/H5FsYjhLzlK6L3t8p83MD6RA1amLvuCNnp9mfXNvs/KxuDOPFD9r45PjF9qVHoFEebC8OzDq/3B9lS3XRZVhbR/qH8Bjs0R7/5YdKjVD5xC5/X54krePir5r54feKIm6RRa0+Rmwoak2mzyX3j7ZcCiSDEOebyZxrXv0JilJeOOhlmj7RHF2DkwyLLvh9WZlbANUBKE6CDBducUgfr8cyLoMd4+eZRsBo"]}</script><script id="main">/* TULUS TRACKER, versi link.
+.card.cancel{opacity:.72}
+.card.cancel .seg i.on{background:var(--muted)}
+.card.cancel .unit{text-decoration:line-through;text-decoration-thickness:1px}
+.cancelbox{background:var(--off);border-left:4px solid var(--muted);border-radius:8px;padding:9px 12px;margin:8px 0 10px;font-size:.92rem}
+</style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"vu5fO/L7NmZfkuOqXZ1WjQ==","it":400000,"b":["NPa+cw0XqSM8j+j2.udPbXAy4W5No9beuvnmA1SwVorx+MkHUZtttNNAfc72vggORkdfBCIZzZhC4baBnOxSitbYIdw1rE6kQf8cFN439EDz+CjszutQE+/fg9T/leBB2GspFIeb6BrXvgMxhvsRBwSOcYlgyoY9774Yo4bi95doiAV7j36p7jkseXjfkj7V+S6BjMPHfVjkS/JLhTcPf2wOxPLsYgT/QJ1NVZn2ChNJ5xrZ01E2av4V1A7dJUka7nZck202ITFi9BG/x2AFIPUm6k6DUJSl8piRyTP/T1DUbCLCSJQtqaXWBTaCRaCjAVfcWnDpKmxn5j0hvRYloyw0YArjWsvfGWQG33hI9fvSG+BgWWCMmR93h4/3yLOLIjF/fdZCloTyoW+HfH7KWL4/RHOOZI/Knz8ycZZXSNSM8Z6P03n7zErLPaa6cJHqK644VrD1xXPD8mXsNQRJp+hnMGmECIJFyTi3c/qPDb7kMhW+qiK7hEH38sbSVFmB+RrkdqP9/lvwQBruseUsY94DJ/CgVAqCNrVQEsB7hhjb7HMmcEi9JK8ItQjQR0Jd0hiuAweAOxCa1O4vXild0GqAVNPRSiH4bOrzw5ybjzMAlLzN95cNDGfhlfWuxe1qHFliHS455uQyeGfI63OFA1P9wHi69s7sGbFqSubQm3ik3Aokai/XiqBSmRPWW4vMPCyEtIu+sG0CAmXYSrKPHa9RasEgBQ4VecEhGU+0ORTyRNCShP7PrynMVQDLxsXyTc7ktvzK6yGbqnSUpRKc+d8I23qCeSP7Nuxry2zdkTBeTA0M5yfMlfE1DtvrqyLojmfp+CYU9MEzZpOEhlk5LnXWYjXfKrt0aitrxt9YGqr8f5cfyzfns9XcBOXT8Ln6jV3Opw+fmwWb3VvCK1sOW3xSHG7Twt/v65w=="]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
    Laman tidak menghantar data ke mana-mana selain storan Claude milik admin. */
@@ -195,7 +199,8 @@ const STUCK=()=>clampDays(S.stuckDays);
 /* Bila klien masuk tahap semasa: entri log terakhir untuk tahap itu, atau tarikh kemas kini. */
 function stageSince(c){const s=Math.min(c.s,last());const e=[...(c.log||[])].reverse().find(x=>x.s===s);return e&&e.t?e.t:(c.d||Date.now())}
 const daysAt=c=>Math.max(0,Math.floor((Date.now()-stageSince(c))/DAY));
-const isStuck=c=>c.s<last()&&daysAt(c)>=STUCK();
+const isStuck=c=>!c.x&&c.s<last()&&daysAt(c)>=STUCK();
+const live=c=>!c.x;
 const created=c=>(c.log&&c.log[0]&&c.log[0].t)||c.d||0;
 const okLink=v=>/^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/[^\s<>"'`]*)?$/i.test(String(v||''))&&String(v).length<=300;
 let me=null,tab='klien',fDev='',fStage=-1,q='',openId=null,padKey=null,fails=0,lockUntil=0,busy=false,VIEW=null;
@@ -231,7 +236,7 @@ function normalize(d){
   if(!d||!Array.isArray(d.stages)||!Array.isArray(d.devs)||!Array.isArray(d.clients))return null;
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return null;
   const devs=d.devs.filter(v=>v&&/^\d{4}$/.test(String(v.pin))).map(v=>({id:sid(v.id),name:String(v.name),pin:String(v.pin)}));
-  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
+  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),x:!!c.x,xt:+c.xt||0,s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
   return {admin:/^\d+$/.test(String(d.admin))?String(d.admin):'',stages,devs,clients,dirty:!!d.dirty,pubAt:+d.pubAt||0,link:okLink(d.link)?String(d.link):'',stuckDays:clampDays(d.stuckDays)};
 }
 
@@ -298,7 +303,7 @@ async function tryPemaju(p){
 }
 function enterPemaju(d,p){
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return false;
-  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0,stuckDays:clampDays(d.stuck)};
+  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),x:!!c.x,xt:+c.xt||0,s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0,stuckDays:clampDays(d.stuck)};
   me={role:'dev',dev:'x'};fails=0;tab='klien';render();return true;
 }
 function ownerExtra(){
@@ -336,11 +341,11 @@ function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fD
 function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
 function listHtml(){
   const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
-  const rows=scope().filter(c=>(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  const rows=scope().filter(c=>(fStage===-3?c.x:!c.x&&(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage)))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
   if(!rows.length)return `<div class="empty">${S.clients.length?'Tiada padanan.':adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):'Belum ada klien untuk projek ini.'}</div>`;
   return rows.map(c=>{
     const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
-    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>Catatan:</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> Tersangkut ${daysAt(c)} hari</span>`:''}<span>Kemas kini ${fmt(c.d)}</span></div></div>`;
+    return `<div class="card tap${c.x?' cancel':s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${c.x?'Dibatalkan':esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>Catatan:</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> Tersangkut ${daysAt(c)} hari</span>`:''}<span>${c.x?'Dibatalkan pada '+fmt(c.xt||c.d):'Kemas kini '+fmt(c.d)}</span></div></div>`;
   }).join('');
 }
 const jobList=(id='jobs')=>`<datalist id="${id}">${JOBS.map(j=>`<option value="${esc(j)}">`).join('')}</datalist>`;
@@ -361,14 +366,14 @@ function pubBanner(){
   return `<div class="pub"><span>Pemaju/agency belum nampak perubahan terkini.</span><button class="btn" data-act="publish">Kemas kini untuk pemaju</button></div>`;
 }
 function vKlien(){
-  const adm=me.role==='admin',sc=scope(),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last();
+  const adm=me.role==='admin',all=scope(),sc=all.filter(live),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last(),nX=all.length-n;
   const cnt=i=>sc.filter(c=>c.s===i).length;
   const dv=!adm&&S.devs[0];
   let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
   h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
   const nStuck=sc.filter(isStuck).length;
-  if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button></div>`;
+  if(nStuck||nX||fStage<-1)h+=`<div class="stuckbar">${nStuck||fStage===-2?`<button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button>`:''}${nX||fStage===-3?`<button class="chip" data-act="fcancel" aria-pressed="${fStage===-3}">Dibatalkan (${nX})</button>`:''}</div>`;
   h+=jobChart(sc);
   h+=`<input id="q" type="search" placeholder="Cari unit, nama atau pekerjaan" value="${esc(q)}" aria-label="Cari unit atau nama">`;
   if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
@@ -381,8 +386,8 @@ function vDevs(){
   h+=`<details class="box"${S.devs.length?'':' open'}><summary>Tambah pemaju/agency</summary><div class="f"><input id="dn" placeholder="Nama pemaju/agency atau projek" autocomplete="off"><input id="dp" placeholder="PIN 4 angka" inputmode="numeric" maxlength="4" autocomplete="off"><button class="btn" data-act="adddev">Simpan pemaju/agency</button></div></details>`;
   if(!S.devs.length)return h+`<div class="empty">Belum ada pemaju/agency.</div>`;
   return h+S.devs.map(d=>{
-    const cl=S.clients.filter(c=>c.dev===d.id),dn=cl.filter(c=>c.s>=last()).length;
-    return `<section class="card"><div class="top"><span class="unit">${esc(d.name)}</span><span class="pill">PIN ${esc(d.pin)}</span></div><p class="name">${cl.length} klien, ${dn} selesai</p>${weakPin(d.pin)?'<p class="warn">PIN ini mudah diteka. Tukar PIN di bawah, kemudian tekan “Kemas kini untuk pemaju”.</p>':''}<div class="row wrap"><button class="btn" data-act="invite" data-id="${esc(d.id)}">Salin jemputan</button><button class="btn alt" data-act="msg" data-id="${esc(d.id)}">Salin mesej status</button><button class="btn alt" data-act="reportdev" data-id="${esc(d.id)}">Laporan bulan ini</button></div><div class="row"><input id="np-${esc(d.id)}" placeholder="PIN baharu" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN baharu"><button class="btn alt" data-act="chpin" data-id="${esc(d.id)}">Tukar PIN</button></div><button class="danger" data-act="deld" data-id="${esc(d.id)}" data-confirm>Padam pemaju/agency dan semua kliennya</button></section>`;
+    const cl=S.clients.filter(c=>c.dev===d.id&&!c.x),dn=cl.filter(c=>c.s>=last()).length,nx=S.clients.filter(c=>c.dev===d.id&&c.x).length;
+    return `<section class="card"><div class="top"><span class="unit">${esc(d.name)}</span><span class="pill">PIN ${esc(d.pin)}</span></div><p class="name">${cl.length} klien aktif, ${dn} selesai${nx?`, ${nx} dibatalkan`:''}</p>${weakPin(d.pin)?'<p class="warn">PIN ini mudah diteka. Tukar PIN di bawah, kemudian tekan “Kemas kini untuk pemaju”.</p>':''}<div class="row wrap"><button class="btn" data-act="invite" data-id="${esc(d.id)}">Salin jemputan</button><button class="btn alt" data-act="msg" data-id="${esc(d.id)}">Salin mesej status</button><button class="btn alt" data-act="reportdev" data-id="${esc(d.id)}">Laporan bulan ini</button></div><div class="row"><input id="np-${esc(d.id)}" placeholder="PIN baharu" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="PIN baharu"><button class="btn alt" data-act="chpin" data-id="${esc(d.id)}">Tukar PIN</button></div><div class="row"><input id="nn-${esc(d.id)}" placeholder="Nama baharu" value="${esc(d.name)}" autocomplete="off" aria-label="Nama baharu pemaju/agency" maxlength="80"><button class="btn alt" data-act="rendev" data-id="${esc(d.id)}">Tukar nama</button></div><button class="danger" data-act="deld" data-id="${esc(d.id)}" data-confirm>Padam pemaju/agency dan semua kliennya</button></section>`;
   }).join('');
 }
 function vTools(){
@@ -412,7 +417,7 @@ function renderSheet(){
   if(!c){el.hidden=true;el.innerHTML='';return}
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===c.dev),L=last(),s=Math.min(c.s,L);
   el.hidden=false;
-  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><p class="since" id="since">${sinceText(c)}</p>${!adm&&c.sn?`<div class="snbox"><b>Catatan daripada admin</b><p>${esc(c.sn)}</p></div>`:''}<ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="sn">Catatan untuk pemaju/agency (dikongsi)</label><textarea id="sn" rows="2" maxlength="300" placeholder="Contoh: Menunggu slip gaji terkini">${esc(c.sn||'')}</textarea><label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div>${c.x?`<div class="cancelbox">Permohonan ini <b>dibatalkan</b> pada ${esc(fmt(c.xt||c.d))}.</div>`:`<p class="since" id="since">${sinceText(c)}</p>`}${!adm&&c.sn?`<div class="snbox"><b>Catatan daripada admin</b><p>${esc(c.sn)}</p></div>`:''}<ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm&&!c.x?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm&&!c.x?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="eu">No. unit</label><input id="eu" value="${esc(c.u)}" autocomplete="off" maxlength="40"><label class="fl" for="en">Nama klien</label><input id="en" value="${esc(c.n==='-'?'':c.n)}" autocomplete="off" maxlength="80"><label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="sn">Catatan untuk pemaju/agency (dikongsi)</label><textarea id="sn" rows="2" maxlength="300" placeholder="Contoh: Menunggu slip gaji terkini">${esc(c.sn||'')}</textarea><label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea>${c.x?`<button class="btn alt" data-act="reactc" style="margin-top:12px">Aktifkan semula permohonan</button>`:`<button class="danger" data-act="cancelc" data-confirm="Tekan sekali lagi untuk batalkan">Batalkan permohonan (klien tarik diri)</button>`}<button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
 }
 function paintSheet(){
   const c=S.clients.find(x=>x.id===openId);if(!c||$('sheet').hidden)return;
@@ -420,7 +425,7 @@ function paintSheet(){
   $('sheet').querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<s?'past':i===s?'now':'';li.querySelector('em').textContent=dateFor(c,i)});
   $('sheet').querySelector('.steps').classList.toggle('fin',s>=L);
   $('pctn').textContent=Math.round(s/L*100)+'%';$('pctl').textContent=S.stages[s];
-  $('since').innerHTML=sinceText(c);
+  if($('since'))$('since').innerHTML=sinceText(c);
 }
 function sinceText(c){
   if(c.s>=last())return 'Proses selesai pada '+esc(fmt(stageSince(c)))+'.';
@@ -456,8 +461,9 @@ function statusMsg(id){
   const cl=S.clients.filter(c=>c.dev===id),L=last();
   const lines=['*TULUS TRACKER*','Status proses perumahan: '+d.name,'Dikemas kini '+fmt(Date.now()),''];
   if(!cl.length)lines.push('Belum ada klien.');
-  cl.forEach(c=>{const s=Math.min(c.s,L);lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': '+S.stages[s]+' ['+(s+1)+'/'+(L+1)+']'+(isStuck(c)?' (tersangkut '+daysAt(c)+' hari)':''));if(c.sn)lines.push('   Catatan: '+c.sn)});
-  lines.push('','Jumlah: '+cl.length+' klien, '+cl.filter(c=>c.s>=L).length+' selesai.');
+  cl.forEach(c=>{const s=Math.min(c.s,L);if(c.x){lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': DIBATALKAN');return}lines.push('• '+c.u+(c.n&&c.n!=='-'?' ('+c.n+')':'')+': '+S.stages[s]+' ['+(s+1)+'/'+(L+1)+']'+(isStuck(c)?' (tersangkut '+daysAt(c)+' hari)':''));if(c.sn)lines.push('   Catatan: '+c.sn)});
+  const nx=cl.filter(c=>c.x).length;
+  lines.push('','Jumlah: '+(cl.length-nx)+' klien aktif, '+cl.filter(c=>!c.x&&c.s>=L).length+' selesai'+(nx?', '+nx+' dibatalkan':'')+'.');
   showText('Mesej untuk '+d.name,lines.join('\n'),'Salin mesej ini dan tampal dalam WhatsApp pemaju/agency. Tiada PIN diperlukan.');
 }
 
@@ -477,7 +483,7 @@ async function publishNow(btn){
     const at=Date.now(),salt=crypto.getRandomValues(new Uint8Array(16)),blobs=[];
     for(const d of S.devs){
       const key=await kdf(d.pin,salt,ITER);
-      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,j:c.j||'',sn:c.sn||'',s:c.s,log:c.log||[],d:c.d}));
+      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,j:c.j||'',sn:c.sn||'',x:!!c.x,xt:c.xt||0,s:c.s,log:c.log||[],d:c.d}));
       blobs.push(await seal({dev:d.name,stages:S.stages,clients:cl,at,stuck:STUCK()},key));
     }
     for(let i=blobs.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[blobs[i],blobs[j]]=[blobs[j],blobs[i]]}
@@ -497,7 +503,7 @@ async function publishNow(btn){
 /* ---------- tindakan admin ---------- */
 function setStage(i){
   if(!isAdmin())return;
-  const c=S.clients.find(x=>x.id===openId);if(!c||i===c.s)return;
+  const c=S.clients.find(x=>x.id===openId);if(!c||c.x||i===c.s)return;
   c.s=i;c.d=Date.now();(c.log=c.log||[]).push({s:i,t:c.d});touch();paintSheet();render();
 }
 function addClient(){
@@ -566,6 +572,20 @@ function saveLink(){
   if(v&&!okLink(v)){toast('Link tidak sah. Mesti bermula dengan https://');return}
   S.link=v;save();render();toast(v?'Link disimpan. “Salin jemputan” kini guna link ini.':'Link pendek dibuang. Link asal digunakan.');
 }
+function setCancel(on){
+  if(!isAdmin())return;
+  const c=S.clients.find(x=>x.id===openId);if(!c||!!c.x===on)return;
+  c.x=on;c.xt=on?Date.now():0;touch();renderSheet();if($('list'))render(),renderSheet();
+  toast(on?'Permohonan dibatalkan. Ia disorok dari senarai biasa; lihat di “Dibatalkan”.':'Permohonan diaktifkan semula.');
+}
+function renDev(id){
+  if(!isAdmin())return;
+  const d=S.devs.find(x=>x.id===id);if(!d)return;
+  const v=$('nn-'+id).value.trim().slice(0,80);
+  if(!v){toast('Isi nama baharu.');return}
+  if(v===d.name)return;
+  d.name=v;touch();render();toast('Nama ditukar. Tekan “Kemas kini untuk pemaju” supaya mereka nampak nama baharu.');
+}
 function saveStuck(){
   if(!isAdmin())return;
   const v=Math.floor(+$('sd').value);
@@ -587,7 +607,8 @@ function report(devId,ym){
     const baru=cl.filter(c=>inM(created(c)));
     const selesai=cl.filter(c=>(c.log||[]).some(e=>e.s===L&&inM(e.t)));
     const gerak=cl.filter(c=>(c.log||[]).some(e=>e.s>0&&inM(e.t))).length;
-    const aktif=cl.filter(c=>c.s<L);
+    const aktif=cl.filter(c=>!c.x&&c.s<L);
+    const batal=cl.filter(c=>c.x&&inM(c.xt));
     const stuck=aktif.filter(isStuck);
     lines.push('','*'+d.name+'*',
       '• Permohonan baharu: '+baru.length,
@@ -595,9 +616,10 @@ function report(devId,ym){
       '• Selesai: '+selesai.length,
       '• Masih dalam proses (hari ini): '+aktif.length,
       '• Tersangkut lebih '+STUCK()+' hari (hari ini): '+stuck.length+(stuck.length?' ('+stuck.map(c=>c.u).join(', ')+')':''),
-      '• Jumlah keseluruhan: '+cl.length);
+      '• Dibatalkan: '+batal.length+(batal.length?' ('+batal.map(c=>c.u).join(', ')+')':''),
+      '• Jumlah keseluruhan: '+cl.length+' (termasuk dibatalkan)');
     if(baru.length){const m=new Map();baru.forEach(c=>m.set(jobOf(c),(m.get(jobOf(c))||0)+1));lines.push('• Pekerjaan permohonan baharu: '+[...m].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+' '+v).join(', '))}
-    const byStage=S.stages.map((t,i)=>[t,cl.filter(c=>c.s===i).length]).filter(r=>r[1]);
+    const byStage=S.stages.map((t,i)=>[t,cl.filter(c=>!c.x&&c.s===i).length]).filter(r=>r[1]);
     if(byStage.length)lines.push('• Tahap semasa: '+byStage.map(([t,v])=>t+' '+v).join(', '));
   });
   showText('Laporan '+name,lines.join('\n'),devId?'Salin dan hantar kepada pemaju/agency ini dalam WhatsApp.':'Laporan semua pemaju/agency, untuk rujukan anda. Pilih satu pemaju/agency untuk laporan yang boleh dihantar kepada mereka.');
@@ -607,7 +629,7 @@ function restore(inp){const f=inp.files[0];if(!f)return;const r=new FileReader()
 function summary(){
   if(!isAdmin())return;
   const lines=['TULUS TRACKER ('+fmt(Date.now())+')'];
-  S.devs.forEach(d=>{const cl=S.clients.filter(c=>c.dev===d.id);lines.push('',d.name+': '+cl.length+' klien');S.stages.forEach((t,i)=>{const n=cl.filter(c=>c.s===i).length;if(n)lines.push('- '+t+': '+n)})});
+  S.devs.forEach(d=>{const cl=S.clients.filter(c=>c.dev===d.id&&!c.x),nx=S.clients.filter(c=>c.dev===d.id&&c.x).length;lines.push('',d.name+': '+cl.length+' klien aktif'+(nx?', '+nx+' dibatalkan':''));S.stages.forEach((t,i)=>{const n=cl.filter(c=>c.s===i).length;if(n)lines.push('- '+t+': '+n)})});
   showText('Ringkasan',lines.join('\n'),'Ringkasan semua pemaju/agency, untuk rujukan anda.');
 }
 function act(a,b){
@@ -619,6 +641,10 @@ function act(a,b){
     case 'fdev':fDev=d.v;fStage=-1;render();break;
     case 'fstage':fStage=fStage===+d.v?-1:+d.v;render();break;
     case 'fstuck':fStage=fStage===-2?-1:-2;render();break;
+    case 'fcancel':fStage=fStage===-3?-1:-3;render();break;
+    case 'cancelc':setCancel(true);break;
+    case 'reactc':setCancel(false);break;
+    case 'rendev':renDev(d.id);break;
     case 'savestuck':saveStuck();break;
     case 'report':report(($('rd')||{}).value||'',($('rm')||{}).value||'');break;
     case 'reportdev':report(d.id,'');break;
@@ -647,7 +673,7 @@ function act(a,b){
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
   if(b.hasAttribute('data-confirm')&&!b.dataset.armed){
-    b.dataset.armed='1';b._t=b.textContent;b.textContent='Tekan sekali lagi untuk padam';b.classList.add('armed');
+    b.dataset.armed='1';b._t=b.textContent;b.textContent=b.dataset.confirm||'Tekan sekali lagi untuk padam';b.classList.add('armed');
     setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent=b._t;b.classList.remove('armed')}},4000);
     return;
   }
@@ -665,6 +691,13 @@ document.addEventListener('input',e=>{
 });
 document.addEventListener('change',e=>{
   if(e.target.id==='res')restore(e.target);
+  else if((e.target.id==='eu'||e.target.id==='en')&&isAdmin()){
+    const c=S.clients.find(x=>x.id===openId);if(!c)return;
+    const v=e.target.value.trim().slice(0,e.target.id==='eu'?40:80);
+    if(e.target.id==='eu'){if(!v){e.target.value=c.u;toast('No. unit tidak boleh kosong.');return}if(v===c.u)return;c.u=v;$('sheet').querySelector('.ptop h2').textContent=v}
+    else{const nv=v||'-';if(nv===c.n)return;c.n=nv;$('sheet').querySelector('.ptop .name').textContent=nv}
+    touch();if($('list'))$('list').innerHTML=listHtml();toast('Disimpan.');
+  }
   else if(e.target.id==='job'&&isAdmin()){const c=S.clients.find(x=>x.id===openId);const v=e.target.value.trim().slice(0,60);if(c&&v!==(c.j||'')){c.j=v;touch();render();toast('Pekerjaan disimpan.')}}
 });
 window.addEventListener('pagehide',()=>{if(isAdmin())flush()});
