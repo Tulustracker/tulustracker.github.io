@@ -144,11 +144,30 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .welcome span{display:block;font-size:.9rem;opacity:.9;position:relative;z-index:1}
 .welcome b{display:block;font-size:1.45rem;line-height:1.2;margin-top:2px;position:relative;z-index:1;}
 .warn{color:var(--danger);font-size:.85rem;margin:6px 0 0}
+:root{--bar:#1c8a6e}
+@media(prefers-color-scheme:dark){:root{--bar:#37b597}}
+.chart{padding:14px}
+.chead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:10px}
+.chead>b{font-size:1rem}
+.chead span{color:var(--muted);font-size:.85rem}
+.chead span b{color:var(--ink);font-size:1rem}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.bars li{display:grid;grid-template-columns:minmax(84px,38%) 1fr auto;align-items:center;gap:10px;padding:5px 4px;border-radius:6px}
+.bars li:hover,.bars li:focus-visible{background:var(--off)}
+.bl{font-size:.85rem;line-height:1.2;overflow-wrap:anywhere}
+.bt{height:14px;display:block}
+.bt i{display:block;height:14px;background:var(--bar);border-radius:0 4px 4px 0}
+.bars li.blank .bt i{background:var(--muted);opacity:.45}
+.bars li.blank .bl{color:var(--muted)}
+.bv{font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bv em{font-style:normal;color:var(--muted)}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"+ZcdVupHQJlfixF2kTWBhA==","it":150000,"b":["WiQiMGKFUgFgiuPc.FFKBRlIwN8qk+5xB+l/rh1Vtoq1VxB0bTxzMDX2NefuEGkM2KTfBK0c5d9ILZKviWEVXNG9he2VpNaRANdFNQ6pKWboEgZEDAwgXWLtKpKLBHRxl5UmMxRYgQh8276oVO+KR3IXAyLIETuX3SgHcJFNNeKWTskjDhJTLfy4Ch5+EWZ6wM4hva3P/TiYMIpFrtCfTm0hgkEk+XCUdYfWeF5kiyCYQh62gx9V0iVJsU/jJRFWAx3cecuf60EF36g3G0bODKVJWVWlyM9y8KZOVYFcIZMUGwG+p1Ri5f8nc+m07Z9D5RuGVPm/Vmab8nITRystLlzW56zn2dRU/61lQ8y/H5FsYjhLzlK6L3t8p83MD6RA1amLvuCNnp9mfXNvs/KxuDOPFD9r45PjF9qVHoFEebC8OzDq/3B9lS3XRZVhbR/qH8Bjs0R7/5YdKjVD5xC5/X54krePir5r54feKIm6RRa0+Rmwoak2mzyX3j7ZcCiSDEOebyZxrXv0JilJeOOhlmj7RHF2DkwyLLvh9WZlbANUBKE6CDBducUgfr8cyLoMd4+eZRsBo"]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
    Laman tidak menghantar data ke mana-mana selain storan Claude milik admin. */
 const LINK="https://claude.ai/artifact/7hAbUNMNsERCmx7Bso92vu";
+const JOBS=['Guru','Pensyarah','Polis (PDRM)','Tentera (ATM)','Bomba','Jururawat','Doktor / Pegawai Perubatan','Pembantu Tadbir','Pegawai Tadbir','Kastam','Imigresen','Penjawat awam lain'];
+const jobOf=c=>String(c.j||'').trim()||'Belum diisi';
 const DEF=['Permohonan dihantar','Dokumen lengkap','Dalam semakan','Kelulusan pinjaman','Perjanjian pinjaman','Selesai'];
 const ITER=400000;
 /* PIN yang terlalu mudah diteka: digit sama, berturutan, atau popular. */
@@ -189,7 +208,7 @@ function normalize(d){
   if(!d||!Array.isArray(d.stages)||!Array.isArray(d.devs)||!Array.isArray(d.clients))return null;
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return null;
   const devs=d.devs.filter(v=>v&&/^\d{4}$/.test(String(v.pin))).map(v=>({id:sid(v.id),name:String(v.name),pin:String(v.pin)}));
-  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
+  const clients=d.clients.filter(c=>c).map(c=>({id:sid(c.id),dev:sid(c.dev),u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:String(c.note||''),d:+c.d||Date.now()}));
   return {admin:/^\d+$/.test(String(d.admin))?String(d.admin):'',stages,devs,clients,dirty:!!d.dirty,pubAt:+d.pubAt||0,link:okLink(d.link)?String(d.link):''};
 }
 
@@ -256,7 +275,7 @@ async function tryPemaju(p){
 }
 function enterPemaju(d,p){
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return false;
-  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0};
+  S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0};
   me={role:'dev',dev:'x'};fails=0;tab='klien';render();return true;
 }
 function ownerExtra(){
@@ -294,12 +313,24 @@ function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fD
 function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
 function listHtml(){
   const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
-  const rows=scope().filter(c=>(fStage<0||c.s===fStage)&&(!ql||(c.u+' '+c.n).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  const rows=scope().filter(c=>(fStage<0||c.s===fStage)&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
   if(!rows.length)return `<div class="empty">${S.clients.length?'Tiada padanan.':adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):'Belum ada klien untuk projek ini.'}</div>`;
   return rows.map(c=>{
     const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
-    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div><div class="meta">Kemas kini ${fmt(c.d)}</div></div>`;
+    return `<div class="card tap${s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div><div class="meta">Kemas kini ${fmt(c.d)}</div></div>`;
   }).join('');
+}
+const jobList=(id='jobs')=>`<datalist id="${id}">${JOBS.map(j=>`<option value="${esc(j)}">`).join('')}</datalist>`;
+/* Carta pekerjaan: satu siri, bar mendatar, label nilai terus pada setiap bar. Lebih 7 pekerjaan digabung sebagai "Lain-lain". */
+function jobChart(sc){
+  if(!sc.length)return '';
+  const m=new Map();sc.forEach(c=>{const k=jobOf(c);m.set(k,(m.get(k)||0)+1)});
+  let rows=[...m.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+  const blank=rows.find(r=>r[0]==='Belum diisi');rows=rows.filter(r=>r[0]!=='Belum diisi');
+  if(rows.length>7){const rest=rows.slice(6).reduce((s,r)=>s+r[1],0);rows=rows.slice(0,6).concat([['Lain-lain',rest]])}
+  if(blank)rows.push(blank);
+  const max=Math.max(...rows.map(r=>r[1])),tot=sc.length;
+  return `<section class="box chart" aria-label="Carta pekerjaan klien"><div class="chead"><b>Pekerjaan klien</b><span>Jumlah permohonan: <b>${tot}</b></span></div><ul class="bars">${rows.map(([k,v])=>{const pct=Math.round(v/tot*100);return `<li tabindex="0" title="${esc(k)}: ${v} permohonan (${pct}%)"${k==='Belum diisi'?' class="blank"':''}><span class="bl">${esc(k)}</span><span class="bt"><i style="width:${Math.max(2,v/max*100).toFixed(1)}%"></i></span><span class="bv">${v} <em>(${pct}%)</em></span></li>`}).join('')}</ul></section>`;
 }
 function pubBanner(){
   if(me.role!=='admin'||!S.devs.length)return '';
@@ -310,11 +341,12 @@ function vKlien(){
   const adm=me.role==='admin',sc=scope(),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last();
   const cnt=i=>sc.filter(c=>c.s===i).length;
   const dv=!adm&&S.devs[0];
-  let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Klien</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
+  let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats"><div class="stat"><b>${n}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
   h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
-  h+=`<input id="q" type="search" placeholder="Cari unit atau nama" value="${esc(q)}" aria-label="Cari unit atau nama">`;
-  if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><button class="btn" data-act="addc">Simpan klien</button></div></details>`;
+  h+=jobChart(sc);
+  h+=`<input id="q" type="search" placeholder="Cari unit, nama atau pekerjaan" value="${esc(q)}" aria-label="Cari unit atau nama">`;
+  if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
   h+=`<div id="list">${listHtml()}</div>`;
   if(!adm)h+=`<p class="note">Dikemas kini oleh admin pada ${esc(fmtT(S.pubAt))}.</p>`;
   return h;
@@ -353,7 +385,7 @@ function renderSheet(){
   if(!c){el.hidden=true;el.innerHTML='';return}
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===c.dev),L=last(),s=Math.min(c.s,L);
   el.hidden=false;
-  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div><ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea><button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
 }
 function paintSheet(){
   const c=S.clients.find(x=>x.id===openId);if(!c||$('sheet').hidden)return;
@@ -412,7 +444,7 @@ async function publishNow(btn){
     const at=Date.now(),salt=crypto.getRandomValues(new Uint8Array(16)),blobs=[];
     for(const d of S.devs){
       const key=await kdf(d.pin,salt,ITER);
-      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,s:c.s,log:c.log||[],d:c.d}));
+      const cl=S.clients.filter(c=>c.dev===d.id).map(c=>({u:c.u,n:c.n,j:c.j||'',s:c.s,log:c.log||[],d:c.d}));
       blobs.push(await seal({dev:d.name,stages:S.stages,clients:cl,at},key));
     }
     for(let i=blobs.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[blobs[i],blobs[j]]=[blobs[j],blobs[i]]}
@@ -438,9 +470,9 @@ function setStage(i){
 function addClient(){
   if(!isAdmin())return;
   if(!S.devs.length){toast('Tambah pemaju/agency dahulu di tab Pemaju/Agency.');return}
-  const dv=$('cd').value,u=$('cu').value.trim(),n=$('cn').value.trim();
+  const dv=$('cd').value,u=$('cu').value.trim(),n=$('cn').value.trim(),j=$('cj').value.trim().slice(0,60);
   if(!u){$('cu').focus();toast('Isi no. unit.');return}
-  const t=Date.now();S.clients.unshift({id:uid(),dev:dv,u,n:n||'-',s:0,log:[{s:0,t}],note:'',d:t});
+  const t=Date.now();S.clients.unshift({id:uid(),dev:dv,u,n:n||'-',j,s:0,log:[{s:0,t}],note:'',d:t});
   if(fDev)fDev=dv;touch();render();toast('Klien ditambah.');
 }
 function delClient(){
@@ -557,7 +589,10 @@ document.addEventListener('input',e=>{
   if(e.target.id==='q'){q=e.target.value;$('list').innerHTML=listHtml()}
   else if(e.target.id==='note'){const c=S.clients.find(x=>x.id===openId);if(c){c.note=e.target.value;save()}}
 });
-document.addEventListener('change',e=>{if(e.target.id==='res')restore(e.target)});
+document.addEventListener('change',e=>{
+  if(e.target.id==='res')restore(e.target);
+  else if(e.target.id==='job'&&isAdmin()){const c=S.clients.find(x=>x.id===openId);const v=e.target.value.trim().slice(0,60);if(c&&v!==(c.j||'')){c.j=v;touch();render();toast('Pekerjaan disimpan.')}}
+});
 window.addEventListener('pagehide',()=>{if(isAdmin())flush()});
 start();
 </script></body></html>
