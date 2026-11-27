@@ -13,7 +13,7 @@ if '<script' in pub.lower():
     sys.exit('Data pemaju mengandungi kandungan tidak dijangka: laman GitHub tidak diubah.')
 csp = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"
 fav = "data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"
-page = ('<!doctype html><html lang="ms"><head><meta charset="utf-8">'
+page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
         f'<meta http-equiv="Content-Security-Policy" content="{csp}">'
         '<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">'
