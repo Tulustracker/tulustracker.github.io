@@ -1,4 +1,4 @@
-<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>TULUS TRACKER</title><meta name="description" content="Penjejak proses perumahan sektor awam"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"><style id="css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>TULUS TRACKER</title><meta name="description" content="Penjejak proses perumahan sektor awam"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"><style id="css">
 :root{--bg:#e9efed;--card:#fff;--ink:#10291f;--muted:#587068;--line:#cddad5;--pine:#14584a;--on:#fff;--amber:#cf8d12;--gold:#f8c010;--done:#1c9a68;--off:#d3ded9;--danger:#b3372f;color-scheme:light}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1714;--card:#13241f;--ink:#e4efeb;--muted:#8da79f;--line:#223630;--pine:#37b597;--on:#06241c;--amber:#f0b440;--done:#4cc994;--off:#25382f;--danger:#f0776d;color-scheme:dark}}
 *{box-sizing:border-box}
@@ -231,6 +231,14 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .btn.wa svg{width:20px;height:20px;flex:none}
 .btn.wa:hover{background:#0f7a40}
 .contact .btn.wa{margin-top:4px}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex:none}
+.lang button{background:none;border:0;color:var(--muted);font:inherit;font-size:.78rem;font-weight:700;padding:6px 9px;cursor:pointer;letter-spacing:.04em}
+.lang button[aria-pressed=true]{background:var(--pine);color:var(--on)}
+.gate{position:relative}
+.gate>.lang{position:absolute;top:16px;right:16px}
+.bar .who{margin-left:auto}
+.bar .ghost{white-space:nowrap}
+@media(max-width:440px){.bar .who{display:none}.bar .lang{margin-left:auto}.brandbar .tag{display:none}}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"5yHqaPOaWrxk0afnalHOzw==","it":400000,"b":["Mpxqwa7/6JB/2eVN.hreJ6psUl7x7NJ5sNGsxSQVF/X0urazZjpcLXrM7GbL1ILa6pKWudkApvtGnLGEsg9KaaqRcUX9eRc3NLVy99d0QyuPlK6FcoN44YKf4ZC910PE2/NaxxxC7qDCX569Lqn63c/yMsDlcVo1Zb4Sx+jZhTr3S2HYYJfg8KcrvWH5a0ck6Kzn4rPiHOdUvC3yJvIwHNbJMec4/0ZE0wJbthoTUtJ+iQR0GnWJ2kclaP+oq/tEpA3uvmcduTnYsoWNCGHervnqLVvKHMT40QE1wL+z812I3cjsRvSc3UkIkvISX3Cd486Gg7x4pdSXd/fucOi3L3vBKYAGpSuawdovyaP1t+jJBQ6aszdrLj7hVkqjzoqEF7z/DwM+dY3CdAj/+WczRVGRHkE1976nN4feEOVqGvuP6BOQjy8DIGj7mARyGByjCGFiUVNRNfLNV5ZtNpx+RR2QSp7YO/iB2rSYeoK46TUyFPT+E8OYOB67JnEfY+DtdkEsB+oh/8fb6/9jwJQkK0CJFD8obH+dBIQsrp5/x8YlIT0k7TqFVIJAbWpaskt6PJgE1JVXgNmWZ+wpbkXes1D9Bfe9KZy0xkk9DkLhM943Pu+BaNngCkiEhb7v7V+Isk9wVGx3RxqCd01x/c/C1Jc85yejTTUIpQdqZgAWnd2yDDFu914Yj0KzUqlO1gIWtj9U2Cw6awt8RGeTNOZMqY7jxF1k30WJfB9DOvqRuNbTd5gcVbWNbLLXLU/S4CE9GwEiZ2NYlrUC94kmKS1ZFN9Xs4QtH32gaPn6roe60u4QEeveA4E97yX3xDCbqeS8QQIJNqr1FRJgUpTbb7hC3IiS3O8jQcHSwCf+FlkDowVJKCD8K9506w6De2k9r2DNqkJCr/fA5Xw6dNhW8wAsEjtvjsWXdGHUSpvPzzzkDBIV+E9PlE3J+Jqcg1dh26RS+IradVagmiIOgGiB1pZt45/Czppke8Eo2qiW8ypP9Ep3mYzgmfYXJgdZvf60OpsGBaZV0x2iOrvscKw=="]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -260,8 +268,41 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const last=()=>S.stages.length-1;
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-const fmt=t=>new Date(t).toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'});
-const fmtT=t=>new Date(t).toLocaleString('ms-MY',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+/* ---------- bahasa / language: EN (lalai, formal) dan BM ---------- */
+let LANG=(()=>{try{const v=localStorage.getItem('tt-lang');return v==='ms'||v==='en'?v:'en'}catch(e){return 'en'}})();
+const T={
+ tagline:['Penjejak proses perumahan sektor awam','Public sector housing financing tracker'],
+ pin:['Masukkan PIN','Enter PIN'],checking:['Menyemak…','Checking…'],
+ bad:['PIN salah.','Incorrect PIN.'],lock:['PIN salah. Cuba lagi selepas 30 saat.','Incorrect PIN. Please try again in 30 seconds.'],
+ many:['Terlalu banyak cubaan. Cuba lagi sebentar lagi.','Too many attempts. Please try again shortly.'],
+ logout:['Keluar','Log out'],close:['Tutup','Close'],
+ welcome:['Selamat datang, rakan kongsi kami','Welcome, our valued partner'],
+ total:['Permohonan','Applications'],proc:['Dalam proses','In progress'],done:['Selesai','Completed'],xd:['Dibatalkan','Cancelled'],
+ xtip:['Tekan untuk lihat permohonan dibatalkan','Tap to view cancelled applications'],
+ stageFilter:['Tapis ikut tahap','Filter by stage'],
+ stuckChip:['Tersangkut lebih {0} hari ({1})','Pending over {0} days ({1})'],stuckCard:['Tersangkut {0} hari','Pending {0} days'],stuck:['Tersangkut','Pending'],
+ xShow:['Menunjukkan {0} permohonan dibatalkan.','Showing {0} cancelled application(s).'],back:['Kembali ke senarai aktif','Back to active list'],
+ search:['Cari unit, nama atau pekerjaan','Search unit, name or occupation'],
+ byAdmin:['Dikemas kini oleh admin pada {0}.','Last updated by admin on {0}.'],
+ noMatch:['Tiada padanan.','No matching records.'],noClients:['Belum ada klien untuk projek ini.','No clients for this project yet.'],
+ note:['Catatan:','Note:'],xOn:['Dibatalkan pada {0}','Cancelled on {0}'],upd:['Kemas kini {0}','Updated {0}'],
+ jobs:['Pekerjaan klien','Client occupations'],totApps:['Jumlah permohonan:','Total applications:'],inclX:[' (termasuk {0} dibatalkan)',' (including {0} cancelled)'],
+ apps:['permohonan','application(s)'],
+ occ:['Pekerjaan: {0}','Occupation: {0}'],details:['Butiran klien','Client details'],
+ xBox:['Permohonan ini <b>dibatalkan</b> pada {0}.','This application was <b>cancelled</b> on {0}.'],
+ adminNote:['Catatan daripada admin','Note from admin'],
+ sinceDone:['Proses selesai pada {0}.','Process completed on {0}.'],since:['Di tahap ini sejak {0} ({1} hari).','At this stage since {0} ({1} days).'],
+ tClients:['Klien','Clients'],tInfo:['Info pembiayaan','Financing info']
+};
+const t=(k,...a)=>{const v=(T[k]||[k,k])[LANG==='en'?1:0];return a.length?v.replace(/\{(\d)\}/g,(_,i)=>a[+i]):v};
+const STAGE_EN={'Permohonan dihantar':'Application submitted','Dokumen lengkap':'Documents complete','Dalam semakan':'Under review','Kelulusan pinjaman':'Financing approved','Perjanjian pinjaman':'Financing agreement','Selesai':'Completed'};
+const JOB_EN={'Guru':'Teacher','Pensyarah':'Lecturer','Polis (PDRM)':'Police (PDRM)','Tentera (ATM)':'Armed Forces (ATM)','Bomba':'Fire and Rescue','Jururawat':'Nurse','Doktor / Pegawai Perubatan':'Doctor / Medical Officer','Pembantu Tadbir':'Administrative Assistant','Pegawai Tadbir':'Administrative Officer','Kastam':'Customs','Imigresen':'Immigration','Penjawat awam lain':'Other civil servant','Belum diisi':'Not specified','Lain-lain':'Others'};
+const stg=i=>{const v=S.stages[i];return LANG==='en'&&STAGE_EN[v]?STAGE_EN[v]:v};
+const jobT=k=>LANG==='en'&&JOB_EN[k]?JOB_EN[k]:k;
+const langToggle=()=>`<div class="lang" role="group" aria-label="Language / Bahasa"><button data-act="lang" data-v="en" aria-pressed="${LANG==='en'}">EN</button><button data-act="lang" data-v="ms" aria-pressed="${LANG==='ms'}">BM</button></div>`;
+const loc=()=>LANG==='en'?'en-GB':'ms-MY';
+const fmt=t=>new Date(t).toLocaleDateString(loc(),{day:'numeric',month:'short',year:'numeric'});
+const fmtT=t=>new Date(t).toLocaleString(loc(),{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
 const MARK='<svg viewBox="34 94 217 88" role="img" aria-label="TULUS"><path class="lt" fill-rule="evenodd" d="M97.8 149.7 97.3 150.4 97.1 152.6 97.1 175.1 97.2 176.8 97.1 178.1 97.3 178.6 97.8 179.1 98.6 179.2 102.0 179.1 103.9 179.2 107.8 179.1 111.5 179.2 112.9 179.0 113.4 178.5 113.5 177.6 113.4 176.8 112.9 176.3 109.9 176.0 102.2 176.1 101.5 175.9 100.9 175.2 100.7 174.2 100.7 172.2 100.6 170.5 100.7 168.9 100.8 154.2 100.9 152.5 100.7 150.9 100.5 150.0 100.0 149.6 98.6 149.5ZM119.7 149.5 119.3 150.0 119.1 150.9 119.1 168.9 119.9 172.4 120.9 175.1 122.0 176.6 123.8 178.1 125.2 178.9 127.4 179.4 129.1 179.7 130.4 179.7 133.9 179.1 135.5 178.5 137.2 177.3 138.8 175.5 139.9 173.6 140.6 171.5 141.1 166.9 141.0 165.4 141.0 154.4 141.1 151.2 140.9 150.0 140.6 149.6 140.2 149.5 138.8 149.4 137.9 149.7 137.4 150.5 137.4 167.8 137.0 170.1 136.3 172.6 135.4 174.1 133.8 175.7 132.9 176.1 131.6 176.6 129.9 176.7 128.8 176.6 127.5 176.2 126.0 175.4 124.6 173.9 123.6 171.8 122.8 168.4 122.7 150.5 122.4 149.8 121.9 149.5 120.4 149.4ZM66.4 149.5 65.8 150.1 65.6 151.0 65.6 167.2 66.2 171.6 66.7 173.4 67.4 174.9 68.4 176.5 69.3 177.4 71.0 178.5 73.0 179.2 74.8 179.6 76.6 179.7 80.1 179.1 82.0 178.4 83.9 177.1 85.4 175.4 86.5 173.4 87.3 170.5 87.5 168.2 87.5 150.9 87.3 149.9 87.0 149.6 86.5 149.4 85.0 149.4 84.3 149.8 84.0 150.6 83.9 169.0 83.7 170.2 82.8 172.8 81.8 174.4 80.4 175.6 79.4 176.1 77.8 176.6 76.2 176.7 75.2 176.6 74.0 176.2 72.3 175.2 71.6 174.5 70.9 173.5 69.9 171.5 69.5 169.5 69.4 150.6 69.1 149.9 68.6 149.5 67.2 149.4ZM38.4 149.6 37.8 150.0 37.5 150.9 37.8 151.7 38.4 152.2 39.2 152.4 45.4 152.4 46.1 152.7 46.6 153.4 46.7 154.6 46.7 172.0 46.6 174.1 46.8 178.0 47.1 178.7 47.6 179.1 48.8 179.2 49.6 179.1 50.2 178.6 50.4 177.8 50.4 153.5 50.8 152.8 51.6 152.4 57.8 152.4 58.7 152.2 59.2 151.9 59.4 151.5 59.5 150.8 59.4 150.1 58.9 149.6 57.9 149.4 40.4 149.4ZM164.9 149.9 162.9 149.3 159.9 148.9 157.5 149.0 156.0 149.3 153.8 150.2 152.9 150.7 151.6 152.0 150.5 153.5 149.9 155.6 149.8 157.2 150.2 159.6 150.9 161.0 152.4 162.6 153.9 163.6 155.8 164.6 160.2 166.6 161.1 167.2 162.0 168.0 162.5 168.9 163.1 170.2 163.2 171.2 162.9 173.0 162.3 174.2 161.0 175.5 159.5 176.2 157.8 176.6 156.0 176.6 153.4 176.1 151.0 175.3 150.2 175.4 149.6 176.1 149.3 177.2 149.7 177.9 150.5 178.5 152.6 179.2 156.1 179.6 157.8 179.6 160.5 179.2 161.9 178.7 163.8 177.6 165.3 176.2 166.1 175.0 166.9 172.4 167.0 170.6 166.9 169.6 166.5 168.0 165.5 166.2 164.1 164.8 161.9 163.4 157.8 161.6 155.1 160.1 154.5 159.4 153.9 158.4 153.5 156.5 153.7 155.1 154.3 154.1 155.4 153.0 156.9 152.2 157.9 152.0 160.8 152.0 162.1 152.2 163.9 152.7 164.6 152.6 165.2 152.0 165.6 151.0 165.5 150.4Z"/><g transform="translate(10 0)"><rect class="lt" x="175.1" y="129" width="3.85" height="50"/><path class="lc" fill-rule="evenodd" d="M111.6 132.0 111.9 132.4 112.6 132.4 115.1 131.5 117.9 130.9 120.1 130.9 122.5 131.2 123.8 131.5 125.4 132.1 127.8 132.9 128.9 133.5 131.8 135.5 132.4 135.8 133.1 135.9 133.9 135.8 134.6 135.5 136.4 134.1 139.2 132.4 141.6 131.6 144.2 130.9 145.4 130.8 149.1 130.9 151.2 131.4 154.2 132.5 158.1 134.4 159.6 135.4 160.9 135.7 161.6 135.7 162.2 135.4 164.8 133.5 166.8 132.5 169.8 131.4 172.5 130.8 174.1 130.7 177.4 130.8 182.5 132.5 184.2 133.4 187.0 135.3 187.9 135.7 188.5 135.8 189.5 135.5 192.5 133.6 196.2 131.7 197.5 131.3 201.6 130.6 205.4 131.1 207.0 131.6 210.1 132.9 212.8 134.2 214.8 135.5 216.0 135.8 217.0 135.6 222.2 132.4 225.2 131.5 228.5 130.8 230.0 130.8 233.4 131.5 238.6 133.1 239.1 133.0 239.2 132.5 238.9 131.1 237.2 128.5 235.8 127.1 234.0 124.6 231.8 122.3 230.9 121.1 227.3 117.6 221.6 113.0 218.9 111.0 214.4 108.3 208.0 104.8 206.1 104.2 203.5 102.9 200.5 101.7 196.5 100.4 190.9 98.9 186.1 97.9 182.0 97.4 176.2 97.0 171.1 97.1 166.0 97.7 157.8 99.4 154.9 100.5 152.8 101.1 147.5 103.5 145.9 104.1 138.8 107.8 133.0 111.7 127.9 115.6 124.0 118.8 116.6 125.9 112.2 130.9 111.8 131.5ZM166.5 107.3 166.7 107.5 166.8 107.9 166.6 108.9 165.9 110.8 165.2 113.4 164.5 115.1 162.6 121.6 162.3 122.2 161.9 122.4 161.6 122.2 161.4 121.7 161.4 120.1 161.7 117.8 162.6 114.6 163.9 111.0 165.0 108.5 165.8 107.6 166.1 107.3ZM180.2 106.6 180.7 106.7 182.4 108.8 182.9 109.6 183.9 112.0 185.1 116.0 185.5 119.6 186.1 121.4 186.0 121.9 185.8 122.2 185.4 122.0 185.0 120.1 183.9 118.4 182.6 114.1 180.0 107.4 180.0 106.9ZM189.3 105.7 189.5 105.6 190.0 105.7 191.8 106.6 197.6 111.1 201.2 115.0 203.0 117.6 204.5 119.1 205.8 121.4 205.8 122.0 205.5 122.1 205.0 121.9 203.1 120.5 199.1 116.4 197.1 114.0 195.8 113.0 194.2 111.3 191.9 109.3 189.4 106.6 189.2 106.1ZM157.9 105.7 158.0 106.0 157.7 106.5 156.3 108.2 148.9 115.4 146.2 118.4 144.4 120.1 143.1 121.7 140.9 123.8 140.4 124.0 140.1 124.0 139.9 123.5 140.2 122.8 142.0 119.6 143.4 118.1 144.7 116.3 145.8 115.1 148.0 112.5 149.7 111.0 151.1 109.6 153.1 108.4 154.8 106.8 157.0 105.7 157.5 105.6Z"/></g></svg>';
 const BRAND_BIG=`<div class="brand">${MARK}<div class="rule"></div><div class="tag">TRACKER</div></div>`;
 const BRAND_BAR=`<div class="brandbar">${MARK}<span class="tag">TRACKER</span></div>`;
@@ -325,16 +366,16 @@ const ownerReady=(async()=>{
 function gate(title,sub,done,extra){
   let v='';
   closeSheet();VIEW='gate';
-  $('app').innerHTML=`<section class="gate">${BRAND_BIG}<p class="gsub">${sub}</p><h1>${title}</h1><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="err" id="err" role="alert"></p><div class="keys">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button data-k="${k}" aria-label="${k==='⌫'?'Padam digit':k}">${k}</button>`).join('')}</div><div class="extra" id="extra">${extra||''}</div></section>`;
+  $('app').innerHTML=`<section class="gate">${langToggle()}${BRAND_BIG}<p class="gsub">${sub}</p><h1>${title}</h1><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="err" id="err" role="alert"></p><div class="keys">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button data-k="${k}" aria-label="${k==='⌫'?'Padam digit':k}">${k}</button>`).join('')}</div><div class="extra" id="extra">${extra||''}</div></section>`;
   const dots=()=>[...$('dots').children].forEach((d,i)=>d.classList.toggle('on',i<v.length));
   const press=k=>{
     if(busy)return;
-    if(Date.now()<lockUntil){$('err').textContent='Terlalu banyak cubaan. Cuba lagi sebentar lagi.';return}
+    if(Date.now()<lockUntil){$('err').textContent=t('many');return}
     if(k==='⌫'){v=v.slice(0,-1);dots();return}
     if(!/^\d$/.test(k)||v.length>=4)return;
     v+=k;dots();$('err').textContent='';
     if(v.length===4){
-      const pin=v;busy=true;$('err').textContent='Menyemak…';
+      const pin=v;busy=true;$('err').textContent=t('checking');
       setTimeout(async()=>{
         let r;try{r=await done(pin)}catch(e){r='Ralat. Cuba lagi.'}
         busy=false;
@@ -345,7 +386,7 @@ function gate(title,sub,done,extra){
   padKey=press;
   document.querySelector('.keys').onclick=e=>{const b=e.target.closest('button');if(b)press(b.dataset.k)};
 }
-function bad(){fails++;if(fails>=5){fails=0;lockUntil=Date.now()+30000;return 'PIN salah. Cuba lagi selepas 30 saat.'}return 'PIN salah.'}
+function bad(){fails++;if(fails>=5){fails=0;lockUntil=Date.now()+30000;return t('lock')}return t('bad')}
 async function tryPemaju(p){
   if(!PUB||!PUB.b.length)return null;
   const key=await kdf(p,ub64(PUB.salt),+PUB.it||ITER);
@@ -373,7 +414,7 @@ const setup=()=>gate('Tetapkan PIN admin','PIN ini untuk anda sahaja. Pemaju/age
 },'<button class="linkbtn" data-act="out">Batal</button>');
 function start(){
   me=null;openId=null;fDev='';fStage=-1;q='';tab='klien';
-  gate('Masukkan PIN','Penjejak proses perumahan sektor awam',async p=>{
+  gate(t('pin'),t('tagline'),async p=>{
     if(OWNER&&LOADED&&S.admin&&S.admin===hp(p)){me={role:'admin'};fails=0;render();return}
     const d=await tryPemaju(p);
     if(d&&enterPemaju(d,p))return;
@@ -392,11 +433,11 @@ function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fD
 function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
 function listHtml(){
   const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
-  const rows=scope().filter(c=>(fStage===-3?c.x:!c.x&&(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage)))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
-  if(!rows.length)return `<div class="empty">${S.clients.length?'Tiada padanan.':adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):'Belum ada klien untuk projek ini.'}</div>`;
+  const rows=scope().filter(c=>(fStage===-3?c.x:!c.x&&(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage)))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')+' '+jobT(jobOf(c))).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  if(!rows.length)return `<div class="empty">${S.clients.length?t('noMatch'):adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):t('noClients')}</div>`;
   return rows.map(c=>{
     const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
-    return `<div class="card tap${c.x?' cancel':s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${c.x?'Dibatalkan':esc(S.stages[s])}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(c.j):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>Catatan:</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> Tersangkut ${daysAt(c)} hari</span>`:''}<span>${c.x?'Dibatalkan pada '+fmt(c.xt||c.d):'Kemas kini '+fmt(c.d)}</span></div></div>`;
+    return `<div class="card tap${c.x?' cancel':s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${c.x?t('xd'):esc(stg(s))}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(jobT(c.j)):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>${t('note')}</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> ${t('stuckCard',daysAt(c))}</span>`:''}<span>${c.x?t('xOn',fmt(c.xt||c.d)):t('upd',fmt(c.d))}</span></div></div>`;
   }).join('');
 }
 const jobList=(id='jobs')=>`<datalist id="${id}">${JOBS.map(j=>`<option value="${esc(j)}">`).join('')}</datalist>`;
@@ -410,39 +451,67 @@ function jobChart(sc){
   if(blank)rows.push(blank);
   const max=Math.max(...rows.map(r=>r[1])),tot=sc.length;
   const nx=sc.filter(c=>c.x).length;
-  return `<section class="box chart" aria-label="Carta pekerjaan klien"><div class="chead"><b>Pekerjaan klien</b><span>Jumlah permohonan: <b>${tot}</b>${nx?` (termasuk ${nx} dibatalkan)`:''}</span></div><ul class="bars">${rows.map(([k,v])=>{const pct=Math.round(v/tot*100);return `<li tabindex="0" title="${esc(k)}: ${v} permohonan (${pct}%)"${k==='Belum diisi'?' class="blank"':''}><span class="bl">${esc(k)}</span><span class="bt"><i style="width:${Math.max(2,v/max*100).toFixed(1)}%"></i></span><span class="bv">${v} <em>(${pct}%)</em></span></li>`}).join('')}</ul></section>`;
+  return `<section class="box chart" aria-label="${t('jobs')}"><div class="chead"><b>${t('jobs')}</b><span>${t('totApps')} <b>${tot}</b>${nx?t('inclX',nx):''}</span></div><ul class="bars">${rows.map(([k,v])=>{const pct=Math.round(v/tot*100),lab=jobT(k);return `<li tabindex="0" title="${esc(lab)}: ${v} ${t('apps')} (${pct}%)"${k==='Belum diisi'?' class="blank"':''}><span class="bl">${esc(lab)}</span><span class="bt"><i style="width:${Math.max(2,v/max*100).toFixed(1)}%"></i></span><span class="bv">${v} <em>(${pct}%)</em></span></li>`}).join('')}</ul></section>`;
 }
 /* ---------- Info pembiayaan perumahan sektor awam (daripada bahan yang diberi admin) ---------- */
 const ELIG=[[2500,280000],[3000,350000],[3500,430000],[4000,480000],[4500,550000],[5000,610000],[5500,670000],[6000,730000],[6500,780000],[7000,800000],[7500,830000],[8000,850000],[8500,880000],[9000,900000],[9500,930000],[10000,950000],[Infinity,1000000]];
 const WA='https://wa.me/message/PQCJEWTIB2X4J1';
 const waBtn=t=>`<a class="btn wa" href="${WA}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.2-.3-.2-.5-.3z"/></svg>${t}</a>`;
 const rm=n=>'RM'+Math.round(n).toLocaleString('en-US');
-const eligLabel=i=>i===0?'2,500':ELIG[i][0]===Infinity?'Lebih 10,000':ELIG[i][0].toLocaleString('en-US');
-const eligRange=i=>i===0?'RM2,500':ELIG[i][0]===Infinity?'lebih RM10,000':rm(ELIG[i-1][0]+1)+' hingga '+rm(ELIG[i][0]);
-const WHY=[['Margin pembiayaan','sehingga 100%'],['Kadar faedah 4.00% tetap setahun','untuk kelayakan sehingga RM750,000'],['Tiada semakan CCRIS & CTOS','hanya komitmen dalam slip gaji diambil kira'],['Tempoh sehingga 35 tahun','atau sehingga umur 90 tahun, mana yang terdahulu'],['Tiada bayaran progresif','untuk projek dalam pembinaan'],['Bayaran bulanan tetap',''],['Duti setem (perjanjian pinjaman) & penilaian','PERCUMA']];
-const PAY=[['Jenis 1, 4 dan 5','gold',['Pada <b>bulan berikutnya</b> jika bayaran pertama pembiayaan dikeluarkan pada atau sebelum 15hb bulan berkenaan; atau','Pada <b>2 (dua) bulan berikutnya</b> jika bayaran pertama dikeluarkan selepas 15hb bulan berkenaan.']],
+const E=LANG_PICK=>LANG==='en'?LANG_PICK[1]:LANG_PICK[0];
+const eligLabel=i=>i===0?'2,500':ELIG[i][0]===Infinity?E(['Lebih 10,000','Above 10,000']):ELIG[i][0].toLocaleString('en-US');
+const eligRange=i=>i===0?'RM2,500':ELIG[i][0]===Infinity?E(['lebih RM10,000','above RM10,000']):rm(ELIG[i-1][0]+1)+E([' hingga ',' to '])+rm(ELIG[i][0]);
+const WHY={ms:[['Margin pembiayaan','sehingga 100%'],['Kadar faedah 4.00% tetap setahun','untuk kelayakan sehingga RM750,000'],['Tiada semakan CCRIS & CTOS','hanya komitmen dalam slip gaji diambil kira'],['Tempoh sehingga 35 tahun','atau sehingga umur 90 tahun, mana yang terdahulu'],['Tiada bayaran progresif','untuk projek dalam pembinaan'],['Bayaran bulanan tetap',''],['Duti setem (perjanjian pinjaman) & penilaian','PERCUMA']],
+ en:[['Financing margin','up to 100%'],['Fixed interest rate of 4.00% per annum','for eligibility up to RM750,000'],['No CCRIS & CTOS checks','only commitments in the payslip are considered'],['Tenure of up to 35 years','or up to age 90, whichever comes first'],['No progressive payments','for projects under construction'],['Fixed monthly instalments',''],['Stamp duty (loan agreement) & valuation','FREE']]};
+const PAY={ms:[['Jenis 1, 4 dan 5','gold',['Pada <b>bulan berikutnya</b> jika bayaran pertama pembiayaan dikeluarkan pada atau sebelum 15hb bulan berkenaan; atau','Pada <b>2 (dua) bulan berikutnya</b> jika bayaran pertama dikeluarkan selepas 15hb bulan berkenaan.']],
  ['Jenis 2, 3 (rumah bertanah), 6 dan 7','pine',['<b>Bulan berikutnya</b> selepas bayaran kemajuan 95% dikeluarkan; atau','Pada <b>bulan ke-25</b> daripada tarikh kelulusan;','<b>Mana-mana yang terdahulu.</b>']],
- ['Jenis 3 (high-rise)','gold',['Pada <b>bulan berikutnya</b> jika bayaran kemajuan 95% dikeluarkan pada atau sebelum 15hb; atau','Pada <b>2 (dua) bulan berikutnya</b> jika dikeluarkan selepas 15hb; atau','Pada <b>bulan ke-37</b> daripada tarikh kelulusan;','<b>Mana-mana yang terdahulu.</b>']]];
+ ['Jenis 3 (high-rise)','gold',['Pada <b>bulan berikutnya</b> jika bayaran kemajuan 95% dikeluarkan pada atau sebelum 15hb; atau','Pada <b>2 (dua) bulan berikutnya</b> jika dikeluarkan selepas 15hb; atau','Pada <b>bulan ke-37</b> daripada tarikh kelulusan;','<b>Mana-mana yang terdahulu.</b>']]],
+ en:[['Types 1, 4 and 5','gold',['In the <b>following month</b> if the first financing disbursement is made on or before the 15th of that month; or','In the <b>second (2) following month</b> if the first disbursement is made after the 15th of that month.']],
+ ['Types 2, 3 (landed), 6 and 7','pine',['The <b>month following</b> the release of the 95% progress payment; or','In the <b>25th month</b> from the approval date;','<b>Whichever is earlier.</b>']],
+ ['Type 3 (high-rise)','gold',['In the <b>following month</b> if the 95% progress payment is released on or before the 15th; or','In the <b>second (2) following month</b> if released after the 15th; or','In the <b>37th month</b> from the approval date;','<b>Whichever is earlier.</b>']]]};
+const IT={
+ h:['Info pembiayaan perumahan sektor awam','Public sector housing financing'],
+ eyebrow:['Had kelayakan maksimum','Maximum financing eligibility'],big:['RM1 juta','RM1 million'],
+ heroP:['bagi pendapatan bersih lebih RM10,000. Tertakluk kepada kelayakan pemohon dan syarat pembiayaan yang berkuat kuasa.','for net income above RM10,000. Subject to applicant eligibility and the prevailing financing terms.'],
+ eff:['Berkuat kuasa 4 Okt 2026','Effective 4 October 2026'],
+ calcH:['Semak kelayakan maksimum','Check maximum eligibility'],incL:['Pendapatan bersih sebulan (RM)','Monthly net income (RM)'],incP:['Contoh: 4200','e.g. 4200'],
+ prompt:['Masukkan pendapatan bersih untuk lihat anggaran had pembiayaan.','Enter your monthly net income to see the estimated financing limit.'],
+ tableH:['Jadual kelayakan maksimum','Maximum eligibility table'],tableS:['ikut pendapatan bersih (RM)','by net income (RM)'],
+ tableLow:['Pendapatan bersih bawah RM2,500: rujuk konsultan.','Net income below RM2,500: please refer to our consultant.'],
+ legHi:['Had melebihi RM750,000','Limit above RM750,000'],legLo:['Had sehingga RM750,000','Limit up to RM750,000'],
+ barT:['Pendapatan bersih {0}: had {1}','Net income {0}: limit {1}'],
+ whyH:['7 sebab memilih pembiayaan perumahan sektor awam','7 reasons to choose public sector housing financing'],
+ payH:['Bila bayaran balik bermula','When repayment begins'],
+ askH:['Ada pertanyaan?','Have a question?'],askP:['Hubungi konsultan kami untuk semakan kelayakan dan bantuan permohonan.','Contact our consultant for an eligibility assessment and application assistance.'],
+ waAsk:['WhatsApp konsultan','WhatsApp our consultant'],
+ src:['Sumber: Soalan Lazim (FAQ) rasmi pembiayaan perumahan sektor awam, 25 September 2026. Panduan ringkas sahaja; kelayakan dan kadar sebenar tertakluk kepada syarat yang berkuat kuasa.','Source: Official Frequently Asked Questions (FAQ) on public sector housing financing, 25 September 2026. Summary guide only; actual eligibility and rates are subject to the prevailing terms.'],
+ cH:['Sila rujuk konsultan','Please refer to our consultant'],cP:['Untuk pendapatan bersih bawah RM2,500, kelayakan perlu disemak oleh konsultan sebelum permohonan dibuat.','For net income below RM2,500, eligibility must be assessed by our consultant before an application is made.'],
+ waC:['Hubungi konsultan di WhatsApp','Contact our consultant on WhatsApp'],
+ amtL:['Anggaran had pembiayaan maksimum','Estimated maximum financing'],rangeT:['Untuk pendapatan bersih {0} sebulan.','For a monthly net income of {0}.'],
+ lo:['Layak kadar faedah 4.00% tetap setahun.','Eligible for a fixed interest rate of 4.00% per annum.'],
+ hi:['Had melebihi RM750,000. Kadar 4.00% tetap terpakai untuk kelayakan sehingga RM750,000; rujuk syarat terkini untuk bahagian melebihi had itu.','Limit exceeds RM750,000. The 4.00% fixed rate applies to eligibility up to RM750,000; please refer to the latest terms for the portion above that limit.']
+};
+const it=(k,...a)=>{const v=E(IT[k]);return a.length?v.replace(/\{(\d)\}/g,(_,i)=>a[+i]):v};
 function vInfo(){
-  const max=1000000;
-  const bars=ELIG.map((r,i)=>`<li data-i="${i}" class="${r[1]>750000?'hi':'lo'}" title="Pendapatan bersih ${eligRange(i)}: had ${rm(r[1])}"><span class="bl">${eligLabel(i)}</span><span class="bt"><i style="width:${(r[1]/max*100).toFixed(1)}%"></i></span><span class="bv">${(r[1]/1000).toLocaleString('en-US')}k</span></li>`).reverse().join('');
-  return `<h2 class="h">Info pembiayaan perumahan sektor awam</h2>
-<section class="ihero"><span class="eyebrow">Had kelayakan maksimum</span><b class="big">RM1 juta</b><p>bagi pendapatan bersih lebih RM10,000. Tertakluk kepada kelayakan pemohon dan syarat pembiayaan yang berkuat kuasa.</p><span class="eff">Berkuat kuasa 4 Okt 2026</span></section>
-<section class="box calc"><h3>Semak kelayakan maksimum</h3><label class="fl" for="inc">Pendapatan bersih sebulan (RM)</label><input id="inc" type="number" inputmode="numeric" min="0" placeholder="Contoh: 4200" autocomplete="off"><div id="eres" class="eres" aria-live="polite"><p class="name">Masukkan pendapatan bersih untuk lihat anggaran had pembiayaan.</p></div></section>
-<section class="box chart elig" aria-label="Jadual kelayakan maksimum pembiayaan"><div class="chead"><b>Jadual kelayakan maksimum</b><span>ikut pendapatan bersih (RM)</span></div><p class="name" style="margin:-4px 0 8px">Pendapatan bersih bawah RM2,500: rujuk konsultan.</p><div class="legend"><span><i class="k hi"></i>Had melebihi RM750,000</span><span><i class="k lo"></i>Had sehingga RM750,000</span></div><ul class="bars ebars" id="ebars">${bars}</ul></section>
-<section class="box"><h3>7 sebab memilih pembiayaan perumahan sektor awam</h3><ol class="why">${WHY.map((w,i)=>`<li><span class="num">${i+1}</span><span><b>${w[0]}</b>${w[1]?`<em>${w[1]}</em>`:''}</span></li>`).join('')}</ol></section>
-<section class="box"><h3>Bila bayaran balik bermula</h3><div class="pay">${PAY.map(([t,c,pts])=>`<article class="pcard ${c}"><h4>${t}</h4><ul>${pts.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join('')}</div></section>
-<section class="box contact"><h3>Ada pertanyaan?</h3><p class="name">Hubungi konsultan kami untuk semakan kelayakan dan bantuan permohonan.</p>${waBtn('WhatsApp konsultan')}</section>
-<p class="note">Sumber: Soalan Lazim (FAQ) rasmi pembiayaan perumahan sektor awam, 25 September 2026. Panduan ringkas sahaja; kelayakan dan kadar sebenar tertakluk kepada syarat yang berkuat kuasa.</p>`;
+  const max=1000000,L=LANG==='en'?'en':'ms';
+  const bars=ELIG.map((r,i)=>`<li data-i="${i}" class="${r[1]>750000?'hi':'lo'}" title="${it('barT',eligRange(i),rm(r[1]))}"><span class="bl">${eligLabel(i)}</span><span class="bt"><i style="width:${(r[1]/max*100).toFixed(1)}%"></i></span><span class="bv">${(r[1]/1000).toLocaleString('en-US')}k</span></li>`).reverse().join('');
+  return `<h2 class="h">${it('h')}</h2>
+<section class="ihero"><span class="eyebrow">${it('eyebrow')}</span><b class="big">${it('big')}</b><p>${it('heroP')}</p><span class="eff">${it('eff')}</span></section>
+<section class="box calc"><h3>${it('calcH')}</h3><label class="fl" for="inc">${it('incL')}</label><input id="inc" type="number" inputmode="numeric" min="0" placeholder="${it('incP')}" autocomplete="off"><div id="eres" class="eres" aria-live="polite"><p class="name">${it('prompt')}</p></div></section>
+<section class="box chart elig" aria-label="${it('tableH')}"><div class="chead"><b>${it('tableH')}</b><span>${it('tableS')}</span></div><p class="name" style="margin:-4px 0 8px">${it('tableLow')}</p><div class="legend"><span><i class="k hi"></i>${it('legHi')}</span><span><i class="k lo"></i>${it('legLo')}</span></div><ul class="bars ebars" id="ebars">${bars}</ul></section>
+<section class="box"><h3>${it('whyH')}</h3><ol class="why">${WHY[L].map((w,i)=>`<li><span class="num">${i+1}</span><span><b>${w[0]}</b>${w[1]?`<em>${w[1]}</em>`:''}</span></li>`).join('')}</ol></section>
+<section class="box"><h3>${it('payH')}</h3><div class="pay">${PAY[L].map(([h,c,pts])=>`<article class="pcard ${c}"><h4>${h}</h4><ul>${pts.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join('')}</div></section>
+<section class="box contact"><h3>${it('askH')}</h3><p class="name">${it('askP')}</p>${waBtn(it('waAsk'))}</section>
+<p class="note">${it('src')}</p>`;
 }
 function updateElig(){
   const v=parseFloat($('inc').value),box=$('eres');
   document.querySelectorAll('#ebars li').forEach(li=>li.classList.remove('me'));
-  if(!(v>0)){box.innerHTML='<p class="name">Masukkan pendapatan bersih untuk lihat anggaran had pembiayaan.</p>';return}
-  if(v<2500){box.innerHTML=`<div class="consult"><b>Sila rujuk konsultan</b><p>Untuk pendapatan bersih bawah RM2,500, kelayakan perlu disemak oleh konsultan sebelum permohonan dibuat.</p>${waBtn('Hubungi konsultan di WhatsApp')}</div>`;return}
+  if(!(v>0)){box.innerHTML=`<p class="name">${it('prompt')}</p>`;return}
+  if(v<2500){box.innerHTML=`<div class="consult"><b>${it('cH')}</b><p>${it('cP')}</p>${waBtn(it('waC'))}</div>`;return}
   const i=ELIG.findIndex(r=>v<=r[0]),amt=ELIG[i][1];
   const li=document.querySelector(`#ebars li[data-i="${i}"]`);if(li)li.classList.add('me');
-  box.innerHTML=`<div class="eamt"><span>Anggaran had pembiayaan maksimum</span><b>${rm(amt)}</b></div><p class="name">Untuk pendapatan bersih ${eligRange(i)} sebulan.</p><p class="etag ${amt>750000?'hi':'lo'}">${amt>750000?'Had melebihi RM750,000. Kadar 4.00% tetap terpakai untuk kelayakan sehingga RM750,000; rujuk syarat terkini untuk bahagian melebihi had itu.':'Layak kadar faedah 4.00% tetap setahun.'}</p>`;
+  box.innerHTML=`<div class="eamt"><span>${it('amtL')}</span><b>${rm(amt)}</b></div><p class="name">${it('rangeT',eligRange(i))}</p><p class="etag ${amt>750000?'hi':'lo'}">${amt>750000?it('hi'):it('lo')}</p>`;
 }
 function pubBanner(){
   if(me.role!=='admin'||!S.devs.length)return '';
@@ -453,17 +522,17 @@ function vKlien(){
   const adm=me.role==='admin',all=scope(),sc=all.filter(live),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last(),nX=all.length-n;
   const cnt=i=>sc.filter(c=>c.s===i).length;
   const dv=!adm&&S.devs[0];
-  let h=(dv?`<section class="welcome"><span>Welcome our partner</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats four"><div class="stat"><b>${all.length}</b><span>Permohonan</span></div><div class="stat"><b>${n-dn}</b><span>Dalam proses</span></div><div class="stat"><b>${dn}</b><span>Selesai</span></div><button class="stat statbtn" data-act="fcancel" aria-pressed="${fStage===-3}" title="Tekan untuk lihat permohonan dibatalkan"><b>${nX}</b><span>Dibatalkan</span></button></div>`;
+  let h=(dv?`<section class="welcome"><span>${t('welcome')}</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats four"><div class="stat"><b>${all.length}</b><span>${t('total')}</span></div><div class="stat"><b>${n-dn}</b><span>${t('proc')}</span></div><div class="stat"><b>${dn}</b><span>${t('done')}</span></div><button class="stat statbtn" data-act="fcancel" aria-pressed="${fStage===-3}" title="${t('xtip')}"><b>${nX}</b><span>${t('xd')}</span></button></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
-  h+=`<div class="path" role="group" aria-label="Tapis ikut tahap">${S.stages.map((t,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(t)}</span></button>`).join('')}</div>`;
+  h+=`<div class="path" role="group" aria-label="${t('stageFilter')}">${S.stages.map((_,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(stg(i))}</span></button>`).join('')}</div>`;
   const nStuck=sc.filter(isStuck).length;
-  if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> Tersangkut lebih ${STUCK()} hari (${nStuck})</button></div>`;
-  if(fStage===-3)h+=`<div class="xnote"><span>Menunjukkan ${nX} permohonan dibatalkan.</span><button class="chip" data-act="fcancel">Kembali ke senarai aktif</button></div>`;
+  if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> ${t('stuckChip',STUCK(),nStuck)}</button></div>`;
+  if(fStage===-3)h+=`<div class="xnote"><span>${t('xShow',nX)}</span><button class="chip" data-act="fcancel">${t('back')}</button></div>`;
   h+=jobChart(all);
-  h+=`<input id="q" type="search" placeholder="Cari unit, nama atau pekerjaan" value="${esc(q)}" aria-label="Cari unit atau nama">`;
+  h+=`<input id="q" type="search" placeholder="${t('search')}" value="${esc(q)}" aria-label="${t('search')}">`;
   if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
   h+=`<div id="list">${listHtml()}</div>`;
-  if(!adm)h+=`<p class="note">Dikemas kini oleh admin pada ${esc(fmtT(S.pubAt))}.</p>`;
+  if(!adm)h+=`<p class="note">${t('byAdmin',esc(fmtT(S.pubAt)))}</p>`;
   return h;
 }
 function vDevs(){
@@ -489,13 +558,13 @@ function vTools(){
 }
 function render(){
   if(!me)return;
-  padKey=null;VIEW='app';
+  padKey=null;VIEW='app';document.documentElement.lang=LANG==='en'?'en':'ms';
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===me.dev);
   if(!adm&&tab!=='info')tab='klien';
   const body=tab==='info'?vInfo():!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
-  const items=adm?[['klien','Klien'],['pemaju','Pemaju/Agency'],['info','Info'],['alat','Alat']]:[['klien','Klien'],['info','Info pembiayaan']];
+  const items=adm?[['klien','Klien'],['pemaju','Pemaju/Agency'],['info','Info'],['alat','Alat']]:[['klien',t('tClients')],['info',t('tInfo')]];
   const nav=`<nav class="tabs" aria-label="Menu">${items.map(([k,l])=>`<button data-act="tab" data-v="${k}"${tab===k?' aria-current="page"':''}>${l}</button>`).join('')}</nav>`;
-  $('app').innerHTML=`<header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div><button class="ghost" data-act="out">Keluar</button></header><main>${body}</main>${nav}`;
+  $('app').innerHTML=`<header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div>${langToggle()}<button class="ghost" data-act="out">${t('logout')}</button></header><main>${body}</main>${nav}`;
 }
 
 /* ---------- butiran klien ---------- */
@@ -504,20 +573,19 @@ function renderSheet(){
   if(!c){el.hidden=true;el.innerHTML='';return}
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===c.dev),L=last(),s=Math.min(c.s,L);
   el.hidden=false;
-  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="Butiran klien"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">Pekerjaan: ${esc(jobOf(c))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">Tutup</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(S.stages[s])}</span></div>${c.x?`<div class="cancelbox">Permohonan ini <b>dibatalkan</b> pada ${esc(fmt(c.xt||c.d))}.</div>`:`<p class="since" id="since">${sinceText(c)}</p>`}${!adm&&c.sn?`<div class="snbox"><b>Catatan daripada admin</b><p>${esc(c.sn)}</p></div>`:''}<ol class="steps${s>=L?' fin':''}">${S.stages.map((t,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm&&!c.x?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(t)}</b><em>${dateFor(c,i)}</em></span>${adm&&!c.x?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="eu">No. unit</label><input id="eu" value="${esc(c.u)}" autocomplete="off" maxlength="40"><label class="fl" for="en">Nama klien</label><input id="en" value="${esc(c.n==='-'?'':c.n)}" autocomplete="off" maxlength="80"><label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="sn">Catatan untuk pemaju/agency (dikongsi)</label><textarea id="sn" rows="2" maxlength="300" placeholder="Contoh: Menunggu slip gaji terkini">${esc(c.sn||'')}</textarea><label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea>${c.x?`<button class="btn alt" data-act="reactc" style="margin-top:12px">Aktifkan semula permohonan</button>`:`<button class="danger" data-act="cancelc" data-confirm="Tekan sekali lagi untuk batalkan">Batalkan permohonan (klien tarik diri)</button>`}<button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
+  el.innerHTML=`<div class="scrim" data-act="close"></div><div class="panel" role="dialog" aria-modal="true" aria-label="${t('details')}"><div class="grab"></div><div class="ptop"><div><h2>${esc(c.u)}</h2><p class="name">${esc(c.n)}</p>${!adm?`<p class="name">${t('occ',esc(jobT(jobOf(c))))}</p>`:''}${adm&&dv?`<p class="name">Pemaju/Agency: ${esc(dv.name)}</p>`:''}</div><button class="ghost" data-act="close">${t('close')}</button></div><div class="pct"><b id="pctn">${Math.round(s/L*100)}%</b><span id="pctl">${esc(stg(s))}</span></div>${c.x?`<div class="cancelbox">${t('xBox',esc(fmt(c.xt||c.d)))}</div>`:`<p class="since" id="since">${sinceText(c)}</p>`}${!adm&&c.sn?`<div class="snbox"><b>${t('adminNote')}</b><p>${esc(c.sn)}</p></div>`:''}<ol class="steps${s>=L?' fin':''}">${S.stages.map((_,i)=>`<li class="${i<s?'past':i===s?'now':''}">${adm&&!c.x?`<button data-act="stage" data-i="${i}">`:'<div>'}<span class="node"></span><span class="st"><b>${esc(stg(i))}</b><em>${dateFor(c,i)}</em></span>${adm&&!c.x?'</button>':'</div>'}</li>`).join('')}</ol>${adm?`<label class="fl" for="eu">No. unit</label><input id="eu" value="${esc(c.u)}" autocomplete="off" maxlength="40"><label class="fl" for="en">Nama klien</label><input id="en" value="${esc(c.n==='-'?'':c.n)}" autocomplete="off" maxlength="80"><label class="fl" for="job">Pekerjaan (dikongsi dengan pemaju/agency)</label><input id="job" list="jobs2" value="${esc(c.j||'')}" placeholder="Pilih atau taip" autocomplete="off" maxlength="60">${jobList('jobs2')}<label class="fl" for="sn">Catatan untuk pemaju/agency (dikongsi)</label><textarea id="sn" rows="2" maxlength="300" placeholder="Contoh: Menunggu slip gaji terkini">${esc(c.sn||'')}</textarea><label class="fl" for="note">Nota (anda sahaja, tidak dikongsi)</label><textarea id="note" rows="3">${esc(c.note||'')}</textarea>${c.x?`<button class="btn alt" data-act="reactc" style="margin-top:12px">Aktifkan semula permohonan</button>`:`<button class="danger" data-act="cancelc" data-confirm="Tekan sekali lagi untuk batalkan">Batalkan permohonan (klien tarik diri)</button>`}<button class="danger" data-act="delc" data-confirm>Padam klien ini</button>`:''}</div>`;
 }
 function paintSheet(){
   const c=S.clients.find(x=>x.id===openId);if(!c||$('sheet').hidden)return;
   const L=last(),s=Math.min(c.s,L);
   $('sheet').querySelectorAll('.steps li').forEach((li,i)=>{li.className=i<s?'past':i===s?'now':'';li.querySelector('em').textContent=dateFor(c,i)});
   $('sheet').querySelector('.steps').classList.toggle('fin',s>=L);
-  $('pctn').textContent=Math.round(s/L*100)+'%';$('pctl').textContent=S.stages[s];
+  $('pctn').textContent=Math.round(s/L*100)+'%';$('pctl').textContent=stg(s);
   if($('since'))$('since').innerHTML=sinceText(c);
 }
 function sinceText(c){
-  if(c.s>=last())return 'Proses selesai pada '+esc(fmt(stageSince(c)))+'.';
-  const n=daysAt(c);
-  return `Di tahap ini sejak ${esc(fmt(stageSince(c)))} (${n} hari).`+(isStuck(c)?` <span class="flag"><span aria-hidden="true">!</span> Tersangkut</span>`:'');
+  if(c.s>=last())return t('sinceDone',esc(fmt(stageSince(c))));
+  return t('since',esc(fmt(stageSince(c))),daysAt(c))+(isStuck(c)?` <span class="flag"><span aria-hidden="true">!</span> ${t('stuck')}</span>`:'');
 }
 function openSheet(id){openId=id;renderSheet();document.body.style.overflow='hidden';const b=$('sheet').querySelector('.ghost');if(b)b.focus()}
 function closeSheet(){openId=null;const el=$('sheet');el.hidden=true;el.innerHTML='';document.body.style.overflow=''}
@@ -723,6 +791,7 @@ function act(a,b){
   const d=b.dataset;
   switch(a){
     case 'out':ss.del('tt-admin');flush();start();break;
+    case 'lang':if(d.v!==LANG){LANG=d.v==='ms'?'ms':'en';try{localStorage.setItem('tt-lang',LANG)}catch(e){}const keepInc=$('inc')?$('inc').value:'';const wasOpen=openId;if(me){render();if(wasOpen){openSheet(wasOpen)}if(keepInc&&$('inc')){$('inc').value=keepInc;updateElig()}}else start()}break;
     case 'setup':if(OWNER&&LOADED&&!S.admin)setup();break;
     case 'tab':tab=d.v;render();window.scrollTo(0,0);break;
     case 'fdev':fDev=d.v;fStage=-1;render();break;
