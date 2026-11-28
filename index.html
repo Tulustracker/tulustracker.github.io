@@ -242,6 +242,63 @@ input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--
 .brandbar{gap:0;align-items:flex-end;flex:none}
 .brandbar .rk{color:var(--pine);font-weight:500;font-size:17.4px;line-height:1;letter-spacing:.075em;margin-left:-22.4px;margin-bottom:-2.3px;position:relative;z-index:0}
 .brandbar svg{position:relative;z-index:1}
+.bhero{background:var(--heroBg);color:var(--heroInk);border-radius:18px;padding:18px 18px 22px;margin-bottom:12px;border-left:6px solid var(--heroGold)}
+.bhtop{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.beye{font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--heroGold)}
+.bhero h2{margin:0 0 6px;font-size:1.55rem;line-height:1.18;text-wrap:balance}
+.bhero p{margin:0;opacity:.92;font-size:.98rem}
+.pbtn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 13px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.pbtn:hover{background:rgba(255,255,255,.2)}
+.pbtn .bi{width:18px;height:18px;stroke:#fff}
+.bi{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px}
+@media(min-width:620px){.bstats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.bs{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px 13px;display:flex;flex-direction:column;min-width:0}
+.bs b{font-size:2.3rem;line-height:1;font-weight:800;color:var(--hi);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.bs:nth-child(even) b{color:var(--lo)}
+.bs b small{font-size:.55em;font-weight:800;margin-left:1px}
+.bsi{display:block;height:2.3rem;color:var(--lo)}
+.bsi .bi.lg{width:2.3rem;height:2.3rem}
+.bi.lg{width:38px;height:38px;stroke-width:1.9}
+.bs .u{font-size:.82rem;color:var(--muted);margin-top:3px}
+.bs .l{font-weight:700;font-size:.9rem;line-height:1.25;margin-top:6px}
+.bintro{margin:0 0 12px;color:var(--muted);font-size:.93rem}
+.bq{font-size:1.05rem;margin:0 0 10px}
+.bgrid{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+@media(min-width:620px){.bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.bc:last-child:nth-child(odd){grid-column:1/-1}}
+.bc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px 14px;min-width:0}
+.bct{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;color:var(--hi)}
+.bc:nth-child(even) .bct{color:var(--lo)}
+.bct .bi{width:30px;height:30px}
+.bn{font-size:.78rem;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.bc b{display:block;font-size:1rem;line-height:1.3}
+.bc p{margin:4px 0 0;color:var(--muted);font-size:.88rem}
+.docs ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:2px}
+.docs label{display:flex;gap:11px;align-items:flex-start;padding:8px 4px;border-radius:8px;cursor:pointer}
+.docs label:hover{background:var(--off)}
+.docs input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--hi)}
+.docs b{display:block;font-weight:600;line-height:1.3}
+.docs em{display:block;font-style:normal;color:var(--muted);font-size:.84rem}
+.docs input:checked+span b{text-decoration:line-through;text-decoration-thickness:1px;color:var(--muted)}
+.dfoot{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;justify-content:space-between;margin-top:6px}
+.dfoot .note{margin:0;flex:1 1 200px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:first-of-type{border-top:0}
+.faq summary{cursor:pointer;padding:11px 26px 11px 2px;font-weight:600;line-height:1.35;position:relative;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:8px;font-size:1.3rem;font-weight:500;color:var(--hi)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0 0 12px;color:var(--ink);font-size:.92rem;opacity:.9}
+.pexit{display:none}
+body.present .bar,body.present .tabs{display:none}
+body.present main{padding-top:calc(58px + env(safe-area-inset-top,0px));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+body.present .pexit{display:inline-flex;position:fixed;z-index:9;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+body.present .pbtn{display:none}
+body.present{font-size:17.5px}
+body.present .bhero h2{font-size:1.85rem}
+body.present .bs b{font-size:2.7rem}
+body.present .bsi,body.present .bsi .bi.lg{height:2.7rem;width:2.7rem}
+@media(min-width:900px){body.present main{max-width:1040px}}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"tjUjQzZjsLB3o/bANI/qUw==","it":400000,"b":["+pBAKE8kl2w7vtVO.4QEztgx6iX5Ojh+mPOAfHYOkisXjeqMlET1CPhbxUp9BE/ye7xEcTG8BGkLIwyilCiSIZZQNpHFwQVjrkUkRgymLhGOd5vq/Zc52kwBmWIgaRnzE1yVvHY0OBEBgUEjMzaxWWfIQayxQosK/tV5SkdjlCpiZ1qc8/a/MvlINfXKdBmsxJYsQ1GTPCuCpCD6QuwyMDDZ4Mpnsr9r50DM/XH0aom5jNRn/rSpkIEPEEBAlsB4OorTgClqjlhYfXKBOXl1II3F8Qqfn8NJ77IKQvgMTqavx0MbJjMmOOa+hnN+FLQF8rCrGZIartbGS1TxWL/Nloe2M0foCaUdv3aNB22Hc5Q+r+bwc21YsFZoBzDdPFswKerBJKYUUn6Iy4yosvsvinbKGHjOsh3Lxdef103rhbfqKgh8z3DNkxtfiAFybn1Cp4uvvjYjWFv1eqpfvb25tgxxRGGLv5Cm/2r7yE3iedep0piIin0Wd+rN8KCjM/enIe2nIY4Um6YhUtNLkhfoB4kN53EKnb4U5vslb/ywsw5Tu2tQ3kF63wrZLkS4QC463jPxc/xpf75g6Gh+ew9AknnPf8RYNEBIlIk8fKpgDQGzY77lR3S82H6M+mKwunh6v9kiid4Bz7XdQL1RL4z4UHQGydjSe+6i1/lU3+YkBjLOgvqGExXFDApKhJ672f5QnZm+X/CaVj226ZBgVGKq4XOpzAm4y9RiSrCHQOawdyiua6jtYijpBdnO7WZABSg7ekX4yCpYwiJszJbqsyxXmm1GyNI91CUHlD2GnY3dqX3rMu5GrMs1eD2BKpWkJ3bYiT6UshQQ5E8NkTf+3mHMYXwzmkDvCvO9SAX/NgJrUfC+UD9a/EB6v1fcC7DBxWF1O5lfh9CZlZ3tZtn4n+irJTOc85/tw5qJS71bzTn5BwUi+QBN07lRnO5Y5wqLC9ZE8HAiS+t65lf1A6MJw04/NR+QVs6fIYk8mqtbgUYi1WqcONVRbVX7E+jjsnT10T046jJUu1MrwHUyXXRmvWgDzrSUPeTCuaR7FIshI9ZtZ2mauDxqn"]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -295,7 +352,7 @@ const T={
  xBox:['Permohonan ini <b>dibatalkan</b> pada {0}.','This application was <b>cancelled</b> on {0}.'],
  adminNote:['Catatan daripada admin','Note from admin'],
  sinceDone:['Proses selesai pada {0}.','Process completed on {0}.'],since:['Di tahap ini sejak {0} ({1} hari).','At this stage since {0} ({1} days).'],
- tClients:['Klien','Clients'],tInfo:['Info pembiayaan','Financing info']
+ tClients:['Klien','Clients'],tInfo:['Info pembiayaan','Financing info'],tBen:['Kelebihan','Benefits']
 };
 const t=(k,...a)=>{const v=(T[k]||[k,k])[LANG==='en'?1:0];return a.length?v.replace(/\{(\d)\}/g,(_,i)=>a[+i]):v};
 const STAGE_EN={'Permohonan dihantar':'Application submitted','Dokumen lengkap':'Documents complete','Dalam semakan':'Under review','Kelulusan pinjaman':'Financing approved','Perjanjian pinjaman':'Financing agreement','Selesai':'Completed'};
@@ -516,6 +573,72 @@ function updateElig(){
   const li=document.querySelector(`#ebars li[data-i="${i}"]`);if(li)li.classList.add('me');
   box.innerHTML=`<div class="eamt"><span>${it('amtL')}</span><b>${rm(amt)}</b></div><p class="name">${it('rangeT',eligRange(i))}</p><p class="etag ${amt>750000?'hi':'lo'}">${amt>750000?it('hi'):it('lo')}</p>`;
 }
+
+/* ---------- Kelebihan: infografik untuk klien walk-in ---------- */
+const BI={
+ pct:'<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+ full:'<circle cx="12" cy="12" r="8.5"/><path d="m8.2 12.3 2.6 2.6 5-5.4"/>',
+ wallet:'<path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3M4 7.5V17a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-3M4 7.5A1.5 1.5 0 0 0 5.5 9H19a1 1 0 0 1 1 1v2.5M20 12.5h-3.5a1.5 1.5 0 0 0 0 3H20"/>',
+ cal:'<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h3"/>',
+ two:'<circle cx="9" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M14 14.3a4.5 4.5 0 0 1 6.5 3.9"/>',
+ home:'<path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/>',
+ shield:'<path d="M12 3.5 19 6v5.5c0 4.3-3 7.7-7 9-4-1.3-7-4.7-7-9V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/>',
+ screen:'<rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8.5 20h7M12 16.5V20"/>'
+};
+const ico=(k,c='')=>`<svg class="bi${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${BI[k]}</svg>`;
+const BEN={ms:[['pct','Kadar pembiayaan 4% setahun','Kadar pembiayaan yang ditetapkan bagi membantu perancangan kewangan jangka panjang.'],['full','Pembiayaan sehingga 100%','Peluang pembiayaan berdasarkan kelayakan, had yang ditetapkan dan penilaian hartanah.'],['wallet','Potongan gaji bulanan','Bayaran balik lebih teratur melalui potongan gaji atau pencen.'],['cal','Tempoh pembiayaan sehingga 35 tahun','Pilihan tempoh pembiayaan yang panjang, tertakluk kepada syarat kelayakan dan had umur.'],['two','Kemudahan pembiayaan bersama','Pilihan untuk pasangan yang memenuhi syarat pembiayaan bersama.'],['home','Pelbagai pilihan pemilikan hartanah','Merangkumi pembelian rumah siap, rumah dalam pembinaan, pembinaan rumah atas tanah sendiri dan tujuan lain yang dibenarkan.'],['shield','Pilihan pembiayaan patuh Syariah','Terdapat kemudahan pembiayaan perumahan berasaskan prinsip Syariah.']],
+ en:[['pct','Financing rate of 4% per annum','A set financing rate that supports long-term financial planning.'],['full','Financing of up to 100%','Financing based on eligibility, the prescribed limits and the property valuation.'],['wallet','Monthly salary deduction','Structured repayment through salary or pension deductions.'],['cal','Financing tenure of up to 35 years','A long financing tenure, subject to eligibility conditions and age limits.'],['two','Joint financing','An option for spouses who meet the joint financing requirements.'],['home','A wide range of property purposes','Covers completed homes, homes under construction, building a home on your own land and other permitted purposes.'],['shield','Shariah-compliant financing option','Housing financing based on Shariah principles is available.']]};
+const DOCS={ms:[['Salinan MyKad','Depan dan belakang.'],['Slip gaji atau e-Penyata Gaji 3 bulan terkini','Disahkan oleh Ketua Jabatan.'],['Surat pengesahan jawatan','Wajib. Pemohon mesti telah disahkan dalam jawatan.'],['Surat iringan Ketua Jabatan',''],['Perjanjian Jual Beli (PJB) dengan pemaju','Untuk pembelian rumah projek baharu.'],['Sebut harga yuran guaman','Jika yuran guaman dokumen pembiayaan mahu dibiayai sekali.'],['Sijil nikah atau sijil kelahiran anak','Untuk pembiayaan bersama: pasangan, atau ibu/bapa dan anak.']],
+ en:[['Copy of MyKad','Front and back.'],['Payslip or e-Payslip for the latest 3 months','Certified by the Head of Department.'],['Letter of confirmation in service','Required. The applicant must be confirmed in service.'],['Cover letter from the Head of Department',''],['Sale and Purchase Agreement (SPA) with the developer','For the purchase of a new project home.'],['Legal fee quotation','If the legal fees for the financing documents are to be financed.'],['Marriage certificate or child\'s birth certificate','For joint financing: spouses, or a parent and child.']]};
+const FAQ={ms:[['Bolehkah pembiayaan ini digunakan untuk rumah projek baharu yang masih dalam pembinaan?','Boleh. Pembelian rumah dalam pembinaan daripada pemaju ialah salah satu jenis pembiayaan yang dibenarkan.'],
+['Perlukah saya membayar ansuran semasa rumah masih dibina?','Tiada bayaran progresif untuk projek dalam pembinaan. Bagi rumah bertanah, bayaran balik bermula pada bulan berikutnya selepas bayaran kemajuan 95% dikeluarkan, atau pada bulan ke-25 dari tarikh kelulusan, mana yang lebih awal. Bagi kediaman bertingkat (high-rise), had tersebut ialah bulan ke-37.'],
+['Siapa yang layak memohon?','Penjawat awam berjawatan tetap yang telah disahkan dalam jawatan. Penjawat awam yang berkhidmat secara kontrak tidak layak.'],
+['Bolehkah saya memohon bersama pasangan?','Boleh. Pembiayaan bersama dibuka kepada suami isteri, atau ibu/bapa dan anak kandung, untuk hartanah yang sama. Pasangan yang bekerja di sektor swasta boleh menggunakan bank sebagai pembiaya kedua bagi rumah siap atau rumah dalam pembinaan, tertakluk kepada syarat. Semua pemohon menggunakan peguam yang sama.'],
+['Adakah kos guaman dan duti setem dibiayai?','Yuran guaman bagi dokumen pembiayaan boleh dimasukkan ke dalam jumlah pembiayaan (pilihan). Dokumen pembiayaan dikecualikan duti setem. Kos Perjanjian Jual Beli, pindah milik, kaveat dan duti setemnya tidak termasuk dalam pembiayaan.'],
+['Adakah perlindungan insurans atau takaful diperlukan?','Ya. Pembiayaan konvensional disertai insurans, manakala pembiayaan Islam disertai takaful. Panel insurans atau takaful tidak boleh ditukar selepas pembiayaan diluluskan.'],
+['Bagaimana jika projek lewat siap atau terbengkalai?','Jika projek disahkan terbengkalai, bermasalah atau sakit oleh kementerian perumahan, peminjam boleh memohon penjadualan semula bayaran balik atau pembatalan pembiayaan dengan surat pengesahan status projek tersebut.'],
+['Bolehkah saya memohon pembiayaan kali kedua?','Boleh dipertimbangkan jika pembiayaan pertama telah diselesaikan sepenuhnya dan ansuran bulanan tidak melebihi 50% daripada gaji hakiki semasa.']],
+en:[['Can this financing be used for a new project home that is still under construction?','Yes. Buying a home under construction from a developer is one of the permitted financing types.'],
+['Do I pay instalments while the home is being built?','There are no progressive payments for projects under construction. For landed homes, repayment begins in the month after the 95% progress payment is released, or in the 25th month from the approval date, whichever is earlier. For high-rise homes, that limit is the 37th month.'],
+['Who is eligible to apply?','Permanent public servants who have been confirmed in service. Public servants serving on contract are not eligible.'],
+['Can I apply jointly with my spouse?','Yes. Joint financing is open to spouses, or a parent and their biological child, for the same property. A spouse working in the private sector may use a bank as the second financier for a completed home or a home under construction, subject to conditions. All applicants use the same lawyer.'],
+['Are legal fees and stamp duty financed?','Legal fees for the financing documents can be included in the financing amount (optional). The financing documents are exempt from stamp duty. Costs for the Sale and Purchase Agreement, transfer, caveat and their stamp duty are not included in the financing.'],
+['Is insurance or takaful coverage required?','Yes. Conventional financing comes with insurance, while Islamic financing comes with takaful. The insurance or takaful panel cannot be changed after the financing is approved.'],
+['What if the project is delayed or abandoned?','If the project is confirmed as abandoned, problematic or delayed by the housing ministry, the borrower may apply to reschedule repayments or cancel the financing, with the letter confirming the project status.'],
+['Can I apply for a second financing?','It may be considered if the first financing has been fully settled and the monthly instalment does not exceed 50% of the current basic salary.']]};
+const BT={
+ eye:['Pembiayaan perumahan penjawat awam','Public servant housing financing'],
+ h:['Kenali kelebihan pembiayaan perumahan penjawat awam','Key benefits of public servant housing financing'],
+ sub:['Miliki rumah sendiri dengan perancangan yang lebih teratur','Own your home with better-structured financial planning'],
+ present:['Mod paparan','Display mode'],
+ s1:['setahun','per annum'],s1b:['Kadar pembiayaan','Financing rate'],
+ s2:['sehingga','up to'],s2b:['Margin pembiayaan','Financing margin'],
+ s3n:['35','35'],s3:['tahun','years'],s3b:['Tempoh maksimum','Maximum tenure'],
+ s4:['bulanan','monthly'],s4b:['Potongan gaji atau pencen','Salary or pension deduction'],
+ intro:['Sebagai penjawat awam, anda mempunyai akses kepada kemudahan pembiayaan perumahan khusus yang menawarkan beberapa kelebihan untuk membantu anda memiliki kediaman sendiri.','As a public servant, you have access to a dedicated housing financing facility that offers several benefits to help you own your home.'],
+ why:['Mengapa kemudahan ini menjadi pilihan penjawat awam?','Why do public servants choose this facility?'],
+ docH:['Senarai semak dokumen','Document checklist'],docS:['Sediakan dokumen ini supaya permohonan tidak tergendala.','Prepare these documents so the application is not held up.'],
+ docN:['Senarai asas. Konsultan akan mengesahkan senarai penuh mengikut kes anda.','Basic list. Our consultant will confirm the full list for your case.'],dreset:['Kosongkan tanda','Clear ticks'],
+ faqH:['Soalan lazim: rumah projek baharu','FAQ: new project homes'],
+ askH:['Ada soalan lain?','Any other questions?'],askP:['Konsultan kami sedia membantu semakan kelayakan dan permohonan anda.','Our consultant is ready to help with your eligibility check and application.'],
+ note:['Panduan ringkas sahaja. Kelayakan, kadar dan syarat sebenar tertakluk kepada peraturan yang berkuat kuasa.','Summary guide only. Actual eligibility, rates and terms are subject to the prevailing rules.']
+};
+const bt=k=>E(BT[k]);
+function vBen(){
+  const L=LANG==='en'?'en':'ms';
+  return `<section class="bhero"><div class="bhtop"><span class="beye">${bt('eye')}</span><button class="pbtn" data-act="present">${ico('screen')}<span>${bt('present')}</span></button></div><h2>${bt('h')}</h2><p>${bt('sub')}</p></section>
+<section class="bstats" aria-label="${bt('h')}"><div class="bs"><b>4<small>%</small></b><span class="u">${bt('s1')}</span><span class="l">${bt('s1b')}</span></div><div class="bs"><b>100<small>%</small></b><span class="u">${bt('s2')}</span><span class="l">${bt('s2b')}</span></div><div class="bs"><b>${bt('s3n')}</b><span class="u">${bt('s3')}</span><span class="l">${bt('s3b')}</span></div><div class="bs"><span class="bsi">${ico('wallet','lg')}</span><span class="u">${bt('s4')}</span><span class="l">${bt('s4b')}</span></div></section>
+<p class="bintro">${bt('intro')}</p>
+<h3 class="bq">${bt('why')}</h3>
+<ol class="bgrid">${BEN[L].map(([k,h,p],i)=>`<li class="bc"><div class="bct">${ico(k)}<span class="bn">${i+1}</span></div><b>${h}</b><p>${p}</p></li>`).join('')}</ol>
+<section class="box docs"><h3>${bt('docH')}</h3><p class="name">${bt('docS')}</p><ul>${DOCS[L].map(([h,p],i)=>`<li><label><input type="checkbox" id="doc${i}"><span><b>${h}</b>${p?`<em>${p}</em>`:''}</span></label></li>`).join('')}</ul><div class="dfoot"><p class="note">${bt('docN')}</p><button class="linkbtn" data-act="dreset">${bt('dreset')}</button></div></section>
+<section class="box faq"><h3>${bt('faqH')}</h3>${FAQ[L].map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</section>
+<section class="box contact"><h3>${bt('askH')}</h3><p class="name">${bt('askP')}</p>${waBtn(it('waAsk'))}</section>
+<p class="note">${bt('note')}</p>`;
+}
+function presentOn(){document.body.classList.add('present');window.scrollTo(0,0);try{const r=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();if(r&&r.catch)r.catch(()=>{})}catch(e){}}
+function presentOff(){document.body.classList.remove('present');try{if(document.fullscreenElement&&document.exitFullscreen){const r=document.exitFullscreen();if(r&&r.catch)r.catch(()=>{})}}catch(e){}}
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('present'))document.body.classList.remove('present')});
 function pubBanner(){
   if(me.role!=='admin'||!S.devs.length)return '';
   if(!S.dirty)return S.pubAt?`<p class="note">Pemaju/agency nampak data terkini (dikemas kini ${esc(fmtT(S.pubAt))}).</p>`:'';
@@ -563,11 +686,12 @@ function render(){
   if(!me)return;
   padKey=null;VIEW='app';document.documentElement.lang=LANG==='en'?'en':'ms';
   const adm=me.role==='admin',dv=S.devs.find(d=>d.id===me.dev);
-  if(!adm&&tab!=='info')tab='klien';
-  const body=tab==='info'?vInfo():!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
-  const items=adm?[['klien','Klien'],['pemaju','Pemaju/Agency'],['info','Info'],['alat','Alat']]:[['klien',t('tClients')],['info',t('tInfo')]];
+  if(!adm&&tab!=='info'&&tab!=='ben')tab='klien';
+  if(tab!=='ben'&&document.body.classList.contains('present'))presentOff();
+  const body=tab==='info'?vInfo():tab==='ben'?vBen():!adm||tab==='klien'?vKlien():tab==='pemaju'?vDevs():vTools();
+  const items=adm?[['klien','Klien'],['pemaju','Pemaju/Agency'],['info','Info'],['ben','Kelebihan'],['alat','Alat']]:[['klien',t('tClients')],['info',t('tInfo')],['ben',t('tBen')]];
   const nav=`<nav class="tabs" aria-label="Menu">${items.map(([k,l])=>`<button data-act="tab" data-v="${k}"${tab===k?' aria-current="page"':''}>${l}</button>`).join('')}</nav>`;
-  $('app').innerHTML=`<header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div>${langToggle()}<button class="ghost" data-act="out">${t('logout')}</button></header><main>${body}</main>${nav}`;
+  $('app').innerHTML=`<button class="pexit" data-act="present">${E(['Keluar mod paparan','Exit display mode'])}</button><header class="bar">${BRAND_BAR}<div class="who">${adm?'Admin':esc(dv?dv.name:'')}</div>${langToggle()}<button class="ghost" data-act="out">${t('logout')}</button></header><main>${body}</main>${nav}`;
 }
 
 /* ---------- butiran klien ---------- */
@@ -797,6 +921,8 @@ function act(a,b){
     case 'lang':if(d.v!==LANG){LANG=d.v==='ms'?'ms':'en';try{localStorage.setItem('tt-lang',LANG)}catch(e){}const keepInc=$('inc')?$('inc').value:'';const wasOpen=openId;if(me){render();if(wasOpen){openSheet(wasOpen)}if(keepInc&&$('inc')){$('inc').value=keepInc;updateElig()}}else start()}break;
     case 'setup':if(OWNER&&LOADED&&!S.admin)setup();break;
     case 'tab':tab=d.v;render();window.scrollTo(0,0);break;
+    case 'present':if(document.body.classList.contains('present'))presentOff();else presentOn();break;
+    case 'dreset':document.querySelectorAll('.docs input[type=checkbox]').forEach(x=>{x.checked=false});break;
     case 'fdev':fDev=d.v;fStage=-1;render();break;
     case 'fstage':fStage=fStage===+d.v?-1:+d.v;render();break;
     case 'fstuck':fStage=fStage===-2?-1:-2;render();break;
