@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>TULUS TRACKER</title><meta name="description" content="Penjejak proses perumahan sektor awam"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"><style id="css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; manifest-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>TULUS TRACKER</title><meta name="description" content="Penjejak proses perumahan sektor awam"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#14584a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="TULUS TRACKER"><meta name="application-name" content="TULUS TRACKER"><meta property="og:type" content="website"><meta property="og:site_name" content="TULUS TRACKER"><meta property="og:title" content="TULUS TRACKER"><meta property="og:url" content="https://tulustracker.github.io/"><meta property="og:description" content="Penjejak proses perumahan sektor awam. Semak status permohonan klien anda dengan PIN."><meta property="og:image" content="https://tulustracker.github.io/og.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="TULUS TRACKER: Penjejak proses perumahan sektor awam"><meta name="twitter:card" content="summary_large_image"><style id="css">
 :root{--bg:#e9efed;--card:#fff;--ink:#10291f;--muted:#587068;--line:#cddad5;--pine:#14584a;--on:#fff;--amber:#cf8d12;--gold:#f8c010;--done:#1c9a68;--off:#d3ded9;--danger:#b3372f;color-scheme:light}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1714;--card:#13241f;--ink:#e4efeb;--muted:#8da79f;--line:#223630;--pine:#37b597;--on:#06241c;--amber:#f0b440;--done:#4cc994;--off:#25382f;--danger:#f0776d;color-scheme:dark}}
 *{box-sizing:border-box}
@@ -301,6 +301,28 @@ body.present .bhero h2{font-size:1.85rem}
 body.present .bs b{font-size:2.7rem}
 body.present .bsi,body.present .bsi .bi.lg{height:2.7rem;width:2.7rem}
 @media(min-width:900px){body.present main{max-width:1040px}}
+.path{grid-auto-columns:minmax(96px,1fr)}
+.lbl{-webkit-line-clamp:3;overflow-wrap:anywhere}
+.qrow{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+.qrow #q{flex:1 1 auto;min-width:0;margin-bottom:0}
+.sortl{flex:none;display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted)}
+.sortl select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 8px;height:100%;min-height:42px;max-width:150px}
+@media(max-width:380px){.sortl>span{display:none}}
+.nb{display:inline-block;vertical-align:2px;margin-left:8px;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--gold);color:#1b1200}
+.nb.new{background:var(--pine);color:var(--on)}
+.news{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:9px 12px;margin-bottom:10px;font-size:.88rem;font-weight:600}
+.news .ndot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.news .linkbtn{margin-left:auto}
+.a2hs{position:relative;display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 40px 12px 12px;margin-bottom:14px}
+.a2hs img{flex:none;width:44px;height:44px;border-radius:11px}
+.a2hs b{display:block;font-size:.95rem}
+.a2hs p{margin:2px 0 0;font-size:.85rem;color:var(--muted)}
+.a2hs .how{color:var(--ink)}
+.a2hs .btn.sm{margin-top:8px;padding:7px 16px;width:auto}
+.a2hs .x{position:absolute;top:6px;right:6px;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:1.4rem;line-height:1;cursor:pointer;border-radius:8px}
+.a2hs .x:hover{background:var(--off)}
+.a2hs [hidden]{display:none!important}
+.news .linkbtn{padding:2px 0;font-size:.85rem}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"tjUjQzZjsLB3o/bANI/qUw==","it":400000,"b":["+pBAKE8kl2w7vtVO.4QEztgx6iX5Ojh+mPOAfHYOkisXjeqMlET1CPhbxUp9BE/ye7xEcTG8BGkLIwyilCiSIZZQNpHFwQVjrkUkRgymLhGOd5vq/Zc52kwBmWIgaRnzE1yVvHY0OBEBgUEjMzaxWWfIQayxQosK/tV5SkdjlCpiZ1qc8/a/MvlINfXKdBmsxJYsQ1GTPCuCpCD6QuwyMDDZ4Mpnsr9r50DM/XH0aom5jNRn/rSpkIEPEEBAlsB4OorTgClqjlhYfXKBOXl1II3F8Qqfn8NJ77IKQvgMTqavx0MbJjMmOOa+hnN+FLQF8rCrGZIartbGS1TxWL/Nloe2M0foCaUdv3aNB22Hc5Q+r+bwc21YsFZoBzDdPFswKerBJKYUUn6Iy4yosvsvinbKGHjOsh3Lxdef103rhbfqKgh8z3DNkxtfiAFybn1Cp4uvvjYjWFv1eqpfvb25tgxxRGGLv5Cm/2r7yE3iedep0piIin0Wd+rN8KCjM/enIe2nIY4Um6YhUtNLkhfoB4kN53EKnb4U5vslb/ywsw5Tu2tQ3kF63wrZLkS4QC463jPxc/xpf75g6Gh+ew9AknnPf8RYNEBIlIk8fKpgDQGzY77lR3S82H6M+mKwunh6v9kiid4Bz7XdQL1RL4z4UHQGydjSe+6i1/lU3+YkBjLOgvqGExXFDApKhJ672f5QnZm+X/CaVj226ZBgVGKq4XOpzAm4y9RiSrCHQOawdyiua6jtYijpBdnO7WZABSg7ekX4yCpYwiJszJbqsyxXmm1GyNI91CUHlD2GnY3dqX3rMu5GrMs1eD2BKpWkJ3bYiT6UshQQ5E8NkTf+3mHMYXwzmkDvCvO9SAX/NgJrUfC+UD9a/EB6v1fcC7DBxWF1O5lfh9CZlZ3tZtn4n+irJTOc85/tw5qJS71bzTn5BwUi+QBN07lRnO5Y5wqLC9ZE8HAiS+t65lf1A6MJw04/NR+QVs6fIYk8mqtbgUYi1WqcONVRbVX7E+jjsnT10T046jJUu1MrwHUyXXRmvWgDzrSUPeTCuaR7FIshI9ZtZ2mauDxqn"]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -324,6 +346,7 @@ const isStuck=c=>!c.x&&c.s<last()&&daysAt(c)>=STUCK();
 const live=c=>!c.x;
 const created=c=>(c.log&&c.log[0]&&c.log[0].t)||c.d||0;
 const okLink=v=>/^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/[^\s<>"'`]*)?$/i.test(String(v||''))&&String(v).length<=300;
+let SORT=(()=>{try{const v=localStorage.getItem('tt-sort');return ['recent','stuck','unit','stage'].includes(v)?v:'recent'}catch(e){return 'recent'}})(),NEWS={},SEENK='',SEEN={},A2HS=null;
 let me=null,tab='klien',fDev='',fStage=-1,q='',openId=null,padKey=null,fails=0,lockUntil=0,busy=false,VIEW=null;
 let OWNER=false,DOC=null,ART=null,LOADED=false,OWNER_ERR='',RO=false;
 const $=id=>document.getElementById(id);
@@ -354,7 +377,10 @@ const T={
  xBox:['Permohonan ini <b>dibatalkan</b> pada {0}.','This application was <b>cancelled</b> on {0}.'],
  adminNote:['Catatan daripada admin','Note from admin'],
  sinceDone:['Proses selesai pada {0}.','Process completed on {0}.'],since:['Di tahap ini sejak {0} ({1} hari).','At this stage since {0} ({1} days).'],
- tClients:['Klien','Clients'],tInfo:['Info pembiayaan','Financing info'],tBen:['Kelebihan','Benefits']
+ tClients:['Klien','Clients'],tInfo:['Info pembiayaan','Financing info'],tBen:['Kelebihan','Benefits'],
+ bNew:['Baharu','New'],bUpd:['Dikemas kini','Updated'],newsN:['{0} kemas kini sejak lawatan terakhir anda','{0} updates since your last visit'],news1:['1 kemas kini sejak lawatan terakhir anda','1 update since your last visit'],seenAll:['Tandakan semua dilihat','Mark all as seen'],
+ sortL:['Susun','Sort'],sRecent:['Terkini','Latest'],sStuck:['Tersangkut dahulu','Stuck first'],sUnit:['No. unit','Unit no.'],sStage:['Tahap','Stage'],
+ a2hsH:['Pasang di skrin utama','Add to your home screen'],a2hsP:['Buka TULUS TRACKER terus dari ikon di telefon anda, seperti aplikasi.','Open TULUS TRACKER straight from an icon on your phone, like an app.'],a2hsIos:['Dalam Safari, tekan butang Kongsi, kemudian pilih “Add to Home Screen”.','In Safari, tap the Share button, then choose “Add to Home Screen”.'],a2hsAnd:['Tekan menu ⋮ pelayar, kemudian pilih “Add to Home screen” atau “Install app”.','Tap the browser menu ⋮, then choose “Add to Home screen” or “Install app”.'],a2hsBtn:['Pasang','Install'],a2hsX:['Tutup','Dismiss']
 };
 const t=(k,...a)=>{const v=(T[k]||[k,k])[LANG==='en'?1:0];return a.length?v.replace(/\{(\d)\}/g,(_,i)=>a[+i]):v};
 const STAGE_EN={'Permohonan dihantar':'Application submitted','Dokumen lengkap':'Documents complete','Dalam semakan':'Under review','Kelulusan pinjaman':'Financing approved','Perjanjian pinjaman':'Financing agreement','Selesai':'Completed'};
@@ -458,7 +484,29 @@ async function tryPemaju(p){
 function enterPemaju(d,p){
   const stages=d.stages.map(String).filter(Boolean);if(stages.length<2)return false;
   S={admin:'',stages,devs:[{id:'x',name:String(d.dev),pin:p}],clients:d.clients.filter(c=>c).map((c,i)=>({id:'c'+i,dev:'x',u:String(c.u),n:String(c.n),j:String(c.j||'').slice(0,60),sn:String(c.sn||'').slice(0,300),x:!!c.x,xt:+c.xt||0,s:Math.min(Math.max(0,Math.floor(+c.s)||0),stages.length-1),log:cleanLog(c.log),note:'',d:+c.d||0})),dirty:false,pubAt:+d.at||0,stuckDays:clampDays(d.stuck)};
-  me={role:'dev',dev:'x'};fails=0;tab='klien';render();return true;
+  me={role:'dev',dev:'x'};fails=0;tab='klien';initSeen();render();return true;
+}
+/* Tanda 'Baharu dikemas kini': rekod ringkas (hash sahaja) disimpan dalam pelayar pemaju sendiri. */
+const sigOf=c=>String(h53(c.s+'|'+(c.x?1:0)+'|'+(c.sn||'')));
+const keyOf=c=>String(h53('u|'+c.u));
+function initSeen(){
+  NEWS={};SEENK='tt-seen-'+h53('dev|'+((S.devs[0]&&S.devs[0].name)||''));let m=null;
+  try{m=JSON.parse(localStorage.getItem(SEENK)||'null')}catch(e){m=null}
+  if(!m||typeof m!=='object'){SEEN={};S.clients.forEach(c=>{SEEN[keyOf(c)]=sigOf(c)});saveSeen();return}
+  SEEN=m;S.clients.forEach(c=>{const k=keyOf(c);if(!(k in SEEN))NEWS[c.id]='new';else if(SEEN[k]!==sigOf(c))NEWS[c.id]='upd'});
+}
+function saveSeen(){try{localStorage.setItem(SEENK,JSON.stringify(SEEN))}catch(e){}}
+function markSeen(id){const c=S.clients.find(x=>x.id===id);if(!c||!NEWS[id])return;SEEN[keyOf(c)]=sigOf(c);delete NEWS[id];saveSeen()}
+function markAllSeen(){S.clients.forEach(c=>{SEEN[keyOf(c)]=sigOf(c)});NEWS={};saveSeen()}
+function newsBar(){const n=Object.keys(NEWS).length;if(!n||me.role==='admin')return '';return `<div class="news"><span class="ndot" aria-hidden="true"></span><span>${n===1?t('news1'):t('newsN',n)}</span><button class="linkbtn" data-act="seenall">${t('seenAll')}</button></div>`}
+/* Petua pasang di skrin utama: hanya pada laman GitHub (tiada runtime Claude) dan bila belum dipasang. */
+const standalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();A2HS=e;const b=document.querySelector('.a2hs [data-act=a2hsgo]');if(b)b.hidden=false});
+function a2hsCard(){
+  if(window.claude||standalone()||me.role==='admin')return '';
+  try{if(localStorage.getItem('tt-a2hs')==='0')return ''}catch(e){}
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  return `<section class="a2hs"><img src="apple-touch-icon.png" alt="" width="44" height="44"><div><b>${t('a2hsH')}</b><p>${t('a2hsP')}</p><p class="how">${ios?t('a2hsIos'):t('a2hsAnd')}</p><button class="btn sm" data-act="a2hsgo"${A2HS?'':' hidden'}>${t('a2hsBtn')}</button></div><button class="x" data-act="a2hsx" aria-label="${t('a2hsX')}">×</button></section>`;
 }
 function ownerExtra(){
   if(!OWNER)return '';
@@ -493,13 +541,20 @@ function start(){
 /* ---------- paparan ---------- */
 function scope(){return S.clients.filter(c=>me.role==='admin'?(!fDev||c.dev===fDev):c.dev===me.dev)}
 function dateFor(c,i){const s=Math.min(c.s,last());if(i>s)return '';const e=[...(c.log||[])].reverse().find(x=>x.s===i);return e?fmt(e.t):''}
+function sorter(){
+  const byD=(a,b)=>b.d-a.d;
+  if(SORT==='unit')return (a,b)=>String(a.u).localeCompare(String(b.u),undefined,{numeric:true,sensitivity:'base'})||byD(a,b);
+  if(SORT==='stage')return (a,b)=>(b.s-a.s)||byD(a,b);
+  if(SORT==='stuck')return (a,b)=>((isStuck(b)?1:0)-(isStuck(a)?1:0))||((isStuck(b)?daysAt(b):0)-(isStuck(a)?daysAt(a):0))||byD(a,b);
+  return byD;
+}
 function listHtml(){
   const adm=me.role==='admin',L=last(),ql=q.trim().toLowerCase();
-  const rows=scope().filter(c=>(fStage===-3?c.x:!c.x&&(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage)))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')+' '+jobT(jobOf(c))).toLowerCase().includes(ql))).sort((a,b)=>b.d-a.d);
+  const rows=scope().filter(c=>(fStage===-3?c.x:!c.x&&(fStage===-1||(fStage===-2?isStuck(c):c.s===fStage)))&&(!ql||(c.u+' '+c.n+' '+(c.j||'')+' '+jobT(jobOf(c))).toLowerCase().includes(ql))).sort(sorter());
   if(!rows.length)return `<div class="empty">${S.clients.length?t('noMatch'):adm?(S.devs.length?'Belum ada klien. Buka “Tambah klien”.':'Mulakan dengan menambah pemaju/agency di tab Pemaju/Agency.'):t('noClients')}</div>`;
   return rows.map(c=>{
     const s=Math.min(c.s,L),dv=S.devs.find(d=>d.id===c.dev);
-    return `<div class="card tap${c.x?' cancel':s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}</span><span class="pill">${c.x?t('xd'):esc(stg(s))}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(jobT(c.j)):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>${t('note')}</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> ${t('stuckCard',daysAt(c))}</span>`:''}<span>${c.x?t('xOn',fmt(c.xt||c.d)):t('upd',fmt(c.d))}</span></div></div>`;
+    return `<div class="card tap${c.x?' cancel':s>=L?' done':''}" role="button" tabindex="0" data-act="open" data-id="${esc(c.id)}"><div class="top"><span class="unit">${esc(c.u)}${!adm&&NEWS[c.id]?`<span class="nb ${NEWS[c.id]}">${t(NEWS[c.id]==='new'?'bNew':'bUpd')}</span>`:''}</span><span class="pill">${c.x?t('xd'):esc(stg(s))}</span></div><p class="name">${esc(c.n)}${c.j?' · '+esc(jobT(c.j)):''}${adm&&dv?' ('+esc(dv.name)+')':''}</p><div class="seg">${S.stages.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>${c.sn?`<p class="sn"><b>${t('note')}</b> ${esc(c.sn)}</p>`:''}<div class="meta">${isStuck(c)?`<span class="flag"><span aria-hidden="true">!</span> ${t('stuckCard',daysAt(c))}</span>`:''}<span>${c.x?t('xOn',fmt(c.xt||c.d)):t('upd',fmt(c.d))}</span></div></div>`;
   }).join('');
 }
 const jobList=(id='jobs')=>`<datalist id="${id}">${JOBS.map(j=>`<option value="${esc(j)}">`).join('')}</datalist>`;
@@ -653,14 +708,15 @@ function vKlien(){
   const adm=me.role==='admin',all=scope(),sc=all.filter(live),n=sc.length,dn=sc.filter(c=>c.s>=last()).length,L=last(),nX=all.length-n;
   const cnt=i=>sc.filter(c=>c.s===i).length;
   const dv=!adm&&S.devs[0];
-  let h=(dv?`<section class="welcome"><span>${t('welcome')}</span><b>${esc(dv.name)}</b></section>`:'')+pubBanner()+`<div class="stats four"><div class="stat"><b>${all.length}</b><span>${t('total')}</span></div><div class="stat"><b>${n-dn}</b><span>${t('proc')}</span></div><div class="stat"><b>${dn}</b><span>${t('done')}</span></div><button class="stat statbtn" data-act="fcancel" aria-pressed="${fStage===-3}" title="${t('xtip')}"><b>${nX}</b><span>${t('xd')}</span></button></div>`;
+  let h=(dv?`<section class="welcome"><span>${t('welcome')}</span><b>${esc(dv.name)}</b></section>`:'')+(dv?a2hsCard():'')+pubBanner()+`<div class="stats four"><div class="stat"><b>${all.length}</b><span>${t('total')}</span></div><div class="stat"><b>${n-dn}</b><span>${t('proc')}</span></div><div class="stat"><b>${dn}</b><span>${t('done')}</span></div><button class="stat statbtn" data-act="fcancel" aria-pressed="${fStage===-3}" title="${t('xtip')}"><b>${nX}</b><span>${t('xd')}</span></button></div>`;
   if(adm&&S.devs.length)h+=`<div class="chips"><button class="chip" data-act="fdev" data-v="" aria-pressed="${!fDev}">Semua pemaju/agency</button>${S.devs.map(d=>`<button class="chip" data-act="fdev" data-v="${esc(d.id)}" aria-pressed="${fDev===d.id}">${esc(d.name)}</button>`).join('')}</div>`;
-  h+=`<div class="path" role="group" aria-label="${t('stageFilter')}">${S.stages.map((_,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl">${esc(stg(i))}</span></button>`).join('')}</div>`;
+  h+=`<div class="path" role="group" aria-label="${t('stageFilter')}">${S.stages.map((_,i)=>`<button class="stone${cnt(i)?' has':''}${i===L?' end':''}" data-act="fstage" data-v="${i}" aria-pressed="${fStage===i}"><span class="orb">${cnt(i)}</span><span class="lbl" title="${esc(stg(i))}">${esc(stg(i))}</span></button>`).join('')}</div>`;
   const nStuck=sc.filter(isStuck).length;
   if(nStuck||fStage===-2)h+=`<div class="stuckbar"><button class="chip flagchip" data-act="fstuck" aria-pressed="${fStage===-2}"><span aria-hidden="true">!</span> ${t('stuckChip',STUCK(),nStuck)}</button></div>`;
   if(fStage===-3)h+=`<div class="xnote"><span>${t('xShow',nX)}</span><button class="chip" data-act="fcancel">${t('back')}</button></div>`;
   h+=jobChart(all);
-  h+=`<input id="q" type="search" placeholder="${t('search')}" value="${esc(q)}" aria-label="${t('search')}">`;
+  h+=newsBar();
+  h+=`<div class="qrow"><input id="q" type="search" placeholder="${t('search')}" value="${esc(q)}" aria-label="${t('search')}"><label class="sortl"><span>${t('sortL')}</span><select id="sort">${[['recent','sRecent'],['stuck','sStuck'],['unit','sUnit'],['stage','sStage']].map(([v,k])=>`<option value="${v}"${SORT===v?' selected':''}>${t(k)}</option>`).join('')}</select></label></div>`;
   if(adm)h+=`<details class="box"><summary>Tambah klien</summary><div class="f"><select id="cd" aria-label="Pemaju/Agency">${S.devs.map(d=>`<option value="${esc(d.id)}"${d.id===fDev?' selected':''}>${esc(d.name)}</option>`).join('')}</select><input id="cu" placeholder="No. unit" autocomplete="off"><input id="cn" placeholder="Nama klien (nama pendek)" autocomplete="off"><input id="cj" list="jobs" placeholder="Pekerjaan (pilih atau taip)" autocomplete="off" maxlength="60"><button class="btn" data-act="addc">Simpan klien</button></div></details>${jobList()}`;
   h+=`<div id="list">${listHtml()}</div>`;
   if(!adm)h+=`<p class="note">${t('byAdmin',esc(fmtT(S.pubAt)))}</p>`;
@@ -937,7 +993,10 @@ function act(a,b){
     case 'savestuck':saveStuck();break;
     case 'report':report(($('rd')||{}).value||'',($('rm')||{}).value||'');break;
     case 'reportdev':report(d.id,'');break;
-    case 'open':openSheet(d.id);break;
+    case 'open':{const had=!!NEWS[d.id];markSeen(d.id);openSheet(d.id);if(had&&$('list')){$('list').innerHTML=listHtml();const nb=document.querySelector('.news');if(nb)nb.outerHTML=newsBar()}}break;
+    case 'seenall':markAllSeen();render();break;
+    case 'a2hsx':try{localStorage.setItem('tt-a2hs','0')}catch(e){}{const el=document.querySelector('.a2hs');if(el)el.remove()}break;
+    case 'a2hsgo':if(A2HS){A2HS.prompt();A2HS.userChoice&&A2HS.userChoice.then(()=>{A2HS=null;const el=document.querySelector('.a2hs');if(el)el.remove()}).catch(()=>{})}break;
     case 'close':closeSheet();if(me&&VIEW==='app'&&tab==='klien'&&$('list'))$('list').innerHTML=listHtml();break;
     case 'stage':setStage(+d.i);break;
     case 'addc':addClient();break;
@@ -980,7 +1039,8 @@ document.addEventListener('input',e=>{
   else if(e.target.id==='sn'&&isAdmin()){const c=S.clients.find(x=>x.id===openId);if(c){c.sn=e.target.value.slice(0,300);touch();if($('list'))$('list').innerHTML=listHtml()}}
 });
 document.addEventListener('change',e=>{
-  if(e.target.id==='res')restore(e.target);
+  if(e.target.id==='sort'){SORT=e.target.value;try{localStorage.setItem('tt-sort',SORT)}catch(x){}if($('list'))$('list').innerHTML=listHtml()}
+  else if(e.target.id==='res')restore(e.target);
   else if((e.target.id==='eu'||e.target.id==='en')&&isAdmin()){
     const c=S.clients.find(x=>x.id===openId);if(!c)return;
     const v=e.target.value.trim().slice(0,e.target.id==='eu'?40:80);
