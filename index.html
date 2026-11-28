@@ -421,6 +421,15 @@ body.present .bsi,body.present .bsi .bi.lg{height:2.7rem;width:2.7rem}
 .gdb{display:flex;justify-content:space-between;align-items:center;gap:10px}
 @media(prefers-reduced-motion:reduce){.gd,.gate.busy .dots i{animation:none!important}}
 .sortl span{white-space:nowrap}
+.tabs button{border-top:0;padding-top:7px}
+.tabs button svg{box-sizing:content-box;padding:3px 16px;border-radius:999px;transition:background .2s,color .2s}
+.tabs button[aria-current=page]{border-top:0}
+.tabs button[aria-current=page] svg{background:color-mix(in srgb,var(--pine) 16%,transparent)}
+.chart:not(.elig) .bars li,.perf .sbars li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"l v" "b b";row-gap:6px;padding:7px 2px}
+.chart:not(.elig) .bars li .bl,.perf .sbars li .bl{grid-area:l;font-size:.88rem}
+.chart:not(.elig) .bars li .bv,.perf .sbars li .bv{grid-area:v}
+.chart:not(.elig) .bars li .bt,.perf .sbars li .bt{grid-area:b;height:8px;background:var(--off);border-radius:4px;overflow:hidden}
+.chart:not(.elig) .bars li .bt i,.perf .sbars li .bt i{height:8px;border-radius:4px}
 </style></head><body><div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div><div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div><script id="pub" type="application/json">{"v":2,"salt":"tjUjQzZjsLB3o/bANI/qUw==","it":400000,"b":["+pBAKE8kl2w7vtVO.4QEztgx6iX5Ojh+mPOAfHYOkisXjeqMlET1CPhbxUp9BE/ye7xEcTG8BGkLIwyilCiSIZZQNpHFwQVjrkUkRgymLhGOd5vq/Zc52kwBmWIgaRnzE1yVvHY0OBEBgUEjMzaxWWfIQayxQosK/tV5SkdjlCpiZ1qc8/a/MvlINfXKdBmsxJYsQ1GTPCuCpCD6QuwyMDDZ4Mpnsr9r50DM/XH0aom5jNRn/rSpkIEPEEBAlsB4OorTgClqjlhYfXKBOXl1II3F8Qqfn8NJ77IKQvgMTqavx0MbJjMmOOa+hnN+FLQF8rCrGZIartbGS1TxWL/Nloe2M0foCaUdv3aNB22Hc5Q+r+bwc21YsFZoBzDdPFswKerBJKYUUn6Iy4yosvsvinbKGHjOsh3Lxdef103rhbfqKgh8z3DNkxtfiAFybn1Cp4uvvjYjWFv1eqpfvb25tgxxRGGLv5Cm/2r7yE3iedep0piIin0Wd+rN8KCjM/enIe2nIY4Um6YhUtNLkhfoB4kN53EKnb4U5vslb/ywsw5Tu2tQ3kF63wrZLkS4QC463jPxc/xpf75g6Gh+ew9AknnPf8RYNEBIlIk8fKpgDQGzY77lR3S82H6M+mKwunh6v9kiid4Bz7XdQL1RL4z4UHQGydjSe+6i1/lU3+YkBjLOgvqGExXFDApKhJ672f5QnZm+X/CaVj226ZBgVGKq4XOpzAm4y9RiSrCHQOawdyiua6jtYijpBdnO7WZABSg7ekX4yCpYwiJszJbqsyxXmm1GyNI91CUHlD2GnY3dqX3rMu5GrMs1eD2BKpWkJ3bYiT6UshQQ5E8NkTf+3mHMYXwzmkDvCvO9SAX/NgJrUfC+UD9a/EB6v1fcC7DBxWF1O5lfh9CZlZ3tZtn4n+irJTOc85/tw5qJS71bzTn5BwUi+QBN07lRnO5Y5wqLC9ZE8HAiS+t65lf1A6MJw04/NR+QVs6fIYk8mqtbgUYi1WqcONVRbVX7E+jjsnT10T046jJUu1MrwHUyXXRmvWgDzrSUPeTCuaR7FIshI9ZtZ2mauDxqn"]}</script><script id="main">/* TULUS TRACKER, versi link.
    Admin (pemilik artifact): data penuh disimpan peribadi dalam db di laluan data/users/<id>/, hanya pemilik boleh baca.
    Pemaju/agency: laman ini membawa data setiap pemaju yang disulitkan AES-GCM dengan kunci daripada PIN mereka (PBKDF2).
@@ -692,7 +701,7 @@ function monthDone(list){
   return out;
 }
 function perfCard(list){
-  const av=stageAvg(list),rows=av.map((v,i)=>[i,v]).filter(r=>r[1]!==null),mo=monthDone(list),tot=mo.reduce((a,m)=>a+m.n,0);
+  const av=stageAvg(list),rows0=av.map((v,i)=>[i,v]).filter(r=>r[1]!==null),rows=rows0.some(r=>r[1]>=1)?rows0:[],mo=monthDone(list),tot=mo.reduce((a,m)=>a+m.n,0);
   if(!rows.length&&!tot)return '';
   const mx=Math.max(1,...rows.map(r=>r[1])),dl=v=>v<1?t('lt1'):t('days',Math.round(v));
   let h=`<section class="box perf"><h3>${t('perfH')}</h3>`;
