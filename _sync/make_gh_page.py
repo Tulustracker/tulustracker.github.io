@@ -11,7 +11,7 @@ if not (isinstance(d, dict) and isinstance(d.get('b'), list) and d['b'] and isin
     sys.exit('Data pemaju tiada atau tidak sah: laman GitHub tidak diubah.')
 if '<script' in pub.lower():
     sys.exit('Data pemaju mengandungi kandungan tidak dijangka: laman GitHub tidak diubah.')
-csp = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"
+csp = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; manifest-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'"
 fav = "data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17a13 11 0 0 1 26 0z' fill='%23f8c010'/%3E%3Crect x='15' y='16' width='2.4' height='14' fill='%2314584a'/%3E%3C/svg%3E"
 page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
@@ -20,6 +20,17 @@ page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<title>TULUS TRACKER</title>'
         '<meta name="description" content="Penjejak proses perumahan sektor awam">'
         f'<link rel="icon" href="{fav}">'
+        '<link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">'
+        '<meta name="theme-color" content="#14584a"><meta name="apple-mobile-web-app-capable" content="yes">'
+        '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">'
+        '<meta name="apple-mobile-web-app-title" content="TULUS TRACKER"><meta name="application-name" content="TULUS TRACKER">'
+        '<meta property="og:type" content="website"><meta property="og:site_name" content="TULUS TRACKER">'
+        '<meta property="og:title" content="TULUS TRACKER"><meta property="og:url" content="https://tulustracker.github.io/">'
+        '<meta property="og:description" content="Penjejak proses perumahan sektor awam. Semak status permohonan klien anda dengan PIN.">'
+        '<meta property="og:image" content="https://tulustracker.github.io/og.png"><meta property="og:image:type" content="image/png">'
+        '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
+        '<meta property="og:image:alt" content="TULUS TRACKER: Penjejak proses perumahan sektor awam">'
+        '<meta name="twitter:card" content="summary_large_image">'
         f'<style id="css">{css}</style></head><body>'
         '<div id="app"><noscript><p style="padding:24px;text-align:center">Sila hidupkan JavaScript.</p></noscript></div>'
         '<div id="sheet" class="sheet" hidden></div><div id="toast" role="status" aria-live="polite"></div>'
